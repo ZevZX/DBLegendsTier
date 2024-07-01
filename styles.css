@@ -130,3 +130,7 @@ img.draggable.dragged, .button:active {
     background-size: cover;
     background-position: center;
 }
+
+.header.style {
+	background-color: #255b91;
+}

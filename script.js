@@ -1,16 +1,17 @@
 const MAX_NAME_LEN = 200;
-const DEFAULT_TIERS = ['Godly','Z+','Z','S','A','B','C','D','E'];
+const DEFAULT_TIERS = ['Godly','Z+','Z','S','A','B','C','D','E','F'];
 const TIER_COLORS = [
-	// from S to F
-	'#00d9ff',
-	'#ff7af5',
-	'#f9e70f',
-	'#da44cf',
-	'#0fcef9',
-	'#1ef42e',
-	'#9ba19b',
-	'#868a86',
-	'#6a6c6a'
+	// from Godly to F
+	'#59dffa',
+	'#f979ad',
+	'#f8d423',
+	'#d85cfb',
+	'#7dc6f6',
+	'#70d46c',
+	'#c6d0b3',
+	'#b4b49e',
+	'#a5b3a3',
+	'#788080'
 ];
 
 let unique_id = 0;
@@ -185,15 +186,16 @@ function add_row(index, name) {
 	row_buttons.classList.add('row-buttons');
 	let btn_plus_up = document.createElement('input');
 	btn_plus_up.type = "button";
-	btn_plus_up.value = '+';
+	btn_plus_up.value = '˄';
 	btn_plus_up.title = "Add row above";
 	btn_plus_up.addEventListener('click', (evt) => {
 		let parent_div = evt.target.parentNode.parentNode;
 		let rows = Array.from(tierlist_div.children);
 		let idx = rows.indexOf(parent_div);
 		console.assert(idx >= 0);
-		add_row(idx, '');
-		recompute_header_colors();
+		let newRow = add_row(idx, 'NEW');
+		newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
+		// recompute_header_colors();
 	});
 	let btn_rm = document.createElement('input');
 	btn_rm.type = "button";
@@ -214,15 +216,15 @@ function add_row(index, name) {
 	});
 	let btn_plus_down = document.createElement('input');
 	btn_plus_down.type = "button";
-	btn_plus_down.value = '+';
+	btn_plus_down.value = '˅';
 	btn_plus_down.title = "Add row below";
 	btn_plus_down.addEventListener('click', (evt) => {
 		let parent_div = evt.target.parentNode.parentNode;
 		let rows = Array.from(tierlist_div.children);
 		let idx = rows.indexOf(parent_div);
 		console.assert(idx >= 0);
-		add_row(idx + 1, name);
-		recompute_header_colors();
+		let newRow = add_row(idx + 1, 'NEW');
+		newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
 	});
 	row_buttons.appendChild(btn_plus_up);
 	row_buttons.appendChild(btn_rm);
