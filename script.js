@@ -28,16 +28,8 @@ let untiered_images;
 let tierlist_div;
 let dragged_image;
 
-function reset_row(row) {
-	row.querySelectorAll('span.item').forEach((item) => {
-		for (let i = 0; i < item.children.length; ++i) {
-			let img = item.children[i];
-			item.removeChild(img);
-			untiered_images.appendChild(img);
-		}
-		item.parentNode.removeChild(item);
-	});
-}
+let draggedItem = null;
+let placeholder = null;
 
 window.addEventListener('load', () => {
 	loadImagesFromJson();
@@ -110,8 +102,8 @@ window.addEventListener('load', () => {
 
 function create_img_with_src(src) {
     let container = document.createElement('div');
-    container.style.width = '100px';
-    container.style.height = '100px';
+    container.style.width = '50px';
+    container.style.height = '50px';
     container.style.backgroundImage = `url('${src}')`;
     container.style.backgroundSize = 'cover';
     container.style.backgroundPosition = 'center';
@@ -257,6 +249,17 @@ function rm_row(idx) {
 	tierlist_div.removeChild(row);
 }
 
+function reset_row(row) {
+	row.querySelectorAll('span.item').forEach((item) => {
+		for (let i = 0; i < item.children.length; ++i) {
+			let img = item.children[i];
+			item.removeChild(img);
+			untiered_images.appendChild(img);
+		}
+		item.parentNode.removeChild(item);
+	});
+}
+
 function recompute_header_colors() {
 	tierlist_div.querySelectorAll('.row').forEach((row, row_idx) => {
 		let color = TIER_COLORS[row_idx % TIER_COLORS.length];
@@ -280,9 +283,6 @@ function loadImagesFromJson() {
         })
         .catch(error => console.error('Error loading images:', error));
 }
-
-let draggedItem = null;
-let placeholder = null;
 
 function createPlaceholder() {
     const ph = document.createElement('div');
