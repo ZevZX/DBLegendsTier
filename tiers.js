@@ -1,18 +1,16 @@
-'use strict';
-
 const MAX_NAME_LEN = 200;
 const DEFAULT_TIERS = ['Godly','Z+','Z','S','A','B','C','D','E'];
 const TIER_COLORS = [
 	// from S to F
 	'#00d9ff',
-	'#00d9ff',
-	'#00d9ff',
-	'#f0a731',
-	'#f4d95b',
-	'#66ff66',
-	'#58c8f4',
-	'#5b76f4',
-	'#f45bed'
+	'#ff7af5',
+	'#f9e70f',
+	'#da44cf',
+	'#0fcef9',
+	'#1ef42e',
+	'#9ba19b',
+	'#868a86',
+	'#6a6c6a'
 ];
 
 let unique_id = 0;
@@ -41,19 +39,6 @@ function reset_row(row) {
 	});
 }
 
-// Removes all rows from the tierlist, alongside their content.
-// Also empties the untiered images.
-function hard_reset_list() {
-	tierlist_div.innerHTML = '';
-	untiered_images.innerHTML = '';
-}
-
-// Places back all the tierlist content into the untiered pool.
-function soft_reset_list() {
-	tierlist_div.querySelectorAll('.row').forEach(reset_row);
-	unsaved_changes = true;
-}
-
 window.addEventListener('load', () => {
 	loadImagesFromJson();
 	
@@ -68,9 +53,6 @@ window.addEventListener('load', () => {
 	headers_orig_min_width = all_headers[0][0].clientWidth;
 
 	make_accept_drop(document.querySelector('.images'));
-    tierlist_div.querySelectorAll('.row').forEach(row => make_accept_drop(row));
-
-	bind_title_events();
 
 	document.getElementById('load-img-input').addEventListener('input', (evt) => {
 		// @Speed: maybe we can do some async stuff to optimize this
@@ -85,25 +67,6 @@ window.addEventListener('load', () => {
 			reader.readAsDataURL(file);
 		}
 	});
-
-	// Allow copy-pasting image from clipboard
-	document.onpaste = (evt) => {
-		let clip_data = evt.clipboardData || evt.originalEvent.clipboardData;
-		let items = clip_data.items;
-		let images = document.querySelector('.images');
-		for (let item of items) {
-			if (item.kind === 'file') {
-				let blob = item.getAsFile();
-				let reader = new FileReader();
-				reader.onload = (load_evt) => {
-					let img = create_img_with_src(load_evt.target.result);
-					images.appendChild(img);
-					unsaved_changes = true;
-				};
-				reader.readAsDataURL(blob);
-			}
-		}
-	};
 
 	document.getElementById('reset-list-input').addEventListener('click', () => {
 		if (confirm('Reset Tierlist? (this will place all images back in the pool)')) {
@@ -137,17 +100,12 @@ window.addEventListener('load', () => {
 		reader.readAsText(file);
 	});
 
-	bind_trash_events();
-
 	window.addEventListener('beforeunload', (evt) => {
 		if (!unsaved_changes) return null;
 		var msg = "You have unsaved changes. Leave anyway?";
 		(evt || window.event).returnValue = msg;
 		return msg;
 	});
-
-	implementEfficientScrolling();
-	setTimeout(implementEfficientScrolling, 100); // Small delay to ensure images are loaded
 });
 
 function create_img_with_src(src) {
@@ -165,76 +123,6 @@ function create_img_with_src(src) {
     item.appendChild(container);
 
     return item;
-}
-
-function save(filename, text) {
-	unsaved_changes = false;
-
-	var el = document.createElement('a');
-	el.setAttribute('href', 'data:text/html;charset=utf-8,' + encodeURIComponent(text));
-	el.setAttribute('download', filename);
-	el.style.display = 'none';
-	document.body.appendChild(el);
-	el.click();
-	document.body.removeChild(el);
-}
-
-function save_tierlist(filename) {
-	let serialized_tierlist = {
-		title: document.querySelector('.title-label').innerText,
-		rows: [],
-	};
-	tierlist_div.querySelectorAll('.row').forEach((row, i) => {
-		serialized_tierlist.rows.push({
-			name: row.querySelector('.header label').innerText.substr(0, MAX_NAME_LEN)
-		});
-		serialized_tierlist.rows[i].imgs = [];
-		row.querySelectorAll('img').forEach((img) => {
-			serialized_tierlist.rows[i].imgs.push(img.src);
-		});
-	});
-
-	let untiered_imgs = document.querySelectorAll('.images img');
-	if (untiered_imgs.length > 0) {
-		serialized_tierlist.untiered = [];
-		untiered_imgs.forEach((img) => {
-			serialized_tierlist.untiered.push(img.src);
-		});
-	}
-
-	save(filename, JSON.stringify(serialized_tierlist));
-}
-
-function load_tierlist(serialized_tierlist) {
-	document.querySelector('.title-label').innerText = serialized_tierlist.title;
-	for (let idx in serialized_tierlist.rows) {
-		let ser_row = serialized_tierlist.rows[idx];
-		let elem = add_row(idx, ser_row.name);
-
-		for (let img_src of ser_row.imgs ?? []) {
-			let img = create_img_with_src(img_src);
-			let td = document.createElement('span');
-			td.classList.add('item');
-			td.appendChild(img);
-			let items_container = elem.querySelector('.items');
-			items_container.appendChild(td);
-		}
-
-		elem.querySelector('label').innerText = ser_row.name;
-	}
-	recompute_header_colors();
-
-	if (serialized_tierlist.untiered) {
-		let images = document.querySelector('.images');
-		for (let img_src of serialized_tierlist.untiered) {
-			let img = create_img_with_src(img_src);
-			images.appendChild(img);
-		}
-	}
-
-	resize_headers();
-
-	unsaved_changes = false;
 }
 
 function end_drag(evt) {
@@ -262,14 +150,6 @@ function enable_edit_on_click(container, input, label) {
 		input.style.display = 'inline';
 		input.select();
 	});
-}
-
-function bind_title_events() {
-	let title_label = document.querySelector('.title-label');
-	let title_input = document.getElementById('title-input');
-	let title = document.querySelector('.title');
-
-	enable_edit_on_click(title, title_input, title_label);
 }
 
 function create_label_input(row, row_idx, row_name) {
@@ -384,37 +264,6 @@ function recompute_header_colors() {
 	});
 }
 
-function bind_trash_events() {
-	let trash = document.getElementById('trash');
-	trash.classList.add('droppable');
-	trash.addEventListener('dragenter', (evt) => {
-		evt.preventDefault();
-		evt.target.src = 'trash_bin_open.png';
-	});
-	trash.addEventListener('dragexit', (evt) => {
-		evt.preventDefault();
-		evt.target.src = 'trash_bin.png';
-	});
-	trash.addEventListener('dragover', (evt) => {
-		evt.preventDefault();
-	});
-	trash.addEventListener('drop', (evt) => {
-		evt.preventDefault();
-		evt.target.src = 'trash_bin.png';
-		if (dragged_image) {
-			let dragged_image_parent = dragged_image.parentNode;
-			if (dragged_image_parent.tagName.toUpperCase() === 'SPAN' &&
-					dragged_image_parent.classList.contains('item'))
-			{
-				// We were already in a tier
-				let containing_tr = dragged_image_parent.parentNode;
-				containing_tr.removeChild(dragged_image_parent);
-			}
-			dragged_image.remove();
-		}
-	});
-}
-
 // Call this function after loading images
 function loadImagesFromJson() {
     fetch('images.json')
@@ -428,7 +277,6 @@ function loadImagesFromJson() {
                 imagesContainer.appendChild(img);
             });
             console.log(`Loaded ${data.images.length} images`);
-            // Remove the call to implementEfficientScrolling here
         })
         .catch(error => console.error('Error loading images:', error));
 }
@@ -473,10 +321,6 @@ function updateDragPosition(e, container) {
         container.insertBefore(placeholder, insertBefore);
     }
 }
-
-const throttledUpdateDragPosition = throttle((e, container) => {
-    updateDragPosition(e, container);
-}, 16); // Throttle to about 60fps
 
 function make_accept_drop(elem) {
     elem.classList.add('droppable');
@@ -563,7 +407,6 @@ document.addEventListener('mousedown', (evt) => {
 					currentDroppable = itemsContainer;
 					enterDroppable(currentDroppable);
 				}
-				throttledUpdateDragPosition(e, itemsContainer);
 			} else if (currentDroppable) {
 				leaveDroppable(currentDroppable);
 				currentDroppable = null;
@@ -605,87 +448,3 @@ document.addEventListener('mousedown', (evt) => {
         };
     }
 });
-
-// Prevent default drag behavior for images
-document.addEventListener('dragstart', (e) => {
-    if (e.target.tagName.toLowerCase() === 'img') {
-        e.preventDefault();
-    }
-});
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-function implementEfficientScrolling() {
-    const imagesContainer = document.querySelector('.images');
-    const itemHeight = 100; // Assuming each item is 100px tall
-    const visibleItems = Math.ceil(imagesContainer.clientHeight / itemHeight);
-    let allItems = Array.from(imagesContainer.children);
-    let scrollTop = 0;
-
-    function updateVisibleItems() {
-        const startIndex = Math.floor(scrollTop / itemHeight);
-        const endIndex = Math.min(startIndex + visibleItems * 3, allItems.length);
-
-        for (let i = 0; i < allItems.length; i++) {
-            if (i >= startIndex && i < endIndex) {
-                allItems[i].style.display = '';
-            } else {
-                allItems[i].style.display = 'none';
-            }
-        }
-    }
-
-    imagesContainer.addEventListener('scroll', () => {
-        scrollTop = imagesContainer.scrollTop;
-        updateVisibleItems();
-    });
-
-    // Initial render
-    updateVisibleItems();
-}
-
-function renderAllImages() {
-    const imagesContainer = document.querySelector('.images');
-    const allItems = Array.from(imagesContainer.children);
-    imagesContainer.innerHTML = '';
-    allItems.forEach(item => imagesContainer.appendChild(item));
-}
-
-function sortImagesByRarity() {
-    const imagesContainer = document.querySelector('.images');
-    const images = Array.from(imagesContainer.children);
-    images.sort((a, b) => a.dataset.rarity.localeCompare(b.dataset.rarity));
-    images.forEach(img => {
-        imagesContainer.appendChild(img);
-        img.style.display = ''; // Ensure all images are visible after sorting
-    });
-    implementEfficientScrolling(); // Re-implement efficient scrolling after sorting
-}
-
-function sortImagesByCardNumber() {
-    const imagesContainer = document.querySelector('.images');
-    const images = Array.from(imagesContainer.children);
-    images.sort((a, b) => a.dataset.cardNumber.localeCompare(b.dataset.cardNumber));
-    images.forEach(img => {
-        imagesContainer.appendChild(img);
-        img.style.display = ''; // Ensure all images are visible after sorting
-    });
-    implementEfficientScrolling(); // Re-implement efficient scrolling after sorting
-}
-
-function showAllImages() {
-    const imagesContainer = document.querySelector('.images');
-    const images = Array.from(imagesContainer.children);
-    images.forEach(img => img.style.display = '');
-}

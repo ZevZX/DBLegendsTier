@@ -58,13 +58,13 @@ body {
 	border-bottom-width: 1px !important;
 }
 
-.tierlist div.row:hover {
-	/* background-color: #666; */
+/* .tierlist div.row:hover {
+	background-color: #666;
 }
 
 .tierlist div.row.drag-entered {
-	/* background-color: #888; */
-}
+	background-color: #888;
+} */
 
 span.header {
 	justify-content: center;
@@ -107,9 +107,9 @@ span.item {
 	align-content: flex-start;
 }
 
-.images.drag-entered {
+/* .images.drag-entered {
 	background-color: #888;
-}
+} */
 
 img.draggable {
 	cursor: grab;
