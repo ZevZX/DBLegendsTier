@@ -121,7 +121,7 @@ function create_img_with_src(src) {
 function end_drag(evt) {
     if (dragged_image) {
         dragged_image.classList.remove("dragged");
-        dragged_image.style.opacity = '1'; // Reset opacity to full
+        dragged_image.style.opacity = '1';
         dragged_image = null;
     }
 }
@@ -198,8 +198,8 @@ function add_row(index, name) {
 		console.assert(idx >= 0);
 		let newRow = add_row(idx, 'NEW');
 		newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
-		// recompute_header_colors();
 	});
+
 	let btn_rm = document.createElement('input');
 	btn_rm.type = "button";
 	btn_rm.value = '-';
@@ -215,8 +215,8 @@ function add_row(index, name) {
 		{
 			rm_row(idx);
 		}
-		recompute_header_colors();
 	});
+	
 	let btn_plus_down = document.createElement('input');
 	btn_plus_down.type = "button";
 	btn_plus_down.value = '˅';
@@ -272,7 +272,6 @@ function recompute_header_colors() {
 	});
 }
 
-// Call this function after loading images
 function loadImagesFromJson() {
     fetch('images.json')
         .then(response => response.json())
@@ -427,11 +426,103 @@ function createPlaceholder() {
     ph.style.height = `${draggedItem.offsetHeight}px`;
     ph.style.margin = window.getComputedStyle(draggedItem).margin;
     
-    // Create a clone of the dragged item
     const clone = draggedItem.cloneNode(true);
     clone.classList.remove('dragged');
-    clone.style.opacity = '0.6'; // Make it slightly transparent
+    clone.style.opacity = '0.6';
     
     ph.appendChild(clone);
     return ph;
 }
+
+function exportTierlist() {
+    let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
+    if (!fileName) return;
+
+    let serializedTierlist = {
+        tiers: [],
+        untieredImages: []
+    };
+
+    // Serialize tiers
+    document.querySelectorAll('.row').forEach(row => {
+        let headerElement = row.querySelector('.header');
+        let tier = {
+            name: headerElement.querySelector('label').innerText,
+            color: headerElement.style.backgroundColor,
+            images: []
+        };
+
+        row.querySelectorAll('.item').forEach(item => {
+            let img = item.querySelector('div');
+            tier.images.push({
+                src: img.style.backgroundImage.slice(5, -2),
+                rarity: img.dataset.rarity,
+                cardNumber: img.dataset.cardNumber
+            });
+        });
+
+        serializedTierlist.tiers.push(tier);
+    });
+
+    // Serialize untiered images
+    document.querySelectorAll('.images .item').forEach(item => {
+        let img = item.querySelector('div');
+        serializedTierlist.untieredImages.push({
+            src: img.style.backgroundImage.slice(5, -2),
+            rarity: img.dataset.rarity,
+            cardNumber: img.dataset.cardNumber
+        });
+    });
+
+    // Save to file
+    let blob = new Blob([JSON.stringify(serializedTierlist)], {type: 'application/json'});
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}.json`;
+    a.click();
+}
+
+function importTierlist(file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let serializedTierlist = JSON.parse(e.target.result);
+        
+        // Clear current tierlist
+        document.querySelector('.tierlist').innerHTML = '';
+        document.querySelector('.images').innerHTML = '';
+
+        // Recreate tiers
+        serializedTierlist.tiers.forEach((tier, index) => {
+            let row = add_row(index, tier.name);
+            let headerElement = row.querySelector('.header');
+            headerElement.style.backgroundColor = tier.color;
+            
+            tier.images.forEach(imgData => {
+                let img = create_img_with_src(imgData.src);
+                img.dataset.rarity = imgData.rarity;
+                img.dataset.cardNumber = imgData.cardNumber;
+                row.querySelector('.items').appendChild(img);
+            });
+        });
+
+        // Recreate untiered images
+        let untieredContainer = document.querySelector('.images');
+        serializedTierlist.untieredImages.forEach(imgData => {
+            let img = create_img_with_src(imgData.src);
+            img.dataset.rarity = imgData.rarity;
+            img.dataset.cardNumber = imgData.cardNumber;
+            untieredContainer.appendChild(img);
+        });
+
+    };
+    reader.readAsText(file);
+}
+
+document.getElementById('export-button').addEventListener('click', exportTierlist);
+
+document.getElementById('import-input').addEventListener('change', function(event) {
+    if (event.target.files.length > 0) {
+        importTierlist(event.target.files[0]);
+    }
+});

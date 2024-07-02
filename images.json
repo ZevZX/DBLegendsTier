@@ -1,3242 +1,3242 @@
 {
   "images": [
     {
-      "path": "renders/BChaCut_0000_00_Shallot.png",
-      "rarity": "Ultra",
+      "path": "img/renders/BChaCut_0000_00_Shallot.png",
+      "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_01_ShallotSS1.png.png",
-      "rarity": "Sparking",
+      "path": "img/renders/BChaCut_0000_01_ShallotSS1.png.png",
+      "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_02_ShallotSS2.png",
-      "rarity": "Extreme",
+      "path": "img/renders/BChaCut_0000_02_ShallotSS2.png",
+      "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_03_ShallotSS3.png",
-      "rarity": "Hero",
+      "path": "img/renders/BChaCut_0000_03_ShallotSS3.png",
+      "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_04_ShallotSSG.png",
+      "path": "img/renders/BChaCut_0000_04_ShallotSSG.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_05_Shallot.png",
+      "path": "img/renders/BChaCut_0000_05_Shallot.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_06_ShallotSS1.png",
+      "path": "img/renders/BChaCut_0000_06_ShallotSS1.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_07_ShallotSS2.png",
+      "path": "img/renders/BChaCut_0000_07_ShallotSS2.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_08_ShallotSS3.png",
+      "path": "img/renders/BChaCut_0000_08_ShallotSS3.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_09_ShallotSSG.png",
+      "path": "img/renders/BChaCut_0000_09_ShallotSSG.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_10_ShallotSSB.png",
+      "path": "img/renders/BChaCut_0000_10_ShallotSSB.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0000_Goku_01.png",
+      "path": "img/renders/BChaCut_0000_Goku_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0001_Goku_02.png",
+      "path": "img/renders/BChaCut_0001_Goku_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0002_GohanKid_01.png",
+      "path": "img/renders/BChaCut_0002_GohanKid_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0003_GohanKid_02.png",
+      "path": "img/renders/BChaCut_0003_GohanKid_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0004_Piccolo_01.png",
+      "path": "img/renders/BChaCut_0004_Piccolo_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0005_Krillin_01.png",
+      "path": "img/renders/BChaCut_0005_Krillin_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0006_Krillin_02.png",
+      "path": "img/renders/BChaCut_0006_Krillin_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0007_Yamucha_01.png",
+      "path": "img/renders/BChaCut_0007_Yamucha_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0008_TienShinhan_01.png",
+      "path": "img/renders/BChaCut_0008_TienShinhan_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0009_Chaozu_01.png",
+      "path": "img/renders/BChaCut_0009_Chaozu_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0010_Raditz_01.png",
+      "path": "img/renders/BChaCut_0010_Raditz_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0011_Saibaiman_01.png",
+      "path": "img/renders/BChaCut_0011_Saibaiman_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0012_Nappa_01.png",
+      "path": "img/renders/BChaCut_0012_Nappa_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0013_Nappa_02.png",
+      "path": "img/renders/BChaCut_0013_Nappa_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0014_Vegeta_01.png",
+      "path": "img/renders/BChaCut_0014_Vegeta_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0015_Goku_03.png",
+      "path": "img/renders/BChaCut_0015_Goku_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0016_GokuSS1_01.png",
+      "path": "img/renders/BChaCut_0016_GokuSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0017_Piccolo_02.png",
+      "path": "img/renders/BChaCut_0017_Piccolo_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0018_Vegeta_02.png",
+      "path": "img/renders/BChaCut_0018_Vegeta_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0019_Vegeta_03.png",
+      "path": "img/renders/BChaCut_0019_Vegeta_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0020_Zarbon_01.png",
+      "path": "img/renders/BChaCut_0020_Zarbon_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0021_Dodoria_01.png",
+      "path": "img/renders/BChaCut_0021_Dodoria_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0022_Guldo_01.png",
+      "path": "img/renders/BChaCut_0022_Guldo_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0023_Burter_01.png",
+      "path": "img/renders/BChaCut_0023_Burter_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0024_Recoome_01.png",
+      "path": "img/renders/BChaCut_0024_Recoome_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0025_Jeice_01.png",
+      "path": "img/renders/BChaCut_0025_Jeice_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0026_Ginyu_01.png",
+      "path": "img/renders/BChaCut_0026_Ginyu_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0027_Ginyu_02.png",
+      "path": "img/renders/BChaCut_0027_Ginyu_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0028_Frieza1st_01.png",
+      "path": "img/renders/BChaCut_0028_Frieza1st_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0029_Frieza1st_02.png",
+      "path": "img/renders/BChaCut_0029_Frieza1st_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0030_Frieza2nd_01.png",
+      "path": "img/renders/BChaCut_0030_Frieza2nd_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0031_Frieza3rd_01.png",
+      "path": "img/renders/BChaCut_0031_Frieza3rd_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0032_Frieza4th_01.png",
+      "path": "img/renders/BChaCut_0032_Frieza4th_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0033_TaoPaiPai_01.png",
+      "path": "img/renders/BChaCut_0033_TaoPaiPai_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0034_Paikuhan_01.png",
+      "path": "img/renders/BChaCut_0034_Paikuhan_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0035_Paikuhan_02.png",
+      "path": "img/renders/BChaCut_0035_Paikuhan_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0036_Jaco_01.png",
+      "path": "img/renders/BChaCut_0036_Jaco_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0037_Frost3rd_01.png",
+      "path": "img/renders/BChaCut_0037_Frost3rd_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0038_Pan_01.png",
+      "path": "img/renders/BChaCut_0038_Pan_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0039_Pan_02.png",
+      "path": "img/renders/BChaCut_0039_Pan_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0040_Piccolo_03.png",
+      "path": "img/renders/BChaCut_0040_Piccolo_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0041_Yamucha_02.png",
+      "path": "img/renders/BChaCut_0041_Yamucha_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0042_TienShinhan_02.png",
+      "path": "img/renders/BChaCut_0042_TienShinhan_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0043_Chaozu_02.png",
+      "path": "img/renders/BChaCut_0043_Chaozu_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0044_Frost3rd_02.png",
+      "path": "img/renders/BChaCut_0044_Frost3rd_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0045_GokuSS1_02.png",
+      "path": "img/renders/BChaCut_0045_GokuSS1_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0046_VegetaSS1_01.png",
+      "path": "img/renders/BChaCut_0046_VegetaSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0047_TrunksSS1_01.png",
+      "path": "img/renders/BChaCut_0047_TrunksSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0048_Android20_01.png",
+      "path": "img/renders/BChaCut_0048_Android20_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0049_Android19_01.png",
+      "path": "img/renders/BChaCut_0049_Android19_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0050_Turles_01.png",
+      "path": "img/renders/BChaCut_0050_Turles_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0051_MaiFuture_01.png",
+      "path": "img/renders/BChaCut_0051_MaiFuture_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0052_Trunks_01.png",
+      "path": "img/renders/BChaCut_0052_Trunks_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0053_Vegeta_04.png",
+      "path": "img/renders/BChaCut_0053_Vegeta_04.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0054_Turles_02.png",
+      "path": "img/renders/BChaCut_0054_Turles_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0055_Android20_02.png",
+      "path": "img/renders/BChaCut_0055_Android20_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0056_Android19_02.png",
+      "path": "img/renders/BChaCut_0056_Android19_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0057_Yamucha_03.png",
+      "path": "img/renders/BChaCut_0057_Yamucha_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0058_Saibaiman_02.png",
+      "path": "img/renders/BChaCut_0058_Saibaiman_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0059_Jaco_02.png",
+      "path": "img/renders/BChaCut_0059_Jaco_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0060_GokuSS1_03.png",
+      "path": "img/renders/BChaCut_0060_GokuSS1_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0061_Krillin_03.png",
+      "path": "img/renders/BChaCut_0061_Krillin_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0062_Android17_01.png",
+      "path": "img/renders/BChaCut_0062_Android17_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0063_Android18_01.png",
+      "path": "img/renders/BChaCut_0063_Android18_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0064_Cell1st_01.png",
+      "path": "img/renders/BChaCut_0064_Cell1st_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0065_KameSennin_01.png",
+      "path": "img/renders/BChaCut_0065_KameSennin_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0066_CabbeSS1_01.png",
+      "path": "img/renders/BChaCut_0066_CabbeSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0068_Android18_02.png",
+      "path": "img/renders/BChaCut_0068_Android18_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0069_Cabbe_01.png",
+      "path": "img/renders/BChaCut_0069_Cabbe_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0070_KameSennin_02.png",
+      "path": "img/renders/BChaCut_0070_KameSennin_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0071_Android17_02.png",
+      "path": "img/renders/BChaCut_0071_Android17_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0072_Goku_04.png",
+      "path": "img/renders/BChaCut_0072_Goku_04.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0073_Cell1st_02.png",
+      "path": "img/renders/BChaCut_0073_Cell1st_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0075_GokuSS1_04.png",
+      "path": "img/renders/BChaCut_0075_GokuSS1_04.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0076_GokuTeen_01.png",
+      "path": "img/renders/BChaCut_0076_GokuTeen_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0077_VegetaGTSS1_01.png",
+      "path": "img/renders/BChaCut_0077_VegetaGTSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0078_Bardock_01.png",
+      "path": "img/renders/BChaCut_0078_Bardock_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0079_PiccoloKing_01.png",
+      "path": "img/renders/BChaCut_0079_PiccoloKing_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0080_BrolySS1_01.png",
+      "path": "img/renders/BChaCut_0080_BrolySS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0081_Frieza1stPod_01.png",
+      "path": "img/renders/BChaCut_0081_Frieza1stPod_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0082_GokuKidGTSS1_01.png",
+      "path": "img/renders/BChaCut_0082_GokuKidGTSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0083_TrunksGT_01.png",
+      "path": "img/renders/BChaCut_0083_TrunksGT_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0084_PiccoloKing_02.png",
+      "path": "img/renders/BChaCut_0084_PiccoloKing_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0085_Pan_03.png",
+      "path": "img/renders/BChaCut_0085_Pan_03.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0086_Frieza1stPod_02.png",
+      "path": "img/renders/BChaCut_0086_Frieza1stPod_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0087_Bardock_02.png",
+      "path": "img/renders/BChaCut_0087_Bardock_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0090_Raditz_02.png",
+      "path": "img/renders/BChaCut_0090_Raditz_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0091_Zarbon_91.png",
+      "path": "img/renders/BChaCut_0091_Zarbon_91.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0092_Dodoria_92.png",
+      "path": "img/renders/BChaCut_0092_Dodoria_92.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0093_VegetaSV_01.png",
+      "path": "img/renders/BChaCut_0093_VegetaSV_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0094_Piccolo_94.png",
+      "path": "img/renders/BChaCut_0094_Piccolo_94.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0095_Android16_95.png",
+      "path": "img/renders/BChaCut_0095_Android16_95.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0096_Cell2nd_01.png",
+      "path": "img/renders/BChaCut_0096_Cell2nd_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0097_Cooler1st_01.png",
+      "path": "img/renders/BChaCut_0097_Cooler1st_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0099_Thouser_99.png",
+      "path": "img/renders/BChaCut_0099_Thouser_99.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0100_Cooler1st_02.png",
+      "path": "img/renders/BChaCut_0100_Cooler1st_02.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0101_GokuSS1_101.png",
+      "path": "img/renders/BChaCut_0101_GokuSS1_101.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0102_TrunksTeen_01.png",
+      "path": "img/renders/BChaCut_0102_TrunksTeen_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0103_GotenTeen_01.png",
+      "path": "img/renders/BChaCut_0103_GotenTeen_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0104_Cell3rd_104.png",
+      "path": "img/renders/BChaCut_0104_Cell3rd_104.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0105_Thouser_105.png",
+      "path": "img/renders/BChaCut_0105_Thouser_105.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0106_Android16_106.png",
+      "path": "img/renders/BChaCut_0106_Android16_106.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0107_Android18_107.png",
+      "path": "img/renders/BChaCut_0107_Android18_107.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0108_Cell3rd_01.png",
+      "path": "img/renders/BChaCut_0108_Cell3rd_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0109_TrunksST_01.png",
+      "path": "img/renders/BChaCut_0109_TrunksST_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0110_CellJr_01.png",
+      "path": "img/renders/BChaCut_0110_CellJr_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0111_GohanTeenSS2_01.png",
+      "path": "img/renders/BChaCut_0111_GohanTeenSS2_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0112_GokuSS3_112.png",
+      "path": "img/renders/BChaCut_0112_GokuSS3_112.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0113_Buu1st_113.png",
+      "path": "img/renders/BChaCut_0113_Buu1st_113.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0114_GokuSS1_114.png",
+      "path": "img/renders/BChaCut_0114_GokuSS1_114.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0115_Satan_115.png",
+      "path": "img/renders/BChaCut_0115_Satan_115.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0117_Buu1st_117.png",
+      "path": "img/renders/BChaCut_0117_Buu1st_117.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0118_GohanTeen_118.png",
+      "path": "img/renders/BChaCut_0118_GohanTeen_118.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0119_CellJr_119.png",
+      "path": "img/renders/BChaCut_0119_CellJr_119.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0120_Turles_120.png",
+      "path": "img/renders/BChaCut_0120_Turles_120.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0121_GokuSS1_121.png",
+      "path": "img/renders/BChaCut_0121_GokuSS1_121.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0122_Krillin_122.png",
+      "path": "img/renders/BChaCut_0122_Krillin_122.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0123_GohanFSS1_123.png",
+      "path": "img/renders/BChaCut_0123_GohanFSS1_123.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0124_TrunksFutureSS2_124.png",
+      "path": "img/renders/BChaCut_0124_TrunksFutureSS2_124.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0125_GokuKAIOU_125.png",
+      "path": "img/renders/BChaCut_0125_GokuKAIOU_125.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0125_GokuK_125.png",
+      "path": "img/renders/BChaCut_0125_GokuK_125.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0126_GokuBlack_126.png",
+      "path": "img/renders/BChaCut_0126_GokuBlack_126.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0127_Zamas_127.png",
+      "path": "img/renders/BChaCut_0127_Zamas_127.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0128_KaleBSS1_128.png",
+      "path": "img/renders/BChaCut_0128_KaleBSS1_128.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0130_MaiFuture_130.png",
+      "path": "img/renders/BChaCut_0130_MaiFuture_130.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0131_GokuBlack_131.png",
+      "path": "img/renders/BChaCut_0131_GokuBlack_131.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0133_VegetaT_133.png",
+      "path": "img/renders/BChaCut_0133_VegetaT_133.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0134_Zamas_134.png",
+      "path": "img/renders/BChaCut_0134_Zamas_134.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0136_Android17_136.png",
+      "path": "img/renders/BChaCut_0136_Android17_136.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0137_Android18_137.png",
+      "path": "img/renders/BChaCut_0137_Android18_137.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0138_Vegeta_138.png",
+      "path": "img/renders/BChaCut_0138_Vegeta_138.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0139_Cell2nd_139.png",
+      "path": "img/renders/BChaCut_0139_Cell2nd_139.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0140_Vegito_140.png",
+      "path": "img/renders/BChaCut_0140_Vegito_140.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0141_TrunksTeenSS1_01.png",
+      "path": "img/renders/BChaCut_0141_TrunksTeenSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0142_GotenTeenSS1_01.png",
+      "path": "img/renders/BChaCut_0142_GotenTeenSS1_01.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0143_VegetaM_143.png",
+      "path": "img/renders/BChaCut_0143_VegetaM_143.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0144_GotenksSS1_144.png",
+      "path": "img/renders/BChaCut_0144_GotenksSS1_144.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0145_Dabura_145.png",
+      "path": "img/renders/BChaCut_0145_Dabura_145.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0146_Dabura_146.png",
+      "path": "img/renders/BChaCut_0146_Dabura_146.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0147_BrolyB_147.png",
+      "path": "img/renders/BChaCut_0147_BrolyB_147.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0148_GogetaSS1_148.png",
+      "path": "img/renders/BChaCut_0148_GogetaSS1_148.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0149_JanembaS_149.png",
+      "path": "img/renders/BChaCut_0149_JanembaS_149.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0150_GokuSS2_150.png",
+      "path": "img/renders/BChaCut_0150_GokuSS2_150.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0151_BardockSS1_151.png",
+      "path": "img/renders/BChaCut_0151_BardockSS1_151.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0152_Chilled_152.png",
+      "path": "img/renders/BChaCut_0152_Chilled_152.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0154_TrunksSS1_154.png",
+      "path": "img/renders/BChaCut_0154_TrunksSS1_154.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0155_Pan_155.png",
+      "path": "img/renders/BChaCut_0155_Pan_155.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0156_VegetaSS1_156.png",
+      "path": "img/renders/BChaCut_0156_VegetaSS1_156.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0157_GohanSS1_157.png",
+      "path": "img/renders/BChaCut_0157_GohanSS1_157.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0158_Selypa_158.png",
+      "path": "img/renders/BChaCut_0158_Selypa_158.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0159_Toma_159.png",
+      "path": "img/renders/BChaCut_0159_Toma_159.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0160_Goku_160.png",
+      "path": "img/renders/BChaCut_0160_Goku_160.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0161_Cabbe_161.png",
+      "path": "img/renders/BChaCut_0161_Cabbe_161.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0162_Nappa_162.png",
+      "path": "img/renders/BChaCut_0162_Nappa_162.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0163_Nappa_163.png",
+      "path": "img/renders/BChaCut_0163_Nappa_163.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0164_BrolyBSS1MAX_164.png",
+      "path": "img/renders/BChaCut_0164_BrolyBSS1MAX_164.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0164_BrolyBSS1_164.png",
+      "path": "img/renders/BChaCut_0164_BrolyBSS1_164.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0165_GokuSSG_165.png",
+      "path": "img/renders/BChaCut_0165_GokuSSG_165.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0166_Beerus_166.png",
+      "path": "img/renders/BChaCut_0166_Beerus_166.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0167_Bojack_167.png",
+      "path": "img/renders/BChaCut_0167_Bojack_167.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0168_Cooler2nd_168.png",
+      "path": "img/renders/BChaCut_0168_Cooler2nd_168.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0169_TrunksTFSS1_169.png",
+      "path": "img/renders/BChaCut_0169_TrunksTFSS1_169.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0169_TrunksTF_169.png",
+      "path": "img/renders/BChaCut_0169_TrunksTF_169.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0170_Whis_170.png",
+      "path": "img/renders/BChaCut_0170_Whis_170.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0171_GohanF_171.png",
+      "path": "img/renders/BChaCut_0171_GohanF_171.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0172_CauliflaSS2_172.png",
+      "path": "img/renders/BChaCut_0172_CauliflaSS2_172.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0173_Ribrianne_173.png",
+      "path": "img/renders/BChaCut_0173_Ribrianne_173.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0174_Chichi_174.png",
+      "path": "img/renders/BChaCut_0174_Chichi_174.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0175_Bulma_175.png",
+      "path": "img/renders/BChaCut_0175_Bulma_175.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0176_Videl_176.png",
+      "path": "img/renders/BChaCut_0176_Videl_176.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0177_Lunch_177.png",
+      "path": "img/renders/BChaCut_0177_Lunch_177.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0178_Caulifla_178.png",
+      "path": "img/renders/BChaCut_0178_Caulifla_178.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0179_Kakunsa_179.png",
+      "path": "img/renders/BChaCut_0179_Kakunsa_179.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0180_Rozie_180.png",
+      "path": "img/renders/BChaCut_0180_Rozie_180.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0181_Chichi_181.png",
+      "path": "img/renders/BChaCut_0181_Chichi_181.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0182_Videl_182.png",
+      "path": "img/renders/BChaCut_0182_Videl_182.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0183_GreatSaiyaman1_183.png",
+      "path": "img/renders/BChaCut_0183_GreatSaiyaman1_183.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0184_GreatSaiyaman2_184.png",
+      "path": "img/renders/BChaCut_0184_GreatSaiyaman2_184.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0185_VegetaSSG_185.png",
+      "path": "img/renders/BChaCut_0185_VegetaSSG_185.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0186_GohanUltimate_186.png",
+      "path": "img/renders/BChaCut_0186_GohanUltimate_186.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0187_GokuSS3_187.png",
+      "path": "img/renders/BChaCut_0187_GokuSS3_187.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0188_VegetaSS2_188.png",
+      "path": "img/renders/BChaCut_0188_VegetaSS2_188.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0189_Slug_189.png",
+      "path": "img/renders/BChaCut_0189_Slug_189.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0190_PerfectCell_190.png",
+      "path": "img/renders/BChaCut_0190_PerfectCell_190.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0191_GohanTeenSS2_191.png",
+      "path": "img/renders/BChaCut_0191_GohanTeenSS2_191.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0192_Gtn_192.png",
+      "path": "img/renders/BChaCut_0192_Gtn_192.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0192_Gts_192.png",
+      "path": "img/renders/BChaCut_0192_Gts_192.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0193_Gotenks_193.png",
+      "path": "img/renders/BChaCut_0193_Gotenks_193.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0194_Trunks_194.png",
+      "path": "img/renders/BChaCut_0194_Trunks_194.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0195_TienShinhan_195.png",
+      "path": "img/renders/BChaCut_0195_TienShinhan_195.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0196_Buu2nd_196.png",
+      "path": "img/renders/BChaCut_0196_Buu2nd_196.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0197_VegetaSS1_197.png",
+      "path": "img/renders/BChaCut_0197_VegetaSS1_197.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0198_HyperMegaRilldo_198.png",
+      "path": "img/renders/BChaCut_0198_HyperMegaRilldo_198.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0199_GotenksSS3_199.png",
+      "path": "img/renders/BChaCut_0199_GotenksSS3_199.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0200_Buu3rd_200.png",
+      "path": "img/renders/BChaCut_0200_Buu3rd_200.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0201_Yamucha_201.png",
+      "path": "img/renders/BChaCut_0201_Yamucha_201.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0202_Slug_202.png",
+      "path": "img/renders/BChaCut_0202_Slug_202.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0203_Bulma_203.png",
+      "path": "img/renders/BChaCut_0203_Bulma_203.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0204_GotenTeenSS1_204.png",
+      "path": "img/renders/BChaCut_0204_GotenTeenSS1_204.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0205_GohanSS1_205.png",
+      "path": "img/renders/BChaCut_0205_GohanSS1_205.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0206_GokuSS1_206.png",
+      "path": "img/renders/BChaCut_0206_GokuSS1_206.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0207_BrolySS1_207.png",
+      "path": "img/renders/BChaCut_0207_BrolySS1_207.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0208_MetalCooler_208.png",
+      "path": "img/renders/BChaCut_0208_MetalCooler_208.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0209_Zangya_209.png",
+      "path": "img/renders/BChaCut_0209_Zangya_209.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0210_Videl_210.png",
+      "path": "img/renders/BChaCut_0210_Videl_210.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0212_Satan_212.png",
+      "path": "img/renders/BChaCut_0212_Satan_212.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0213_Piccolo_213.png",
+      "path": "img/renders/BChaCut_0213_Piccolo_213.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0214_Bojack_214.png",
+      "path": "img/renders/BChaCut_0214_Bojack_214.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0215_BuuGohan_215.png",
+      "path": "img/renders/BChaCut_0215_BuuGohan_215.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0216_GokuSSGSS_216.png",
+      "path": "img/renders/BChaCut_0216_GokuSSGSS_216.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0217_VegetaSSGSS_217.png",
+      "path": "img/renders/BChaCut_0217_VegetaSSGSS_217.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0218_GoldenFrieza_218.png",
+      "path": "img/renders/BChaCut_0218_GoldenFrieza_218.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0219_FriezaFP_219.png",
+      "path": "img/renders/BChaCut_0219_FriezaFP_219.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0220_GokuSS1_220.png",
+      "path": "img/renders/BChaCut_0220_GokuSS1_220.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0220_Goku_220.png",
+      "path": "img/renders/BChaCut_0220_Goku_220.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0221_JanembaS_221.png",
+      "path": "img/renders/BChaCut_0221_JanembaS_221.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0222_Chilled_222.png",
+      "path": "img/renders/BChaCut_0222_Chilled_222.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0223_Beerus_223.png",
+      "path": "img/renders/BChaCut_0223_Beerus_223.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0224_VegitoSV_224.png",
+      "path": "img/renders/BChaCut_0224_VegitoSV_224.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0225_BuuFinal_225.png",
+      "path": "img/renders/BChaCut_0225_BuuFinal_225.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0226_TrunksSS1_226.png",
+      "path": "img/renders/BChaCut_0226_TrunksSS1_226.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0226_Trunks_226.png",
+      "path": "img/renders/BChaCut_0226_Trunks_226.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0227_Android13_227.png",
+      "path": "img/renders/BChaCut_0227_Android13_227.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0228_Android14_228.png",
+      "path": "img/renders/BChaCut_0228_Android14_228.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0229_Android15_229.png",
+      "path": "img/renders/BChaCut_0229_Android15_229.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0230_Vados_230.png",
+      "path": "img/renders/BChaCut_0230_Vados_230.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0231_Guldo_231.png",
+      "path": "img/renders/BChaCut_0231_Guldo_231.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0232_Burter_232.png",
+      "path": "img/renders/BChaCut_0232_Burter_232.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0233_Recoome_233.png",
+      "path": "img/renders/BChaCut_0233_Recoome_233.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0234_Jeice_234.png",
+      "path": "img/renders/BChaCut_0234_Jeice_234.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0235_Ginyu_235.png",
+      "path": "img/renders/BChaCut_0235_Ginyu_235.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0236_GokuSSGSSKAIOU_236.png",
+      "path": "img/renders/BChaCut_0236_GokuSSGSSKAIOU_236.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0236_GokuSSGSSK_236.png",
+      "path": "img/renders/BChaCut_0236_GokuSSGSSK_236.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0237_Hit_237.png",
+      "path": "img/renders/BChaCut_0237_Hit_237.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0238_GohanTeenSS1_238.png",
+      "path": "img/renders/BChaCut_0238_GohanTeenSS1_238.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0238_GohanTeenSS2_238.png",
+      "path": "img/renders/BChaCut_0238_GohanTeenSS2_238.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0240_GokuKidGT_240.png",
+      "path": "img/renders/BChaCut_0240_GokuKidGT_240.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0241_Super17_241.png",
+      "path": "img/renders/BChaCut_0241_Super17_241.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0242_Android13M_242.png",
+      "path": "img/renders/BChaCut_0242_Android13M_242.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0243_Goku_243.png",
+      "path": "img/renders/BChaCut_0243_Goku_243.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0244_Android18_244.png",
+      "path": "img/renders/BChaCut_0244_Android18_244.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0245_Bulma_245.png",
+      "path": "img/renders/BChaCut_0245_Bulma_245.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0246_GinyuGoku_246.png",
+      "path": "img/renders/BChaCut_0246_GinyuGoku_246.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0247_GohanKid_247.png",
+      "path": "img/renders/BChaCut_0247_GohanKid_247.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0248_Krillin_248.png",
+      "path": "img/renders/BChaCut_0248_Krillin_248.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0249_Nail_249.png",
+      "path": "img/renders/BChaCut_0249_Nail_249.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0250_Nail_250.png",
+      "path": "img/renders/BChaCut_0250_Nail_250.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0251_GokuSS3_251.png",
+      "path": "img/renders/BChaCut_0251_GokuSS3_251.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0252_Goku_252.png",
+      "path": "img/renders/BChaCut_0252_Goku_252.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0253_PiccoloA_253.png",
+      "path": "img/renders/BChaCut_0253_PiccoloA_253.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0253_PiccoloB_253.png",
+      "path": "img/renders/BChaCut_0253_PiccoloB_253.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0254_Champa_254.png",
+      "path": "img/renders/BChaCut_0254_Champa_254.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0255_Bardock_255.png",
+      "path": "img/renders/BChaCut_0255_Bardock_255.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0256_BojackFP_256.png",
+      "path": "img/renders/BChaCut_0256_BojackFP_256.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0257_VegetaSS1_257.png",
+      "path": "img/renders/BChaCut_0257_VegetaSS1_257.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0257_Vegeta_257.png",
+      "path": "img/renders/BChaCut_0257_Vegeta_257.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0258_GohanFutureSS1_258.png",
+      "path": "img/renders/BChaCut_0258_GohanFutureSS1_258.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0258_GohanFuture_258.png",
+      "path": "img/renders/BChaCut_0258_GohanFuture_258.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0259_Raditz_259.png",
+      "path": "img/renders/BChaCut_0259_Raditz_259.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0260_BuuGohan_260.png",
+      "path": "img/renders/BChaCut_0260_BuuGohan_260.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0261_BuuFinal_261.png",
+      "path": "img/renders/BChaCut_0261_BuuFinal_261.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0262_BrolySS1_262.png",
+      "path": "img/renders/BChaCut_0262_BrolySS1_262.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0263_Android13_263.png",
+      "path": "img/renders/BChaCut_0263_Android13_263.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0264_GokuBlackRose_264.png",
+      "path": "img/renders/BChaCut_0264_GokuBlackRose_264.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0265_VegetaSSGSS_265.png",
+      "path": "img/renders/BChaCut_0265_VegetaSSGSS_265.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0266_Cooler1st_266.png",
+      "path": "img/renders/BChaCut_0266_Cooler1st_266.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0266_Cooler2nd_266.png",
+      "path": "img/renders/BChaCut_0266_Cooler2nd_266.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0268_Frieza4th_268.png",
+      "path": "img/renders/BChaCut_0268_Frieza4th_268.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0268_FriezaGold_268.png",
+      "path": "img/renders/BChaCut_0268_FriezaGold_268.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0269_Shisami_269.png",
+      "path": "img/renders/BChaCut_0269_Shisami_269.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0270_GokuSS4_270.png",
+      "path": "img/renders/BChaCut_0270_GokuSS4_270.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0271_VegetaSS4_271.png",
+      "path": "img/renders/BChaCut_0271_VegetaSS4_271.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0272_Shenron4_272.png",
+      "path": "img/renders/BChaCut_0272_Shenron4_272.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0273_Shenron1_273.png",
+      "path": "img/renders/BChaCut_0273_Shenron1_273.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0275_Shenron3_275.png",
+      "path": "img/renders/BChaCut_0275_Shenron3_275.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0276_Tapion_276.png",
+      "path": "img/renders/BChaCut_0276_Tapion_276.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0277_BrolyBN_277.png",
+      "path": "img/renders/BChaCut_0277_BrolyBN_277.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0278_Kakarot_278.png",
+      "path": "img/renders/BChaCut_0278_Kakarot_278.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0279_Buu3rd_279.png",
+      "path": "img/renders/BChaCut_0279_Buu3rd_279.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0280_GokuKidGT_280.png",
+      "path": "img/renders/BChaCut_0280_GokuKidGT_280.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0281_TrunksTeen_281.png",
+      "path": "img/renders/BChaCut_0281_TrunksTeen_281.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0282_Frieza2nd_282.png",
+      "path": "img/renders/BChaCut_0282_Frieza2nd_282.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0283_TrunksST_283.png",
+      "path": "img/renders/BChaCut_0283_TrunksST_283.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0284_HyperMegaRilldo_284.png",
+      "path": "img/renders/BChaCut_0284_HyperMegaRilldo_284.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0285_Gtb_285.png",
+      "path": "img/renders/BChaCut_0285_Gtb_285.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0286_GokuSSG_286.png",
+      "path": "img/renders/BChaCut_0286_GokuSSG_286.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0287_VegetaSS1_287.png",
+      "path": "img/renders/BChaCut_0287_VegetaSS1_287.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0287_VegetaSSG_287.png",
+      "path": "img/renders/BChaCut_0287_VegetaSSG_287.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0288_GogetaSS1_288.png",
+      "path": "img/renders/BChaCut_0288_GogetaSS1_288.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0289_JanembaS_289.png",
+      "path": "img/renders/BChaCut_0289_JanembaS_289.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0290_SuperBaby2_290.png",
+      "path": "img/renders/BChaCut_0290_SuperBaby2_290.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0291_Android14_291.png",
+      "path": "img/renders/BChaCut_0291_Android14_291.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0292_Android15_292.png",
+      "path": "img/renders/BChaCut_0292_Android15_292.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0293_KeflaSS2_293.png",
+      "path": "img/renders/BChaCut_0293_KeflaSS2_293.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0294_TrunksSS1_294.png",
+      "path": "img/renders/BChaCut_0294_TrunksSS1_294.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0295_Cell1st_295.png",
+      "path": "img/renders/BChaCut_0295_Cell1st_295.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0296_VegetaBaby_296.png",
+      "path": "img/renders/BChaCut_0296_VegetaBaby_296.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0297_Android21_297.png",
+      "path": "img/renders/BChaCut_0297_Android21_297.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0298_Android21Evil_298.png",
+      "path": "img/renders/BChaCut_0298_Android21Evil_298.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0298_Android21_298.png",
+      "path": "img/renders/BChaCut_0298_Android21_298.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0299_Android21_299.png",
+      "path": "img/renders/BChaCut_0299_Android21_299.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0300_Android21_300.png",
+      "path": "img/renders/BChaCut_0300_Android21_300.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0301_Basil_301.png",
+      "path": "img/renders/BChaCut_0301_Basil_301.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0302_Bergamo_302.png",
+      "path": "img/renders/BChaCut_0302_Bergamo_302.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0303_Lavender_303.png",
+      "path": "img/renders/BChaCut_0303_Lavender_303.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0304_Frieza1st_304.png",
+      "path": "img/renders/BChaCut_0304_Frieza1st_304.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0305_BardockNoBandana_305.png",
+      "path": "img/renders/BChaCut_0305_BardockNoBandana_305.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0305_Bardock_305.png",
+      "path": "img/renders/BChaCut_0305_Bardock_305.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0306_VegitoSV_306.png",
+      "path": "img/renders/BChaCut_0306_VegitoSV_306.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0306_Vegito_306.png",
+      "path": "img/renders/BChaCut_0306_Vegito_306.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0307_Pumbukin_307.png",
+      "path": "img/renders/BChaCut_0307_Pumbukin_307.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0308_Totapo_308.png",
+      "path": "img/renders/BChaCut_0308_Totapo_308.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0309_TaoPaiPai_309.png",
+      "path": "img/renders/BChaCut_0309_TaoPaiPai_309.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0310_GokuSSK_310.png",
+      "path": "img/renders/BChaCut_0310_GokuSSK_310.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0311_PaikuhanNoOuterwear_311.png",
+      "path": "img/renders/BChaCut_0311_PaikuhanNoOuterwear_311.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0311_Paikuhan_311.png",
+      "path": "img/renders/BChaCut_0311_Paikuhan_311.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0312_Kale_312.png",
+      "path": "img/renders/BChaCut_0312_Kale_312.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0313_GotenksSS1_313.png",
+      "path": "img/renders/BChaCut_0313_GotenksSS1_313.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0313_GotenksSS3_313.png",
+      "path": "img/renders/BChaCut_0313_GotenksSS3_313.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0314_GokuSSGSS_314.png",
+      "path": "img/renders/BChaCut_0314_GokuSSGSS_314.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0315_VegetaSSGSS_315.png",
+      "path": "img/renders/BChaCut_0315_VegetaSSGSS_315.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0316_GokuTeen_316.png",
+      "path": "img/renders/BChaCut_0316_GokuTeen_316.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0317_Hit_317.png",
+      "path": "img/renders/BChaCut_0317_Hit_317.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0318_VegitoSSGSS_318.png",
+      "path": "img/renders/BChaCut_0318_VegitoSSGSS_318.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0319_TrunksFutureSSA_319.png",
+      "path": "img/renders/BChaCut_0319_TrunksFutureSSA_319.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0320_ZamasM_320.png",
+      "path": "img/renders/BChaCut_0320_ZamasM_320.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0321_ShenronS1_321.png",
+      "path": "img/renders/BChaCut_0321_ShenronS1_321.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0322_GokuSS4FP_322.png",
+      "path": "img/renders/BChaCut_0322_GokuSS4FP_322.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0323_Shenron1_323.png",
+      "path": "img/renders/BChaCut_0323_Shenron1_323.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0324_Gtn_324.png",
+      "path": "img/renders/BChaCut_0324_Gtn_324.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0325_VegetaSV_325.png",
+      "path": "img/renders/BChaCut_0325_VegetaSV_325.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0326_GohanDBS_326.png",
+      "path": "img/renders/BChaCut_0326_GohanDBS_326.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0326_GohanUltimate_326.png",
+      "path": "img/renders/BChaCut_0326_GohanUltimate_326.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0327_BuuGotenks_327.png",
+      "path": "img/renders/BChaCut_0327_BuuGotenks_327.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0328_YoungYamcha_328.png",
+      "path": "img/renders/BChaCut_0328_YoungYamcha_328.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0329_TienShinhan_329.png",
+      "path": "img/renders/BChaCut_0329_TienShinhan_329.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0330_Krillin_330.png",
+      "path": "img/renders/BChaCut_0330_Krillin_330.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0331_Yamucha_331.png",
+      "path": "img/renders/BChaCut_0331_Yamucha_331.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0332_Bido_332.png",
+      "path": "img/renders/BChaCut_0332_Bido_332.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0333_Bujin_333.png",
+      "path": "img/renders/BChaCut_0333_Bujin_333.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0334_GokuaFP_334.png",
+      "path": "img/renders/BChaCut_0334_GokuaFP_334.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0334_Gokua_334.png",
+      "path": "img/renders/BChaCut_0334_Gokua_334.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0337_Hit_337.png",
+      "path": "img/renders/BChaCut_0337_Hit_337.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0338_Turles_338.png",
+      "path": "img/renders/BChaCut_0338_Turles_338.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0339_GokuSS1_339.png",
+      "path": "img/renders/BChaCut_0339_GokuSS1_339.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0340_Jiren_340.png",
+      "path": "img/renders/BChaCut_0340_Jiren_340.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0341_Toppo_341.png",
+      "path": "img/renders/BChaCut_0341_Toppo_341.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0342_Dyspo_342.png",
+      "path": "img/renders/BChaCut_0342_Dyspo_342.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0343_GotenTeenSS1_343.png",
+      "path": "img/renders/BChaCut_0343_GotenTeenSS1_343.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0343_GotenTeen_343.png",
+      "path": "img/renders/BChaCut_0343_GotenTeen_343.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0344_TrunksTeenSS1_344.png",
+      "path": "img/renders/BChaCut_0344_TrunksTeenSS1_344.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0344_TrunksTeen_344.png",
+      "path": "img/renders/BChaCut_0344_TrunksTeen_344.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0345_Cell3rd_345.png",
+      "path": "img/renders/BChaCut_0345_Cell3rd_345.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0345_PerfectCell_345.png",
+      "path": "img/renders/BChaCut_0345_PerfectCell_345.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0346_VegetaM_346.png",
+      "path": "img/renders/BChaCut_0346_VegetaM_346.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0346_Vegeta_346.png",
+      "path": "img/renders/BChaCut_0346_Vegeta_346.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0347_GokuSS2_0347.png",
+      "path": "img/renders/BChaCut_0347_GokuSS2_0347.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0348_Videl_348.png",
+      "path": "img/renders/BChaCut_0348_Videl_348.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0349_GreatSaiyaman1_349.png",
+      "path": "img/renders/BChaCut_0349_GreatSaiyaman1_349.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0350_GokuBlackRose_350.png",
+      "path": "img/renders/BChaCut_0350_GokuBlackRose_350.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0350_GokuBlack_350.png",
+      "path": "img/renders/BChaCut_0350_GokuBlack_350.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0351_Ribrianne_351.png",
+      "path": "img/renders/BChaCut_0351_Ribrianne_351.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0352_Kakunsa_352.png",
+      "path": "img/renders/BChaCut_0352_Kakunsa_352.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0353_Rozie_353.png",
+      "path": "img/renders/BChaCut_0353_Rozie_353.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0354_GohanKid_354.png",
+      "path": "img/renders/BChaCut_0354_GohanKid_354.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0362_Yurin_362.png",
+      "path": "img/renders/BChaCut_0362_Yurin_362.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0363_VegetaSS1_363.png",
+      "path": "img/renders/BChaCut_0363_VegetaSS1_363.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0364_MetalCooler_364.png",
+      "path": "img/renders/BChaCut_0364_MetalCooler_364.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0365_BojackFP_365.png",
+      "path": "img/renders/BChaCut_0365_BojackFP_365.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0366_GokuUIS_366.png",
+      "path": "img/renders/BChaCut_0366_GokuUIS_366.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0367_Frieza4th_367.png",
+      "path": "img/renders/BChaCut_0367_Frieza4th_367.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0370_BrolyBFP_370.png",
+      "path": "img/renders/BChaCut_0370_BrolyBFP_370.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0371_Frieza4th_371.png",
+      "path": "img/renders/BChaCut_0371_Frieza4th_371.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0372_BrolyBN_372.png",
+      "path": "img/renders/BChaCut_0372_BrolyBN_372.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0373_Vegeta_373.png",
+      "path": "img/renders/BChaCut_0373_Vegeta_373.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0374_Goku_374.png",
+      "path": "img/renders/BChaCut_0374_Goku_374.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0375_GohanFSS1_375.png",
+      "path": "img/renders/BChaCut_0375_GohanFSS1_375.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0376_KameSennin_376.png",
+      "path": "img/renders/BChaCut_0376_KameSennin_376.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0377_BuuFinal_377.png",
+      "path": "img/renders/BChaCut_0377_BuuFinal_377.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0378_Vegeta_378.png",
+      "path": "img/renders/BChaCut_0378_Vegeta_378.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0379_Bulma_379.png",
+      "path": "img/renders/BChaCut_0379_Bulma_379.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0380_BrolyNSS1_380.png",
+      "path": "img/renders/BChaCut_0380_BrolyNSS1_380.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0381_PiccoloKing_381.png",
+      "path": "img/renders/BChaCut_0381_PiccoloKing_381.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0381_PiccoloRotor_381.png",
+      "path": "img/renders/BChaCut_0381_PiccoloRotor_381.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0382_TrunksTF_382.png",
+      "path": "img/renders/BChaCut_0382_TrunksTF_382.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0383_GokuBlackRose_383.png",
+      "path": "img/renders/BChaCut_0383_GokuBlackRose_383.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0384_TrunksFuture_384.png",
+      "path": "img/renders/BChaCut_0384_TrunksFuture_384.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0385_GokuSS1_385.png",
+      "path": "img/renders/BChaCut_0385_GokuSS1_385.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0386_GokuDie_386.png",
+      "path": "img/renders/BChaCut_0386_GokuDie_386.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0386_GokuSSGSS_386.png",
+      "path": "img/renders/BChaCut_0386_GokuSSGSS_386.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0387_GokuBlack_387.png",
+      "path": "img/renders/BChaCut_0387_GokuBlack_387.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0388_GokuSS4_388.png",
+      "path": "img/renders/BChaCut_0388_GokuSS4_388.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0389_Android18_389.png",
+      "path": "img/renders/BChaCut_0389_Android18_389.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0390_Android17_390.png",
+      "path": "img/renders/BChaCut_0390_Android17_390.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0391_VegetaBaby_391.png",
+      "path": "img/renders/BChaCut_0391_VegetaBaby_391.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0392_GogetaSS4_392.png",
+      "path": "img/renders/BChaCut_0392_GogetaSS4_392.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0393_Super17_393.png",
+      "path": "img/renders/BChaCut_0393_Super17_393.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0394_SuperBaby2_394.png",
+      "path": "img/renders/BChaCut_0394_SuperBaby2_394.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0395_ZamasMD_395.png",
+      "path": "img/renders/BChaCut_0395_ZamasMD_395.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0396_VegitoSSGSS_396.png",
+      "path": "img/renders/BChaCut_0396_VegitoSSGSS_396.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0397_KeflaSS2_397.png",
+      "path": "img/renders/BChaCut_0397_KeflaSS2_397.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0398_GotenksSS3_398.png",
+      "path": "img/renders/BChaCut_0398_GotenksSS3_398.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0399_GokuBlackRose_399.png",
+      "path": "img/renders/BChaCut_0399_GokuBlackRose_399.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0400_Vegeta_400.png",
+      "path": "img/renders/BChaCut_0400_Vegeta_400.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0401_Goku_401.png",
+      "path": "img/renders/BChaCut_0401_Goku_401.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0402_GokuSS1_402.png",
+      "path": "img/renders/BChaCut_0402_GokuSS1_402.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0403_GokuSS2_403.png",
+      "path": "img/renders/BChaCut_0403_GokuSS2_403.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0404_GokuSS3_404.png",
+      "path": "img/renders/BChaCut_0404_GokuSS3_404.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0405_GokuSSG_405.png",
+      "path": "img/renders/BChaCut_0405_GokuSSG_405.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0406_GokuSSGSS_406.png",
+      "path": "img/renders/BChaCut_0406_GokuSSGSS_406.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0409_GohanTeenSS1_409.png",
+      "path": "img/renders/BChaCut_0409_GohanTeenSS1_409.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0409_GohanTeenSS2_409.png",
+      "path": "img/renders/BChaCut_0409_GohanTeenSS2_409.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0410_Zangya_410.png",
+      "path": "img/renders/BChaCut_0410_Zangya_410.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0411_BojackFP_411.png",
+      "path": "img/renders/BChaCut_0411_BojackFP_411.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0411_Bojack_411.png",
+      "path": "img/renders/BChaCut_0411_Bojack_411.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0412_TrunksSS1_412.png",
+      "path": "img/renders/BChaCut_0412_TrunksSS1_412.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0414_FriezaFP_414.png",
+      "path": "img/renders/BChaCut_0414_FriezaFP_414.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0415_Appule_415.png",
+      "path": "img/renders/BChaCut_0415_Appule_415.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0416_Ramon_416.png",
+      "path": "img/renders/BChaCut_0416_Ramon_416.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0417_Orlen_417.png",
+      "path": "img/renders/BChaCut_0417_Orlen_417.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0418_Nabana_418.png",
+      "path": "img/renders/BChaCut_0418_Nabana_418.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0419_Roberry_419.png",
+      "path": "img/renders/BChaCut_0419_Roberry_419.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0420_Raspberry_420.png",
+      "path": "img/renders/BChaCut_0420_Raspberry_420.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0421_Navel_421.png",
+      "path": "img/renders/BChaCut_0421_Navel_421.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0422_Monrei_422.png",
+      "path": "img/renders/BChaCut_0422_Monrei_422.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0423_Guprei_423.png",
+      "path": "img/renders/BChaCut_0423_Guprei_423.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0424_GokuKidGTSS3_424.png",
+      "path": "img/renders/BChaCut_0424_GokuKidGTSS3_424.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0425_SuperUub_425.png",
+      "path": "img/renders/BChaCut_0425_SuperUub_425.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0426_GokuSS1_426.png",
+      "path": "img/renders/BChaCut_0426_GokuSS1_426.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0427_BrolySS1_427.png",
+      "path": "img/renders/BChaCut_0427_BrolySS1_427.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0428_VegetaSSGSSEvo_428.png",
+      "path": "img/renders/BChaCut_0428_VegetaSSGSSEvo_428.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0429_Jiren_429.png",
+      "path": "img/renders/BChaCut_0429_Jiren_429.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0430_ToppoGod_430.png",
+      "path": "img/renders/BChaCut_0430_ToppoGod_430.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0431_CauliflaSS2_431.png",
+      "path": "img/renders/BChaCut_0431_CauliflaSS2_431.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0432_PerfectCell_432.png",
+      "path": "img/renders/BChaCut_0432_PerfectCell_432.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0433_VegetaT_433.png",
+      "path": "img/renders/BChaCut_0433_VegetaT_433.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0434_Yajirobe_434.png",
+      "path": "img/renders/BChaCut_0434_Yajirobe_434.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0435_Saibaiman_435.png",
+      "path": "img/renders/BChaCut_0435_Saibaiman_435.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0436_Kaiwareman_436.png",
+      "path": "img/renders/BChaCut_0436_Kaiwareman_436.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0437_Kyukonman_437.png",
+      "path": "img/renders/BChaCut_0437_Kyukonman_437.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0438_Tennenman_438.png",
+      "path": "img/renders/BChaCut_0438_Tennenman_438.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0439_Jinkoman_439.png",
+      "path": "img/renders/BChaCut_0439_Jinkoman_439.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0440_Copyman_440.png",
+      "path": "img/renders/BChaCut_0440_Copyman_440.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0441_GohanKidDie_441.png",
+      "path": "img/renders/BChaCut_0441_GohanKidDie_441.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0441_GohanKid_441.png",
+      "path": "img/renders/BChaCut_0441_GohanKid_441.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0442_GohanTeenSS2_442.png",
+      "path": "img/renders/BChaCut_0442_GohanTeenSS2_442.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0443_ShenronS1_443.png",
+      "path": "img/renders/BChaCut_0443_ShenronS1_443.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0444_GokuSS1_444.png",
+      "path": "img/renders/BChaCut_0444_GokuSS1_444.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0445_PiccoloHL_445.png",
+      "path": "img/renders/BChaCut_0445_PiccoloHL_445.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0447_GokuBlackRose_447.png",
+      "path": "img/renders/BChaCut_0447_GokuBlackRose_447.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0448_GokuSSGSS_448.png",
+      "path": "img/renders/BChaCut_0448_GokuSSGSS_448.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0448_VegetaSSGSS_448.png",
+      "path": "img/renders/BChaCut_0448_VegetaSSGSS_448.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0449_BrolyB_449.png",
+      "path": "img/renders/BChaCut_0449_BrolyB_449.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0450_Frieza4th_450.png",
+      "path": "img/renders/BChaCut_0450_Frieza4th_450.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0451_TrunksFutureSS1_451.png",
+      "path": "img/renders/BChaCut_0451_TrunksFutureSS1_451.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0452_Zamas_452.png",
+      "path": "img/renders/BChaCut_0452_Zamas_452.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0453_MaiFuture_453.png",
+      "path": "img/renders/BChaCut_0453_MaiFuture_453.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0454_GogetaSS1_454.png",
+      "path": "img/renders/BChaCut_0454_GogetaSS1_454.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0455_Frieza1stPod_455.png",
+      "path": "img/renders/BChaCut_0455_Frieza1stPod_455.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0456_Bardock_456.png",
+      "path": "img/renders/BChaCut_0456_Bardock_456.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0457_Toma_457.png",
+      "path": "img/renders/BChaCut_0457_Toma_457.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0458_Selypa_458.png",
+      "path": "img/renders/BChaCut_0458_Selypa_458.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0459_GokuKAIOU_459.png",
+      "path": "img/renders/BChaCut_0459_GokuKAIOU_459.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0460_Frieza4thTailCut_460.png",
+      "path": "img/renders/BChaCut_0460_Frieza4thTailCut_460.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0460_Frieza4th_460.png",
+      "path": "img/renders/BChaCut_0460_Frieza4th_460.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0461_Android18_461.png",
+      "path": "img/renders/BChaCut_0461_Android18_461.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0462_JirenFP_462.png",
+      "path": "img/renders/BChaCut_0462_JirenFP_462.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0463_Beerus_463.png",
+      "path": "img/renders/BChaCut_0463_Beerus_463.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0464_Toppo_464.png",
+      "path": "img/renders/BChaCut_0464_Toppo_464.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0465_Dyspo_465.png",
+      "path": "img/renders/BChaCut_0465_Dyspo_465.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0466_GokuSSGSS_466.png",
+      "path": "img/renders/BChaCut_0466_GokuSSGSS_466.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0467_VegetaSSGSS_467.png",
+      "path": "img/renders/BChaCut_0467_VegetaSSGSS_467.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0468_GokuSSGSSKAIOU_468.png",
+      "path": "img/renders/BChaCut_0468_GokuSSGSSKAIOU_468.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0469_FriezaGold_469.png",
+      "path": "img/renders/BChaCut_0469_FriezaGold_469.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0470_Whis_470.png",
+      "path": "img/renders/BChaCut_0470_Whis_470.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0471_TrunksSS1_471.png",
+      "path": "img/renders/BChaCut_0471_TrunksSS1_471.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0472_Android17_472.png",
+      "path": "img/renders/BChaCut_0472_Android17_472.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0472_Android18_472.png",
+      "path": "img/renders/BChaCut_0472_Android18_472.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0473_GohanF_473.png",
+      "path": "img/renders/BChaCut_0473_GohanF_473.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0473_TrunksTF_473.png",
+      "path": "img/renders/BChaCut_0473_TrunksTF_473.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0474_GogetaSS1_474.png",
+      "path": "img/renders/BChaCut_0474_GogetaSS1_474.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0475_Gamma1_475.png",
+      "path": "img/renders/BChaCut_0475_Gamma1_475.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0476_Gamma2_476.png",
+      "path": "img/renders/BChaCut_0476_Gamma2_476.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0477_GokuUI_477.png",
+      "path": "img/renders/BChaCut_0477_GokuUI_477.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0478_VegetaSS1_478.png",
+      "path": "img/renders/BChaCut_0478_VegetaSS1_478.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0478_VegetaSSGSS_478.png",
+      "path": "img/renders/BChaCut_0478_VegetaSSGSS_478.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0479_Goku_479.png",
+      "path": "img/renders/BChaCut_0479_Goku_479.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0480_Krillin_480.png",
+      "path": "img/renders/BChaCut_0480_Krillin_480.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0481_TienShinhan_481.png",
+      "path": "img/renders/BChaCut_0481_TienShinhan_481.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0482_GokuSS3_482.png",
+      "path": "img/renders/BChaCut_0482_GokuSS3_482.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0483_Tapion_483.png",
+      "path": "img/renders/BChaCut_0483_Tapion_483.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0484_Turles_484.png",
+      "path": "img/renders/BChaCut_0484_Turles_484.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0485_Cooler2nd_485.png",
+      "path": "img/renders/BChaCut_0485_Cooler2nd_485.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0486_VegetaM_486.png",
+      "path": "img/renders/BChaCut_0486_VegetaM_486.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0487_VegitoSV_487.png",
+      "path": "img/renders/BChaCut_0487_VegitoSV_487.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0488_BuuGohan_488.png",
+      "path": "img/renders/BChaCut_0488_BuuGohan_488.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0489_TienShinhan_489.png",
+      "path": "img/renders/BChaCut_0489_TienShinhan_489.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0490_Cell3rd_490.png",
+      "path": "img/renders/BChaCut_0490_Cell3rd_490.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0491_GohanSHB_491.png",
+      "path": "img/renders/BChaCut_0491_GohanSHB_491.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0492_PiccoloSHAP_492.png",
+      "path": "img/renders/BChaCut_0492_PiccoloSHAP_492.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0493_MetalCooler_493.png",
+      "path": "img/renders/BChaCut_0493_MetalCooler_493.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0494_Cooler2nd_494.png",
+      "path": "img/renders/BChaCut_0494_Cooler2nd_494.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0495_BrolySS1_495.png",
+      "path": "img/renders/BChaCut_0495_BrolySS1_495.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0496_Thouser_496.png",
+      "path": "img/renders/BChaCut_0496_Thouser_496.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0497_TrunksSS1_497.png",
+      "path": "img/renders/BChaCut_0497_TrunksSS1_497.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0498_FriezaMecha_498.png",
+      "path": "img/renders/BChaCut_0498_FriezaMecha_498.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0499_GokuBlack_499.png",
+      "path": "img/renders/BChaCut_0499_GokuBlack_499.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0500_PanSH_500.png",
+      "path": "img/renders/BChaCut_0500_PanSH_500.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0501_GokuSS4_501.png",
+      "path": "img/renders/BChaCut_0501_GokuSS4_501.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0501_VegetaSS4_501.png",
+      "path": "img/renders/BChaCut_0501_VegetaSS4_501.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0502_Android17_502.png",
+      "path": "img/renders/BChaCut_0502_Android17_502.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0503_Buu3rd_503.png",
+      "path": "img/renders/BChaCut_0503_Buu3rd_503.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0507_Super17_507.png",
+      "path": "img/renders/BChaCut_0507_Super17_507.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0508_GogetaSSGSS_508.png",
+      "path": "img/renders/BChaCut_0508_GogetaSSGSS_508.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0509_Android18_509.png",
+      "path": "img/renders/BChaCut_0509_Android18_509.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0510_Android17_510.png",
+      "path": "img/renders/BChaCut_0510_Android17_510.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0511_Hit_511.png",
+      "path": "img/renders/BChaCut_0511_Hit_511.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0514_TrunksFutureSS2_514.png",
+      "path": "img/renders/BChaCut_0514_TrunksFutureSS2_514.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0514_VegetaSSGSS_514.png",
+      "path": "img/renders/BChaCut_0514_VegetaSSGSS_514.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0515_Zamas_515.png",
+      "path": "img/renders/BChaCut_0515_Zamas_515.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0516_ZamasM_516.png",
+      "path": "img/renders/BChaCut_0516_ZamasM_516.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0517_GokuSSGSS_517.png",
+      "path": "img/renders/BChaCut_0517_GokuSSGSS_517.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0518_VegetaSSGSS_518.png",
+      "path": "img/renders/BChaCut_0518_VegetaSSGSS_518.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0519_BrolyBSS1MAX_519.png",
+      "path": "img/renders/BChaCut_0519_BrolyBSS1MAX_519.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0520_ShenronS1_520.png",
+      "path": "img/renders/BChaCut_0520_ShenronS1_520.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0521_SuperUub_521.png",
+      "path": "img/renders/BChaCut_0521_SuperUub_521.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0522_GokuKidGTSS1_522.png",
+      "path": "img/renders/BChaCut_0522_GokuKidGTSS1_522.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0524_Zach_524.png",
+      "path": "img/renders/BChaCut_0524_Zach_524.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0525_Nameless_525.png",
+      "path": "img/renders/BChaCut_0525_Nameless_525.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0526_KeflaSS2_526.png",
+      "path": "img/renders/BChaCut_0526_KeflaSS2_526.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0527_GokuSSGSS_527.png",
+      "path": "img/renders/BChaCut_0527_GokuSSGSS_527.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0527_GokuUIS_527.png",
+      "path": "img/renders/BChaCut_0527_GokuUIS_527.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0528_KameSenninSP_528.png",
+      "path": "img/renders/BChaCut_0528_KameSenninSP_528.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0529_Bergamo_529.png",
+      "path": "img/renders/BChaCut_0529_Bergamo_529.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0530_KaleBSS1_530.png",
+      "path": "img/renders/BChaCut_0530_KaleBSS1_530.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0531_TrunksFutureSS2_531.png",
+      "path": "img/renders/BChaCut_0531_TrunksFutureSS2_531.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0532_GokuBlackRose_532.png",
+      "path": "img/renders/BChaCut_0532_GokuBlackRose_532.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0533_TrunksFutureSS1_533.png",
+      "path": "img/renders/BChaCut_0533_TrunksFutureSS1_533.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0534_Cell2nd_534.png",
+      "path": "img/renders/BChaCut_0534_Cell2nd_534.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0534_Cell3rd_534.png",
+      "path": "img/renders/BChaCut_0534_Cell3rd_534.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0535_Puipui_535.png",
+      "path": "img/renders/BChaCut_0535_Puipui_535.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0536_GokuSS3_536.png",
+      "path": "img/renders/BChaCut_0536_GokuSS3_536.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0536_VegetaSS2_536.png",
+      "path": "img/renders/BChaCut_0536_VegetaSS2_536.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0538_BuuFinal_538.png",
+      "path": "img/renders/BChaCut_0538_BuuFinal_538.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0539_Frieza4th_539.png",
+      "path": "img/renders/BChaCut_0539_Frieza4th_539.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0539_Goku_539.png",
+      "path": "img/renders/BChaCut_0539_Goku_539.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0540_JirenFP_540.png",
+      "path": "img/renders/BChaCut_0540_JirenFP_540.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0540_Jiren_540.png",
+      "path": "img/renders/BChaCut_0540_Jiren_540.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0541_Kahseral_541.png",
+      "path": "img/renders/BChaCut_0541_Kahseral_541.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0542_Caway_542.png",
+      "path": "img/renders/BChaCut_0542_Caway_542.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0543_Champa_543.png",
+      "path": "img/renders/BChaCut_0543_Champa_543.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0544_Vados_544.png",
+      "path": "img/renders/BChaCut_0544_Vados_544.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0545_GohanUltimate_545.png",
+      "path": "img/renders/BChaCut_0545_GohanUltimate_545.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0546_VegetaSSGSS_546.png",
+      "path": "img/renders/BChaCut_0546_VegetaSSGSS_546.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0547_Cooler2nd_547.png",
+      "path": "img/renders/BChaCut_0547_Cooler2nd_547.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0548_Android13_548.png",
+      "path": "img/renders/BChaCut_0548_Android13_548.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0549_Gamma1_549.png",
+      "path": "img/renders/BChaCut_0549_Gamma1_549.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0549_Gamma2_549.png",
+      "path": "img/renders/BChaCut_0549_Gamma2_549.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0550_Magenta_550.png",
+      "path": "img/renders/BChaCut_0550_Magenta_550.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0551_OrangePiccolo_551.png",
+      "path": "img/renders/BChaCut_0551_OrangePiccolo_551.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0551_PiccoloSHAP_551.png",
+      "path": "img/renders/BChaCut_0551_PiccoloSHAP_551.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0552_GohanSH_552.png",
+      "path": "img/renders/BChaCut_0552_GohanSH_552.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0553_GokuBlack_553.png",
+      "path": "img/renders/BChaCut_0553_GokuBlack_553.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0554_VegitoSSGSS_554.png",
+      "path": "img/renders/BChaCut_0554_VegitoSSGSS_554.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0555_Cell3rd_555.png",
+      "path": "img/renders/BChaCut_0555_Cell3rd_555.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0556_GohanTeenSS1_556.png",
+      "path": "img/renders/BChaCut_0556_GohanTeenSS1_556.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0557_CellJr_557.png",
+      "path": "img/renders/BChaCut_0557_CellJr_557.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0558_Android18_558.png",
+      "path": "img/renders/BChaCut_0558_Android18_558.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0559_Goku_559.png",
+      "path": "img/renders/BChaCut_0559_Goku_559.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0560_GinyuGoku_560.png",
+      "path": "img/renders/BChaCut_0560_GinyuGoku_560.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0560_Ginyu_560.png",
+      "path": "img/renders/BChaCut_0560_Ginyu_560.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0561_Burter_561.png",
+      "path": "img/renders/BChaCut_0561_Burter_561.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0561_Jeice_561.png",
+      "path": "img/renders/BChaCut_0561_Jeice_561.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0562_Guldo_562.png",
+      "path": "img/renders/BChaCut_0562_Guldo_562.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0562_Recoome_562.png",
+      "path": "img/renders/BChaCut_0562_Recoome_562.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0563_GokuSS1_563.png",
+      "path": "img/renders/BChaCut_0563_GokuSS1_563.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0564_GohanKid_564.png",
+      "path": "img/renders/BChaCut_0564_GohanKid_564.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0564_Krillin_564.png",
+      "path": "img/renders/BChaCut_0564_Krillin_564.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0565_GokuTeen_565.png",
+      "path": "img/renders/BChaCut_0565_GokuTeen_565.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0566_Android08_566.png",
+      "path": "img/renders/BChaCut_0566_Android08_566.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0567_KameSenninPPM_567.png",
+      "path": "img/renders/BChaCut_0567_KameSenninPPM_567.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0568_Goku_568.png",
+      "path": "img/renders/BChaCut_0568_Goku_568.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0569_Majunior_569.png",
+      "path": "img/renders/BChaCut_0569_Majunior_569.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0570_PiccoloKing_570.png",
+      "path": "img/renders/BChaCut_0570_PiccoloKing_570.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0571_Tapion_571.png",
+      "path": "img/renders/BChaCut_0571_Tapion_571.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0572_JanembaS_572.png",
+      "path": "img/renders/BChaCut_0572_JanembaS_572.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0573_GogetaSS1_573.png",
+      "path": "img/renders/BChaCut_0573_GogetaSS1_573.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0573_Paikuhan_573.png",
+      "path": "img/renders/BChaCut_0573_Paikuhan_573.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0574_MetalCooler_574.png",
+      "path": "img/renders/BChaCut_0574_MetalCooler_574.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0575_GohanTeenSS1_575.png",
+      "path": "img/renders/BChaCut_0575_GohanTeenSS1_575.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0576_GokuSSGSSKAIOU_576.png",
+      "path": "img/renders/BChaCut_0576_GokuSSGSSKAIOU_576.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0576_VegetaSSGSSEvo_576.png",
+      "path": "img/renders/BChaCut_0576_VegetaSSGSSEvo_576.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0577_GoldenFrieza_577.png",
+      "path": "img/renders/BChaCut_0577_GoldenFrieza_577.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0579_GohanSHB_579.png",
+      "path": "img/renders/BChaCut_0579_GohanSHB_579.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0579_GohanSHU_579.png",
+      "path": "img/renders/BChaCut_0579_GohanSHU_579.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0580_GotenksSH_580.png",
+      "path": "img/renders/BChaCut_0580_GotenksSH_580.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0582_Frieza4th_582.png",
+      "path": "img/renders/BChaCut_0582_Frieza4th_582.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0583_Bardock_583.png",
+      "path": "img/renders/BChaCut_0583_Bardock_583.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0583_Goku_583.png",
+      "path": "img/renders/BChaCut_0583_Goku_583.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0584_Frieza4th_584.png",
+      "path": "img/renders/BChaCut_0584_Frieza4th_584.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0585_Bardock_585.png",
+      "path": "img/renders/BChaCut_0585_Bardock_585.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0586_GokuUIS_586.png",
+      "path": "img/renders/BChaCut_0586_GokuUIS_586.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0587_Beerus_587.png",
+      "path": "img/renders/BChaCut_0587_Beerus_587.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0588_GokuKidGT_588.png",
+      "path": "img/renders/BChaCut_0588_GokuKidGT_588.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0589_Pan_589.png",
+      "path": "img/renders/BChaCut_0589_Pan_589.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0590_TrunksGT_590.png",
+      "path": "img/renders/BChaCut_0590_TrunksGT_590.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0591_Whis_591.png",
+      "path": "img/renders/BChaCut_0591_Whis_591.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0592_Bulla_592.png",
+      "path": "img/renders/BChaCut_0592_Bulla_592.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0594_PiccoloSH_594.png",
+      "path": "img/renders/BChaCut_0594_PiccoloSH_594.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0595_Super17_595.png",
+      "path": "img/renders/BChaCut_0595_Super17_595.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0596_Cell1st_596.png",
+      "path": "img/renders/BChaCut_0596_Cell1st_596.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0597_VegetaSV_597.png",
+      "path": "img/renders/BChaCut_0597_VegetaSV_597.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0598_Android16_598.png",
+      "path": "img/renders/BChaCut_0598_Android16_598.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0599_GohanTeenSS2_599.png",
+      "path": "img/renders/BChaCut_0599_GohanTeenSS2_599.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0600_BrolyB_600.png",
+      "path": "img/renders/BChaCut_0600_BrolyB_600.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0601_SuperBaby2_601.png",
+      "path": "img/renders/BChaCut_0601_SuperBaby2_601.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0602_TrunksGT_602.png",
+      "path": "img/renders/BChaCut_0602_TrunksGT_602.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0603_FriezaGold_603.png",
+      "path": "img/renders/BChaCut_0603_FriezaGold_603.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0604_Raditz_604.png",
+      "path": "img/renders/BChaCut_0604_Raditz_604.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0605_Goku_605.png",
+      "path": "img/renders/BChaCut_0605_Goku_605.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0606_Yamucha_606.png",
+      "path": "img/renders/BChaCut_0606_Yamucha_606.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0607_Nappa_607.png",
+      "path": "img/renders/BChaCut_0607_Nappa_607.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0607_Vegeta_607.png",
+      "path": "img/renders/BChaCut_0607_Vegeta_607.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0608_GokuSSGSS_608.png",
+      "path": "img/renders/BChaCut_0608_GokuSSGSS_608.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0608_Gtb_608.png",
+      "path": "img/renders/BChaCut_0608_Gtb_608.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0608_VegetaSSGSS_608.png",
+      "path": "img/renders/BChaCut_0608_VegetaSSGSS_608.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0609_Goku_609.png",
+      "path": "img/renders/BChaCut_0609_Goku_609.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0609_Vegeta_609.png",
+      "path": "img/renders/BChaCut_0609_Vegeta_609.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0609_VegitoSV_609.png",
+      "path": "img/renders/BChaCut_0609_VegitoSV_609.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0610_BrolyB_610.png",
+      "path": "img/renders/BChaCut_0610_BrolyB_610.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0611_Shin_611.png",
+      "path": "img/renders/BChaCut_0611_Shin_611.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0612_Android18_612.png",
+      "path": "img/renders/BChaCut_0612_Android18_612.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0614_Bulma_614.png",
+      "path": "img/renders/BChaCut_0614_Bulma_614.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0615_GokuSSG_615.png",
+      "path": "img/renders/BChaCut_0615_GokuSSG_615.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0616_Beerus_616.png",
+      "path": "img/renders/BChaCut_0616_Beerus_616.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0617_GohanUltimate_617.png",
+      "path": "img/renders/BChaCut_0617_GohanUltimate_617.png",
       "rarity": "",
       "cardNumber": ""
     },
     {
-      "path": "renders/BChaCut_0618_Buu2nd_618.png",
+      "path": "img/renders/BChaCut_0618_Buu2nd_618.png",
       "rarity": "",
       "cardNumber": ""
     }
