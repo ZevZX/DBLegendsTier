@@ -119,8 +119,11 @@ function create_img_with_src(src) {
 }
 
 function end_drag(evt) {
-	dragged_image?.classList.remove("dragged");
-	dragged_image = null;
+    if (dragged_image) {
+        dragged_image.classList.remove("dragged");
+        dragged_image.style.opacity = '1'; // Reset opacity to full
+        dragged_image = null;
+    }
 }
 
 window.addEventListener('mouseup', end_drag);
@@ -309,26 +312,29 @@ function make_accept_drop(elem) {
         }
     });
 
-    elem.addEventListener('drop', (evt) => {
-        evt.preventDefault();
-        elem.classList.remove('drag-entered');
-
-        if (!draggedItem) return;
-
-        let itemsContainer = elem.querySelector('.items') || elem;
-
-        if (placeholder && placeholder.parentNode === itemsContainer) {
-            itemsContainer.insertBefore(draggedItem, placeholder);
-            placeholder.remove();
-        } else {
-            itemsContainer.appendChild(draggedItem);
-        }
-
-        draggedItem.classList.remove('dragged');
-        draggedItem = null;
-        placeholder = null;
-        unsaved_changes = true;
-    });
+	elem.addEventListener('drop', (evt) => {
+		evt.preventDefault();
+		elem.classList.remove('drag-entered');
+	
+		if (!draggedItem) return;
+	
+		let itemsContainer = elem.querySelector('.items') || elem;
+	
+		if (placeholder && placeholder.parentNode === itemsContainer) {
+			itemsContainer.insertBefore(draggedItem, placeholder);
+		} else {
+			itemsContainer.appendChild(draggedItem);
+		}
+		
+		if (placeholder) {
+			placeholder.remove();
+		}
+	
+		draggedItem.classList.remove('dragged');
+		draggedItem = null;
+		placeholder = null;
+		unsaved_changes = true;
+	});
 }
 
 function updateDragPosition(e, container) {
@@ -343,10 +349,10 @@ function updateDragPosition(e, container) {
     items.sort((a, b) => {
         const rectA = a.getBoundingClientRect();
         const rectB = b.getBoundingClientRect();
-        if (rectA.top !== rectB.top) {
-            return rectA.top - rectB.top;
+        if (Math.abs(rectA.top - rectB.top) < 5) { // If items are in the same row (with a small tolerance)
+            return rectA.left - rectB.left;
         }
-        return rectA.left - rectB.left;
+        return rectA.top - rectB.top;
     });
 
     for (let i = 0; i < items.length; i++) {
@@ -354,14 +360,9 @@ function updateDragPosition(e, container) {
         const itemRect = item.getBoundingClientRect();
         const itemX = itemRect.left - rect.left;
         const itemY = itemRect.top - rect.top;
-        const itemCenterX = itemX + itemRect.width / 2;
-        const itemCenterY = itemY + itemRect.height / 2;
 
-        if (mouseY < itemCenterY) {
-            insertBefore = item;
-            break;
-        } else if (mouseY < itemY + itemRect.height) {
-            if (mouseX < itemCenterX) {
+        if (mouseY < itemY + itemRect.height) {
+            if (mouseX < itemX + itemRect.width / 2) {
                 insertBefore = item;
                 break;
             }
@@ -388,23 +389,35 @@ document.addEventListener('dragstart', (evt) => {
         evt.dataTransfer.setData('text/plain', '');
         evt.dataTransfer.effectAllowed = 'move';
         
-        // Create placeholder after a short delay to avoid instant repositioning
+        // Store the original parent and next sibling
+        const originalParent = draggedItem.parentNode;
+        const nextSibling = draggedItem.nextSibling;
+        
         setTimeout(() => {
             placeholder = createPlaceholder();
-            draggedItem.parentNode.insertBefore(placeholder, draggedItem.nextSibling);
+            // Insert the placeholder where the draggedItem was
+            if (nextSibling) {
+                originalParent.insertBefore(placeholder, nextSibling);
+            } else {
+                originalParent.appendChild(placeholder);
+            }
+            // Remove the original item from the DOM
+            draggedItem.remove();
         }, 0);
     }
 });
 
 document.addEventListener('dragend', (evt) => {
-    if (placeholder && placeholder.parentNode) {
+    if (placeholder) {
+        // If the drag was cancelled, put the draggedItem back in its original position
+        if (draggedItem) {
+            placeholder.parentNode.insertBefore(draggedItem, placeholder);
+            draggedItem.classList.remove('dragged');
+        }
         placeholder.remove();
     }
     placeholder = null;
-    if (draggedItem) {
-        draggedItem.classList.remove('dragged');
-        draggedItem = null;
-    }
+    draggedItem = null;
 });
 
 function createPlaceholder() {
@@ -413,5 +426,12 @@ function createPlaceholder() {
     ph.style.width = `${draggedItem.offsetWidth}px`;
     ph.style.height = `${draggedItem.offsetHeight}px`;
     ph.style.margin = window.getComputedStyle(draggedItem).margin;
+    
+    // Create a clone of the dragged item
+    const clone = draggedItem.cloneNode(true);
+    clone.classList.remove('dragged');
+    clone.style.opacity = '0.6'; // Make it slightly transparent
+    
+    ph.appendChild(clone);
     return ph;
 }
