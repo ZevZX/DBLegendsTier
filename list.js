@@ -1,14 +1,14 @@
 const fs = require('fs');
 const path = require('path');
-const directoryPath = './assets/renders'; // Path to the renders directory
+const directoryPath = './assets/renderswebp'; // Path to the renders directory
 
 // Read files from the renders directory
 const files = fs.readdirSync(directoryPath);
 
 // Transform files into an array of objects with path, rarity, and cardNumber
-const imagesInfo = files.filter(file => path.extname(file).toLowerCase() === '.png')
+const imagesInfo = files.filter(file => path.extname(file).toLowerCase() === '.webp')
                         .map(file => ({
-                          path: 'assets/renders/' + file, // Prepend 'renders/' to the path
+                          path: 'assets/renderswebp/' + file, // Prepend 'renders/' to the path
                           rarity: '', // Leave rarity empty for now
                           cardNumber: '' // Leave cardNumber empty for now
                         }));
