@@ -286,167 +286,132 @@ function loadImagesFromJson() {
         .catch(error => console.error('Error loading images:', error));
 }
 
-function createPlaceholder() {
-    const ph = document.createElement('div');
-    ph.classList.add('placeholder');
-    ph.style.width = `${draggedItem.offsetWidth}px`;
-    ph.style.height = `${draggedItem.offsetHeight}px`;
-    return ph;
+function make_accept_drop(elem) {
+    elem.classList.add('droppable');
+
+    elem.addEventListener('dragover', (evt) => {
+        evt.preventDefault();
+        evt.target.closest('.droppable').classList.add('drag-entered');
+        
+        if (draggedItem) {
+            const itemsContainer = elem.querySelector('.items') || elem;
+            updateDragPosition(evt, itemsContainer);
+        }
+    });
+
+    elem.addEventListener('dragleave', (evt) => {
+        evt.preventDefault();
+        if (!elem.contains(evt.relatedTarget)) {
+            elem.classList.remove('drag-entered');
+            if (placeholder && placeholder.parentNode === elem) {
+                placeholder.remove();
+            }
+        }
+    });
+
+    elem.addEventListener('drop', (evt) => {
+        evt.preventDefault();
+        elem.classList.remove('drag-entered');
+
+        if (!draggedItem) return;
+
+        let itemsContainer = elem.querySelector('.items') || elem;
+
+        if (placeholder && placeholder.parentNode === itemsContainer) {
+            itemsContainer.insertBefore(draggedItem, placeholder);
+            placeholder.remove();
+        } else {
+            itemsContainer.appendChild(draggedItem);
+        }
+
+        draggedItem.classList.remove('dragged');
+        draggedItem = null;
+        placeholder = null;
+        unsaved_changes = true;
+    });
 }
 
 function updateDragPosition(e, container) {
     const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
     
     const items = Array.from(container.querySelectorAll('.item:not(.dragged)'));
     let insertBefore = null;
+
+    // Sort items by their vertical position first, then horizontal
+    items.sort((a, b) => {
+        const rectA = a.getBoundingClientRect();
+        const rectB = b.getBoundingClientRect();
+        if (rectA.top !== rectB.top) {
+            return rectA.top - rectB.top;
+        }
+        return rectA.left - rectB.left;
+    });
 
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
         const itemRect = item.getBoundingClientRect();
         const itemX = itemRect.left - rect.left;
         const itemY = itemRect.top - rect.top;
-        
-        if (y < itemY + itemRect.height / 2) {
-            if (x < itemX + itemRect.width / 2) {
+        const itemCenterX = itemX + itemRect.width / 2;
+        const itemCenterY = itemY + itemRect.height / 2;
+
+        if (mouseY < itemCenterY) {
+            insertBefore = item;
+            break;
+        } else if (mouseY < itemY + itemRect.height) {
+            if (mouseX < itemCenterX) {
                 insertBefore = item;
                 break;
             }
-        } else if (i === items.length - 1) {
-            insertBefore = item.nextSibling;
-            break;
         }
     }
 
-    if (insertBefore !== placeholder.nextSibling) {
-        container.insertBefore(placeholder, insertBefore);
+    if (!placeholder) {
+        placeholder = createPlaceholder();
+    }
+
+    if (insertBefore) {
+        if (placeholder !== insertBefore.previousSibling) {
+            container.insertBefore(placeholder, insertBefore);
+        }
+    } else {
+        container.appendChild(placeholder);
     }
 }
 
-function make_accept_drop(elem) {
-    elem.classList.add('droppable');
-
-    elem.addEventListener('dragenter', (evt) => {
-        evt.preventDefault();
-        evt.target.classList.add('drag-entered');
-        if (draggedItem && !placeholder) {
-            placeholder = createPlaceholder();
-        }
-    });
-
-    elem.addEventListener('dragleave', (evt) => {
-        evt.preventDefault();
-        evt.target.classList.remove('drag-entered');
-        if (placeholder && !elem.contains(evt.relatedTarget)) {
-            placeholder.remove();
-            placeholder = null;
-        }
-    });
-
-    elem.addEventListener('dragover', (evt) => {
-        evt.preventDefault();
-        if (draggedItem) {
-            updateDragPosition(evt, elem.querySelector('.items') || elem);
-        }
-    });
-
-	elem.addEventListener('drop', (evt) => {
-        evt.preventDefault();
-        evt.target.classList.remove('drag-entered');
-
-        if (!draggedItem) return;
-
-        let itemsContainer = elem.querySelector('.items') || elem;
-
-        if (placeholder) {
-            itemsContainer.insertBefore(draggedItem, placeholder);
-            placeholder.remove();
-            placeholder = null;
-        } else {
-            itemsContainer.appendChild(draggedItem);
-        }
-
-        draggedItem.classList.remove('dragged');
-        draggedItem.style.position = '';
-        draggedItem.style.zIndex = '';
-        draggedItem.style.left = '';
-        draggedItem.style.top = '';
-        draggedItem = null;
-        unsaved_changes = true;
-    });
-}
-
-// Add new mousedown event listener for drag initiation
-document.addEventListener('mousedown', (evt) => {
+document.addEventListener('dragstart', (evt) => {
     if (evt.target.classList.contains('draggable') || evt.target.closest('.draggable')) {
         draggedItem = evt.target.closest('.item') || evt.target;
         draggedItem.classList.add('dragged');
+        evt.dataTransfer.setData('text/plain', '');
+        evt.dataTransfer.effectAllowed = 'move';
         
-        // Create and add placeholder
-        placeholder = createPlaceholder();
-        draggedItem.parentNode.insertBefore(placeholder, draggedItem.nextSibling);
-        
-        // Set initial position of dragged item
-        draggedItem.style.position = 'absolute';
-        draggedItem.style.zIndex = '1000';
-        moveAt(evt.pageX, evt.pageY);
-        
-        // Move dragged element on mousemove
-        function onMouseMove(e) {
-			moveAt(e.pageX, e.pageY);
-			draggedItem.hidden = true;
-			let elemBelow = document.elementFromPoint(e.clientX, e.clientY);
-			draggedItem.hidden = false;
-			
-			let droppableBelow = elemBelow?.closest('.droppable');
-			if (droppableBelow) {
-				let itemsContainer = droppableBelow.querySelector('.items') || droppableBelow;
-				if (itemsContainer !== currentDroppable) {
-					if (currentDroppable) {
-						leaveDroppable(currentDroppable);
-					}
-					currentDroppable = itemsContainer;
-					enterDroppable(currentDroppable);
-				}
-			} else if (currentDroppable) {
-				leaveDroppable(currentDroppable);
-				currentDroppable = null;
-			}
-		}
-		
-		function enterDroppable(elem) {
-			elem.classList.add('drag-entered');
-		}
-		
-		function leaveDroppable(elem) {
-			elem.classList.remove('drag-entered');
-		}
-
-        // Move the dragged element to the cursor position
-        function moveAt(pageX, pageY) {
-            draggedItem.style.left = pageX - draggedItem.offsetWidth / 2 + 'px';
-            draggedItem.style.top = pageY - draggedItem.offsetHeight / 2 + 'px';
-        }
-
-        document.addEventListener('mousemove', onMouseMove);
-
-        // Remove listeners on mouseup
-        draggedItem.onmouseup = function() {
-            document.removeEventListener('mousemove', onMouseMove);
-            draggedItem.onmouseup = null;
-            if (placeholder && placeholder.parentNode) {
-                placeholder.parentNode.insertBefore(draggedItem, placeholder);
-                placeholder.remove();
-            }
-            draggedItem.classList.remove('dragged');
-            draggedItem.style.position = '';
-            draggedItem.style.zIndex = '';
-            draggedItem.style.left = '';
-            draggedItem.style.top = '';
-            draggedItem = null;
-            placeholder = null;
-            unsaved_changes = true;
-        };
+        // Create placeholder after a short delay to avoid instant repositioning
+        setTimeout(() => {
+            placeholder = createPlaceholder();
+            draggedItem.parentNode.insertBefore(placeholder, draggedItem.nextSibling);
+        }, 0);
     }
 });
+
+document.addEventListener('dragend', (evt) => {
+    if (placeholder && placeholder.parentNode) {
+        placeholder.remove();
+    }
+    placeholder = null;
+    if (draggedItem) {
+        draggedItem.classList.remove('dragged');
+        draggedItem = null;
+    }
+});
+
+function createPlaceholder() {
+    const ph = document.createElement('div');
+    ph.classList.add('placeholder');
+    ph.style.width = `${draggedItem.offsetWidth}px`;
+    ph.style.height = `${draggedItem.offsetHeight}px`;
+    ph.style.margin = window.getComputedStyle(draggedItem).margin;
+    return ph;
+}

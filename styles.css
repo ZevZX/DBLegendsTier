@@ -8,6 +8,10 @@ body {
 	flex-flow: column;
 }
 
+.tierlist {
+    margin-bottom: 50px;
+}
+
 .tierlist span {
 	min-width: 50px;
 	min-height: 50px;
