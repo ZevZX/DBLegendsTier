@@ -361,7 +361,7 @@ function showTierAttributesPopup(row) {
     popup.classList.add('tier-attributes-popup');
 
     let content = `
-        <h2>Edit Tier Attributes</h2>
+        <h2>Edit Tier</h2>
         <label>
             Tier Color:
             <input type="color" id="tier-color" value="${rgbToHex(header.style.backgroundColor)}">
@@ -381,8 +381,8 @@ function showTierAttributesPopup(row) {
         </label>
         <div class="row-management">
             <button id="add-row-above">Add Row Above</button>
-            <button id="remove-row">Remove Row</button>
             <button id="add-row-below">Add Row Below</button>
+            <button id="remove-row">Remove Row</button>
         </div>
         <div class="popup-buttons">
             <button id="save-tier-attributes">Save</button>
