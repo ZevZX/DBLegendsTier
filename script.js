@@ -1,15 +1,17 @@
 const MAX_NAME_LEN = 200;
-const DEFAULT_TIERS = [
-    { name: '', icon: 'assets/equipmentswebp/GodlyRankEquip.webp', color: '#59dffa' },
-    { name: '', icon: 'assets/equipmentswebp/ZplusRankEquip.webp', color: '#f979ad' },
-    { name: '', icon: 'assets/equipmentswebp/ZRankEquip.webp', color: '#f8d423' },
-    { name: '', icon: 'assets/equipmentswebp/SRankEquip.webp', color: '#d85cfb' },
-    { name: '', icon: 'assets/equipmentswebp/ARankEquip.webp', color: '#7dc6f6' },
-    { name: '', icon: 'assets/equipmentswebp/BRankEquip.webp', color: '#70d46c' },
-    { name: '', icon: 'assets/equipmentswebp/CRankEquip.webp', color: '#c6d0b3' },
-    { name: '', icon: 'assets/equipmentswebp/DRankEquip.webp', color: '#b4b49e' },
-    { name: '', icon: 'assets/equipmentswebp/ERankEquip.webp', color: '#a5b3a3' },
-    { name: '', icon: 'assets/equipmentswebp/FRankEquip.webp', color: '#788080' }
+const DEFAULT_TIERS = ['Godly','Z+','Z','S','A','B','C','D','E','F'];
+const TIER_COLORS = [
+	// from Godly to F
+	'#59dffa',
+	'#f979ad',
+	'#f8d423',
+	'#d85cfb',
+	'#7dc6f6',
+	'#70d46c',
+	'#c6d0b3',
+	'#b4b49e',
+	'#a5b3a3',
+	'#788080'
 ];
 
 let unique_id = 0;
@@ -31,18 +33,19 @@ let draggedItem = null;
 let placeholder = null;
 
 window.addEventListener('load', () => {
-    loadImagesFromJson();
-    
-    untiered_images =  document.querySelector('.images');
-    tierlist_div =  document.querySelector('.tierlist');
+	loadImagesFromJson();
+	
+	untiered_images =  document.querySelector('.images');
+	tierlist_div =  document.querySelector('.tierlist');
 
-    for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
-        add_row(i, DEFAULT_TIERS[i]);
-    }
+	for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
+		add_row(i, DEFAULT_TIERS[i]);
+	}
+	recompute_header_colors();
 
-    headers_orig_min_width = all_headers[0][0].clientWidth;
+	headers_orig_min_width = all_headers[0][0].clientWidth;
 
-    make_accept_drop(document.querySelector('.images'));
+	make_accept_drop(document.querySelector('.images'));
 
 	document.getElementById('load-img-input').addEventListener('input', (evt) => {
 		// @Speed: maybe we can do some async stuff to optimize this
@@ -96,15 +99,6 @@ window.addEventListener('load', () => {
 		(evt || window.event).returnValue = msg;
 		return msg;
 	});
-
-	document.querySelectorAll('.row').forEach(row => {
-        adjustHeaderHeight(row.querySelector('.header'));
-    });
-
-    document.querySelectorAll('.row').forEach(row => {
-        adjustHeaderHeight(row.querySelector('.header'));
-        observeItemChanges(row);
-    });
 });
 
 function create_img_with_src(src) {
@@ -152,87 +146,45 @@ function enable_edit_on_click(container, input, label) {
 		input.style.display = 'inline';
 		input.select();
 	});
-
-	input.addEventListener('change', () => {
-        adjustHeaderHeight(container);
-    });
 }
 
 function create_label_input(row, row_idx, row_name) {
-    let input = document.createElement('input');
-    input.id = `input-tier-${unique_id++}`;
-    input.type = 'text';
-    input.addEventListener('change', resize_headers);
-    let label = document.createElement('label');
-    label.htmlFor = input.id;
-    label.innerText = row_name;
+	let input = document.createElement('input');
+	input.id = `input-tier-${unique_id++}`;
+	input.type = 'text';
+	input.addEventListener('change', resize_headers);
+	let label = document.createElement('label');
+	label.htmlFor = input.id;
+	label.innerText = row_name;
 
-    let header = row.querySelector('.header');
-    all_headers.splice(row_idx, 0, [header, input, label]);
-    header.appendChild(label);
-    header.appendChild(input);
+	let header = row.querySelector('.header');
+	all_headers.splice(row_idx, 0, [header, input, label]);
+	header.appendChild(label);
+	header.appendChild(input);
 
-    enable_edit_on_click(header, input, label);
-
-    // Adjust the header height based on the label content
-    adjustHeaderHeight(header);
-}
-
-function adjustRowHeight(row) {
-    const header = row.querySelector('.header');
-    const items = row.querySelector('.items');
-    const newHeight = Math.max(header.scrollHeight, items.scrollHeight);
-    header.style.height = `${newHeight}px`;
-    items.style.minHeight = `${newHeight}px`;
-}
-
-function adjustHeaderHeight(header) {
-    const label = header.querySelector('label');
-    const icon = header.querySelector('.tier-icon');
-    const iconHeight = icon ? icon.offsetHeight : 0;
-    const labelHeight = label.scrollHeight;
-    header.style.height = `${Math.max(50, iconHeight + labelHeight + 10)}px`; // 10px for padding
-    
-    // Call adjustRowHeight for the entire row
-    const row = header.closest('.row');
-    adjustRowHeight(row);
-}
-
-function observeItemChanges(row) {
-    const items = row.querySelector('.items');
-    const observer = new MutationObserver(() => adjustRowHeight(row));
-    observer.observe(items, { childList: true, subtree: true });
+	enable_edit_on_click(header, input, label);
 }
 
 function resize_headers() {
-    let max_width = headers_orig_min_width;
-    for (let [other_header, _i, label] of all_headers) {
-        max_width = Math.max(max_width, label.clientWidth);
-    }
+	let max_width = headers_orig_min_width;
+	for (let [other_header, _i, label] of all_headers) {
+		max_width = Math.max(max_width, label.clientWidth);
+	}
 
-    for (let [other_header, _i2, _l2] of all_headers) {
-        other_header.style.minWidth = `${max_width}px`;
-        adjustRowHeight(other_header.closest('.row'));
-    }
+	for (let [other_header, _i2, _l2] of all_headers) {
+		other_header.style.minWidth = `${max_width}px`;
+	}
 }
 
-function add_row(index, tierData) {
-    let div = document.createElement('div');
-    let header = document.createElement('span');
-    let items = document.createElement('span');
-    div.classList.add('row');
-    header.classList.add('header');
-    items.classList.add('items');
-    div.appendChild(header);
-    div.appendChild(items);
-
-    // Create icon element
-    let icon = document.createElement('img');
-    icon.src = tierData.icon || '';
-    icon.classList.add('tier-icon');
-    icon.style.display = tierData.icon ? 'inline-block' : 'none';
-    header.appendChild(icon);
-
+function add_row(index, name) {
+	let div = document.createElement('div');
+	let header = document.createElement('span');
+	let items = document.createElement('span');
+	div.classList.add('row');
+	header.classList.add('header');
+	items.classList.add('items');
+	div.appendChild(header);
+	div.appendChild(items);
 	let row_buttons = document.createElement('div');
 	row_buttons.classList.add('row-buttons');
 	let btn_plus_up = document.createElement('input');
@@ -282,31 +234,18 @@ function add_row(index, tierData) {
 	row_buttons.appendChild(btn_plus_down);
 	div.appendChild(row_buttons);
 
-    let btn_change_attr = document.createElement('input');
-    btn_change_attr.type = "button";
-    btn_change_attr.value = '⚙️';
-    btn_change_attr.title = "Change tier attributes";
-    btn_change_attr.addEventListener('click', () => changeTierAttributes(div));
-    row_buttons.appendChild(btn_change_attr);
+	let rows = tierlist_div.children;
+	if (index === rows.length) {
+		tierlist_div.appendChild(div);
+	} else {
+		let nxt_child = rows[index];
+		tierlist_div.insertBefore(div, nxt_child);
+	}
 
-    div.appendChild(row_buttons);
+	make_accept_drop(div);
+	create_label_input(div, index, name);
 
-    let rows = tierlist_div.children;
-    if (index === rows.length) {
-        tierlist_div.appendChild(div);
-    } else {
-        let nxt_child = rows[index];
-        tierlist_div.insertBefore(div, nxt_child);
-    }
-
-    make_accept_drop(div);
-    create_label_input(div, index, tierData.name);
-
-    // Set the background color
-    header.style.backgroundColor = tierData.color;
-
-    // Add the mutation observer
-    observeItemChanges(div);
+	return div;
 }
 
 function rm_row(idx) {
@@ -326,82 +265,11 @@ function reset_row(row) {
 	});
 }
 
-function changeTierAttributes(row) {
-    showTierAttributesPopup(row);
-}
-
-function showTierAttributesPopup(row) {
-    let header = row.querySelector('.header');
-    let icon = header.querySelector('.tier-icon');
-    let label = header.querySelector('label');
-
-    let popup = document.createElement('div');
-    popup.classList.add('tier-attributes-popup');
-
-    let content = `
-        <h2>Edit Tier Attributes</h2>
-        <label>
-            Tier Name:
-            <input type="text" id="tier-name" value="${label.innerText}">
-        </label>
-        <label>
-            Tier Color:
-            <input type="color" id="tier-color" value="${rgbToHex(header.style.backgroundColor)}">
-        </label>
-        <label>
-            Tier Icon:
-            <div id="tier-icon-selection">
-                <div class="tier-icon-option${!icon.src || icon.style.display === 'none' ? ' selected' : ''}" data-icon="">
-                    <span>No Icon</span>
-                </div>
-                ${DEFAULT_TIERS.map(tier => `
-                    <div class="tier-icon-option${icon.src && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
-                        <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
-                    </div>
-                `).join('')}
-            </div>
-        </label>
-        <div class="popup-buttons">
-            <button id="save-tier-attributes">Save</button>
-            <button id="cancel-tier-attributes">Cancel</button>
-        </div>
-    `;
-
-    popup.innerHTML = content;
-    document.body.appendChild(popup);
-
-    // Add event listeners for icon selection
-    document.querySelectorAll('.tier-icon-option').forEach(option => {
-        option.addEventListener('click', () => {
-            document.querySelectorAll('.tier-icon-option').forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-        });
-    });
-
-    document.getElementById('save-tier-attributes').addEventListener('click', () => {
-        let newName = document.getElementById('tier-name').value;
-        let newColor = document.getElementById('tier-color').value;
-        let newIcon = document.querySelector('.tier-icon-option.selected').dataset.icon;
-
-        if (newName) label.innerText = newName;
-        if (newColor) header.style.backgroundColor = newColor;
-        icon.src = newIcon;
-        icon.style.display = newIcon ? 'inline-block' : 'none';
-
-        unsaved_changes = true;
-        document.body.removeChild(popup);
-    });
-
-    document.getElementById('cancel-tier-attributes').addEventListener('click', () => {
-        document.body.removeChild(popup);
-    });
-}
-
-// Helper function to convert RGB to HEX
-function rgbToHex(rgb) {
-    if (!rgb) return '#000000';
-    let [r, g, b] = rgb.match(/\d+/g);
-    return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
+function recompute_header_colors() {
+	tierlist_div.querySelectorAll('.row').forEach((row, row_idx) => {
+		let color = TIER_COLORS[row_idx % TIER_COLORS.length];
+		row.querySelector('.header').style.backgroundColor = color;
+	});
 }
 
 function loadImagesFromJson() {
@@ -578,11 +446,9 @@ function exportTierlist() {
     // Serialize tiers
     document.querySelectorAll('.row').forEach(row => {
         let headerElement = row.querySelector('.header');
-        let iconElement = headerElement.querySelector('.tier-icon');
         let tier = {
             name: headerElement.querySelector('label').innerText,
             color: headerElement.style.backgroundColor,
-            icon: iconElement.src,
             images: []
         };
 
@@ -628,11 +494,9 @@ function importTierlist(file) {
 
         // Recreate tiers
         serializedTierlist.tiers.forEach((tier, index) => {
-            let row = add_row(index, {
-                name: tier.name,
-                icon: tier.icon,
-                color: tier.color
-            });
+            let row = add_row(index, tier.name);
+            let headerElement = row.querySelector('.header');
+            headerElement.style.backgroundColor = tier.color;
             
             tier.images.forEach(imgData => {
                 let img = create_img_with_src(imgData.src);
