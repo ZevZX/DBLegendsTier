@@ -30,82 +30,6 @@ let dragged_image;
 let draggedItem = null;
 let placeholder = null;
 
-window.addEventListener('load', () => {
-    loadImagesFromJson();
-    
-    untiered_images =  document.querySelector('.images');
-    tierlist_div =  document.querySelector('.tierlist');
-
-    for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
-        add_row(i, DEFAULT_TIERS[i]);
-    }
-
-    headers_orig_min_width = all_headers[0][0].clientWidth;
-
-    make_accept_drop(document.querySelector('.images'));
-
-	document.getElementById('load-img-input').addEventListener('input', (evt) => {
-		// @Speed: maybe we can do some async stuff to optimize this
-		let images = document.querySelector('.images');
-		for (let file of evt.target.files) {
-			let reader = new FileReader();
-			reader.addEventListener('load', (load_evt) => {
-				let img = create_img_with_src(load_evt.target.result);
-				images.appendChild(img);
-				unsaved_changes = true;
-			});
-			reader.readAsDataURL(file);
-		}
-	});
-
-	document.getElementById('reset-list-input').addEventListener('click', () => {
-		if (confirm('Reset Tierlist? (this will place all images back in the pool)')) {
-			soft_reset_list();
-		}
-	});
-
-	document.getElementById('export-input').addEventListener('click', () => {
-		let name = prompt('Please give a name to this tierlist');
-		if (name) {
-			save_tierlist(`${name}.json`);
-		}
-	});
-
-	document.getElementById('import-input').addEventListener('input', (evt) => {
-		if (!evt.target.files) {
-			return;
-		}
-		let file = evt.target.files[0];
-		let reader = new FileReader();
-		reader.addEventListener('load', (load_evt) => {
-			let raw = load_evt.target.result;
-			let parsed = JSON.parse(raw);
-			if (!parsed) {
-				alert("Failed to parse data");
-				return;
-			}
-			hard_reset_list();
-			load_tierlist(parsed);
-		});
-		reader.readAsText(file);
-	});
-
-	window.addEventListener('beforeunload', (evt) => {
-		if (!unsaved_changes) return null;
-		var msg = "You have unsaved changes. Leave anyway?";
-		(evt || window.event).returnValue = msg;
-		return msg;
-	});
-
-	document.querySelectorAll('.row').forEach(row => {
-        adjustHeaderHeight(row.querySelector('.header'));
-    });
-
-    document.querySelectorAll('.row').forEach(row => {
-        adjustHeaderHeight(row.querySelector('.header'));
-        observeItemChanges(row);
-    });
-});
 
 function create_img_with_src(src) {
     let container = document.createElement('div');
@@ -132,8 +56,51 @@ function end_drag(evt) {
     }
 }
 
-window.addEventListener('mouseup', end_drag);
-window.addEventListener('dragend', end_drag);
+function adjustRowHeight(row) {
+    const header = row.querySelector('.header');
+    const items = row.querySelector('.items');
+    
+    // Reset heights to auto to get the natural content height
+    header.style.height = 'auto';
+    items.style.height = 'auto';
+    row.style.height = 'auto';
+    
+    // Calculate the number of items and rows
+    const itemCount = items.children.length;
+    const itemWidth = 50; // Assuming each item is 50px wide
+    const itemHeight = 50; // Assuming each item is 50px tall
+    const containerWidth = items.clientWidth;
+    const itemsPerRow = Math.max(1, Math.floor(containerWidth / itemWidth));
+    const rowsNeeded = Math.ceil(itemCount / itemsPerRow);
+    
+    // Calculate the new height (itemHeight per row, with a minimum of 1 row)
+    const contentHeight = Math.max(1, rowsNeeded) * itemHeight;
+    const headerHeight = header.scrollHeight;
+    const newHeight = Math.max(headerHeight, contentHeight);
+    
+    row.style.height = `${newHeight}px`;
+    header.style.height = `${newHeight}px`;
+    items.style.height = `${newHeight}px`;
+    
+    // Remove the transitions after they're complete
+    setTimeout(() => {
+        row.style.transition = '';
+        header.style.transition = '';
+        items.style.transition = '';
+    }, 300);
+}
+
+function adjustHeaderHeight(header) {
+    const label = header.querySelector('label');
+    const icon = header.querySelector('.tier-icon');
+    const iconHeight = icon ? icon.offsetHeight : 0;
+    const labelHeight = label.scrollHeight;
+    header.style.height = `${Math.max(50, iconHeight + labelHeight + 10)}px`; // 10px for padding
+    
+    // Call adjustRowHeight for the entire row
+    const row = header.closest('.row');
+    adjustRowHeight(row);
+}
 
 function enable_edit_on_click(container, input, label) {
 	function change_label(evt) {
@@ -178,30 +145,17 @@ function create_label_input(row, row_idx, row_name) {
     adjustHeaderHeight(header);
 }
 
-function adjustRowHeight(row) {
-    const header = row.querySelector('.header');
-    const items = row.querySelector('.items');
-    const newHeight = Math.max(header.scrollHeight, items.scrollHeight);
-    header.style.height = `${newHeight}px`;
-    items.style.minHeight = `${newHeight}px`;
-}
-
-function adjustHeaderHeight(header) {
-    const label = header.querySelector('label');
-    const icon = header.querySelector('.tier-icon');
-    const iconHeight = icon ? icon.offsetHeight : 0;
-    const labelHeight = label.scrollHeight;
-    header.style.height = `${Math.max(50, iconHeight + labelHeight + 10)}px`; // 10px for padding
-    
-    // Call adjustRowHeight for the entire row
-    const row = header.closest('.row');
-    adjustRowHeight(row);
-}
-
 function observeItemChanges(row) {
     const items = row.querySelector('.items');
-    const observer = new MutationObserver(() => adjustRowHeight(row));
+    const observer = new MutationObserver(() => {
+        requestAnimationFrame(() => adjustRowHeight(row));
+    });
     observer.observe(items, { childList: true, subtree: true });
+
+    const resizeObserver = new ResizeObserver(() => {
+        requestAnimationFrame(() => adjustRowHeight(row));
+    });
+    resizeObserver.observe(items);
 }
 
 function resize_headers() {
@@ -214,6 +168,143 @@ function resize_headers() {
         other_header.style.minWidth = `${max_width}px`;
         adjustRowHeight(other_header.closest('.row'));
     }
+}
+
+function createPlaceholder() {
+    const ph = document.createElement('div');
+    ph.classList.add('placeholder');
+    ph.style.width = `${draggedItem.offsetWidth}px`;
+    ph.style.height = `${draggedItem.offsetHeight}px`;
+    ph.style.margin = window.getComputedStyle(draggedItem).margin;
+    
+    const clone = draggedItem.cloneNode(true);
+    clone.classList.remove('dragged');
+    clone.style.opacity = '0.6';
+    
+    ph.appendChild(clone);
+    return ph;
+}
+
+function updateDragPosition(e, container) {
+    const rect = container.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const items = Array.from(container.querySelectorAll('.item:not(.dragged)'));
+    let insertBefore = null;
+
+    // Sort items by their vertical position first, then horizontal
+    items.sort((a, b) => {
+        const rectA = a.getBoundingClientRect();
+        const rectB = b.getBoundingClientRect();
+        if (Math.abs(rectA.top - rectB.top) < 5) { // If items are in the same row (with a small tolerance)
+            return rectA.left - rectB.left;
+        }
+        return rectA.top - rectB.top;
+    });
+
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        const itemRect = item.getBoundingClientRect();
+        const itemX = itemRect.left - rect.left;
+        const itemY = itemRect.top - rect.top;
+
+        if (mouseY < itemY + itemRect.height) {
+            if (mouseX < itemX + itemRect.width / 2) {
+                insertBefore = item;
+                break;
+            }
+        }
+    }
+
+    if (!placeholder) {
+        placeholder = createPlaceholder();
+    }
+
+    if (insertBefore) {
+        if (placeholder !== insertBefore.previousSibling) {
+            container.insertBefore(placeholder, insertBefore);
+        }
+    } else {
+        container.appendChild(placeholder);
+    }
+}
+
+function make_accept_drop(elem) {
+    elem.classList.add('droppable');
+
+    elem.addEventListener('dragover', (evt) => {
+        evt.preventDefault();
+        evt.target.closest('.droppable').classList.add('drag-entered');
+        
+        if (draggedItem) {
+            const itemsContainer = elem.querySelector('.items') || elem;
+            updateDragPosition(evt, itemsContainer);
+        }
+    });
+
+    elem.addEventListener('dragleave', (evt) => {
+        evt.preventDefault();
+        if (!elem.contains(evt.relatedTarget)) {
+            elem.classList.remove('drag-entered');
+            if (placeholder && placeholder.parentNode === elem) {
+                placeholder.remove();
+            }
+        }
+    });
+
+    elem.addEventListener('drop', (evt) => {
+        evt.preventDefault();
+        elem.classList.remove('drag-entered');
+    
+        if (!draggedItem) return;
+    
+        let itemsContainer = elem.querySelector('.items') || elem;
+        let sourceRow = draggedItem.closest('.row');
+    
+        if (placeholder && placeholder.parentNode === itemsContainer) {
+            itemsContainer.insertBefore(draggedItem, placeholder);
+        } else {
+            itemsContainer.appendChild(draggedItem);
+        }
+        
+        if (placeholder) {
+            placeholder.remove();
+        }
+    
+        draggedItem.classList.remove('dragged');
+        
+        requestAnimationFrame(() => {
+            const sourceRow = draggedItem.closest('.row');
+            const targetRow = elem.closest('.row');
+            
+            if (sourceRow) adjustRowHeight(sourceRow);
+            if (targetRow) adjustRowHeight(targetRow);
+            
+            // Adjust the untiered images container if needed
+            const untieredContainer = document.querySelector('.images');
+            if (elem === untieredContainer || draggedItem.closest('.images') === untieredContainer) {
+                adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
+            }
+        });
+
+        draggedItem = null;
+        placeholder = null;
+        unsaved_changes = true;
+    });
+}
+
+// Helper function to convert RGB to HEX
+function rgbToHex(rgb) {
+    if (!rgb) return '#000000';
+    let [r, g, b] = rgb.match(/\d+/g);
+    return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
+}
+
+function rm_row(idx) {
+	let row = tierlist_div.children[idx];
+	reset_row(row);
+	tierlist_div.removeChild(row);
 }
 
 function add_row(index, tierData) {
@@ -263,27 +354,6 @@ function add_row(index, tierData) {
     observeItemChanges(div);
 }
 
-function rm_row(idx) {
-	let row = tierlist_div.children[idx];
-	reset_row(row);
-	tierlist_div.removeChild(row);
-}
-
-function reset_row(row) {
-	row.querySelectorAll('span.item').forEach((item) => {
-		for (let i = 0; i < item.children.length; ++i) {
-			let img = item.children[i];
-			item.removeChild(img);
-			untiered_images.appendChild(img);
-		}
-		item.parentNode.removeChild(item);
-	});
-}
-
-function changeTierAttributes(row) {
-    showTierAttributesPopup(row);
-}
-
 function showTierAttributesPopup(row) {
     let header = row.querySelector('.header');
     let icon = header.querySelector('.tier-icon');
@@ -294,10 +364,6 @@ function showTierAttributesPopup(row) {
 
     let content = `
         <h2>Edit Tier Attributes</h2>
-        <label>
-            Tier Name:
-            <input type="text" id="tier-name" value="${label.innerText}">
-        </label>
         <label>
             Tier Color:
             <input type="color" id="tier-color" value="${rgbToHex(header.style.backgroundColor)}">
@@ -338,11 +404,9 @@ function showTierAttributesPopup(row) {
     });
 
     document.getElementById('save-tier-attributes').addEventListener('click', () => {
-        let newName = document.getElementById('tier-name').value;
         let newColor = document.getElementById('tier-color').value;
         let newIcon = document.querySelector('.tier-icon-option.selected').dataset.icon;
 
-        if (newName) label.innerText = newName;
         if (newColor) header.style.backgroundColor = newColor;
         icon.src = newIcon;
         icon.style.display = newIcon ? 'inline-block' : 'none';
@@ -380,11 +444,19 @@ function showTierAttributesPopup(row) {
     });
 }
 
-// Helper function to convert RGB to HEX
-function rgbToHex(rgb) {
-    if (!rgb) return '#000000';
-    let [r, g, b] = rgb.match(/\d+/g);
-    return "#" + ((1 << 24) + (parseInt(r) << 16) + (parseInt(g) << 8) + parseInt(b)).toString(16).slice(1);
+function changeTierAttributes(row) {
+    showTierAttributesPopup(row);
+}
+
+function reset_row(row) {
+	row.querySelectorAll('span.item').forEach((item) => {
+		for (let i = 0; i < item.children.length; ++i) {
+			let img = item.children[i];
+			item.removeChild(img);
+			untiered_images.appendChild(img);
+		}
+		item.parentNode.removeChild(item);
+	});
 }
 
 function loadImagesFromJson() {
@@ -399,154 +471,11 @@ function loadImagesFromJson() {
                 imagesContainer.appendChild(img);
             });
             console.log(`Loaded ${data.images.length} images`);
+            
+            // Adjust the untiered images container after loading
+            adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
         })
         .catch(error => console.error('Error loading images:', error));
-}
-
-function make_accept_drop(elem) {
-    elem.classList.add('droppable');
-
-    elem.addEventListener('dragover', (evt) => {
-        evt.preventDefault();
-        evt.target.closest('.droppable').classList.add('drag-entered');
-        
-        if (draggedItem) {
-            const itemsContainer = elem.querySelector('.items') || elem;
-            updateDragPosition(evt, itemsContainer);
-        }
-    });
-
-    elem.addEventListener('dragleave', (evt) => {
-        evt.preventDefault();
-        if (!elem.contains(evt.relatedTarget)) {
-            elem.classList.remove('drag-entered');
-            if (placeholder && placeholder.parentNode === elem) {
-                placeholder.remove();
-            }
-        }
-    });
-
-	elem.addEventListener('drop', (evt) => {
-		evt.preventDefault();
-		elem.classList.remove('drag-entered');
-	
-		if (!draggedItem) return;
-	
-		let itemsContainer = elem.querySelector('.items') || elem;
-	
-		if (placeholder && placeholder.parentNode === itemsContainer) {
-			itemsContainer.insertBefore(draggedItem, placeholder);
-		} else {
-			itemsContainer.appendChild(draggedItem);
-		}
-		
-		if (placeholder) {
-			placeholder.remove();
-		}
-	
-		draggedItem.classList.remove('dragged');
-		draggedItem = null;
-		placeholder = null;
-		unsaved_changes = true;
-	});
-}
-
-function updateDragPosition(e, container) {
-    const rect = container.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    const items = Array.from(container.querySelectorAll('.item:not(.dragged)'));
-    let insertBefore = null;
-
-    // Sort items by their vertical position first, then horizontal
-    items.sort((a, b) => {
-        const rectA = a.getBoundingClientRect();
-        const rectB = b.getBoundingClientRect();
-        if (Math.abs(rectA.top - rectB.top) < 5) { // If items are in the same row (with a small tolerance)
-            return rectA.left - rectB.left;
-        }
-        return rectA.top - rectB.top;
-    });
-
-    for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const itemRect = item.getBoundingClientRect();
-        const itemX = itemRect.left - rect.left;
-        const itemY = itemRect.top - rect.top;
-
-        if (mouseY < itemY + itemRect.height) {
-            if (mouseX < itemX + itemRect.width / 2) {
-                insertBefore = item;
-                break;
-            }
-        }
-    }
-
-    if (!placeholder) {
-        placeholder = createPlaceholder();
-    }
-
-    if (insertBefore) {
-        if (placeholder !== insertBefore.previousSibling) {
-            container.insertBefore(placeholder, insertBefore);
-        }
-    } else {
-        container.appendChild(placeholder);
-    }
-}
-
-document.addEventListener('dragstart', (evt) => {
-    if (evt.target.classList.contains('draggable') || evt.target.closest('.draggable')) {
-        draggedItem = evt.target.closest('.item') || evt.target;
-        draggedItem.classList.add('dragged');
-        evt.dataTransfer.setData('text/plain', '');
-        evt.dataTransfer.effectAllowed = 'move';
-        
-        // Store the original parent and next sibling
-        const originalParent = draggedItem.parentNode;
-        const nextSibling = draggedItem.nextSibling;
-        
-        setTimeout(() => {
-            placeholder = createPlaceholder();
-            // Insert the placeholder where the draggedItem was
-            if (nextSibling) {
-                originalParent.insertBefore(placeholder, nextSibling);
-            } else {
-                originalParent.appendChild(placeholder);
-            }
-            // Remove the original item from the DOM
-            draggedItem.remove();
-        }, 0);
-    }
-});
-
-document.addEventListener('dragend', (evt) => {
-    if (placeholder) {
-        // If the drag was cancelled, put the draggedItem back in its original position
-        if (draggedItem) {
-            placeholder.parentNode.insertBefore(draggedItem, placeholder);
-            draggedItem.classList.remove('dragged');
-        }
-        placeholder.remove();
-    }
-    placeholder = null;
-    draggedItem = null;
-});
-
-function createPlaceholder() {
-    const ph = document.createElement('div');
-    ph.classList.add('placeholder');
-    ph.style.width = `${draggedItem.offsetWidth}px`;
-    ph.style.height = `${draggedItem.offsetHeight}px`;
-    ph.style.margin = window.getComputedStyle(draggedItem).margin;
-    
-    const clone = draggedItem.cloneNode(true);
-    clone.classList.remove('dragged');
-    clone.style.opacity = '0.6';
-    
-    ph.appendChild(clone);
-    return ph;
 }
 
 function exportTierlist() {
@@ -637,6 +566,137 @@ function importTierlist(file) {
     };
     reader.readAsText(file);
 }
+
+window.addEventListener('load', () => {
+    loadImagesFromJson();
+    
+    untiered_images =  document.querySelector('.images');
+    tierlist_div =  document.querySelector('.tierlist');
+
+    for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
+        add_row(i, DEFAULT_TIERS[i]);
+    }
+
+    headers_orig_min_width = all_headers[0][0].clientWidth;
+
+    make_accept_drop(document.querySelector('.images'));
+
+	document.getElementById('load-img-input').addEventListener('input', (evt) => {
+		// @Speed: maybe we can do some async stuff to optimize this
+		let images = document.querySelector('.images');
+		for (let file of evt.target.files) {
+			let reader = new FileReader();
+			reader.addEventListener('load', (load_evt) => {
+				let img = create_img_with_src(load_evt.target.result);
+				images.appendChild(img);
+				unsaved_changes = true;
+			});
+			reader.readAsDataURL(file);
+		}
+	});
+
+	document.getElementById('reset-list-input').addEventListener('click', () => {
+		if (confirm('Reset Tierlist? (this will place all images back in the pool)')) {
+			soft_reset_list();
+		}
+	});
+
+	document.getElementById('export-input').addEventListener('click', () => {
+		let name = prompt('Please give a name to this tierlist');
+		if (name) {
+			save_tierlist(`${name}.json`);
+		}
+	});
+
+	document.getElementById('import-input').addEventListener('input', (evt) => {
+		if (!evt.target.files) {
+			return;
+		}
+		let file = evt.target.files[0];
+		let reader = new FileReader();
+		reader.addEventListener('load', (load_evt) => {
+			let raw = load_evt.target.result;
+			let parsed = JSON.parse(raw);
+			if (!parsed) {
+				alert("Failed to parse data");
+				return;
+			}
+			hard_reset_list();
+			load_tierlist(parsed);
+		});
+		reader.readAsText(file);
+	});
+
+	window.addEventListener('beforeunload', (evt) => {
+		if (!unsaved_changes) return null;
+		var msg = "You have unsaved changes. Leave anyway?";
+		(evt || window.event).returnValue = msg;
+		return msg;
+	});
+
+    window.addEventListener('resize', () => {
+        document.querySelectorAll('.row').forEach(row => {
+            adjustRowHeight(row);
+        });
+        adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+    });
+    
+    document.querySelectorAll('.row').forEach(row => {
+        adjustRowHeight(row);
+        observeItemChanges(row);
+    });
+
+    // Adjust the untiered images container
+    adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+});
+
+window.addEventListener('mouseup', end_drag);
+window.addEventListener('dragend', end_drag);
+
+window.addEventListener('resize', () => {
+    document.querySelectorAll('.row').forEach(row => {
+        adjustRowHeight(row);
+    });
+    adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+});
+
+document.addEventListener('dragstart', (evt) => {
+    if (evt.target.classList.contains('draggable') || evt.target.closest('.draggable')) {
+        draggedItem = evt.target.closest('.item') || evt.target;
+        draggedItem.classList.add('dragged');
+        evt.dataTransfer.setData('text/plain', '');
+        evt.dataTransfer.effectAllowed = 'move';
+        
+        // Store the original parent and next sibling
+        const originalParent = draggedItem.parentNode;
+        const nextSibling = draggedItem.nextSibling;
+        
+        setTimeout(() => {
+            placeholder = createPlaceholder();
+            // Insert the placeholder where the draggedItem was
+            if (nextSibling) {
+                originalParent.insertBefore(placeholder, nextSibling);
+            } else {
+                originalParent.appendChild(placeholder);
+            }
+            // Remove the original item from the DOM
+            draggedItem.remove();
+        }, 0);
+    }
+});
+
+document.addEventListener('dragend', (evt) => {
+    if (placeholder) {
+        // If the drag was cancelled, put the draggedItem back in its original position
+        if (draggedItem) {
+            placeholder.parentNode.insertBefore(draggedItem, placeholder);
+            draggedItem.classList.remove('dragged');
+        }
+        placeholder.remove();
+    }
+    placeholder = null;
+    draggedItem = null;
+});
 
 document.getElementById('export-button').addEventListener('click', exportTierlist);
 
