@@ -277,7 +277,7 @@ img.draggable.dragged, .button:active {
     border-right-width: 1px;
     display: flex;
     user-select: none;
-    align-items: stretch;
+    align-items: stretch; /* This ensures the header and items container stretch to fill the row height */
 }
 
 span.header {
@@ -297,6 +297,6 @@ span.items {
     flex-grow: 1;
     justify-content: left;
     pointer-events: none;
-    min-height: 100%;
+    min-height: 100%; /* Ensure it takes up at least the full height of the row */
     align-content: flex-start;
 }
