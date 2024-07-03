@@ -8,13 +8,16 @@ const files = fs.readdirSync(directoryPath);
 // Transform files into an array of objects with path, rarity, and cardNumber
 const imagesInfo = files.filter(file => path.extname(file).toLowerCase() === '.webp')
                         .map(file => ({
-                          path: 'assets/renderswebp/' + file, // Prepend 'renders/' to the path
+                          path: 'assets/renderswebp/' + file, // Prepend 'assets/renderswebp/' to the path
                           rarity: '', // Leave rarity empty for now
                           cardNumber: '' // Leave cardNumber empty for now
                         }));
 
-// Create JSON structure with newlines
-const imagesJson = JSON.stringify(imagesInfo, null, 2); // This will format the JSON with proper indentation and newlines
+// Create JSON structure with "images" field and newlines
+const jsonData = {
+  "images": imagesInfo
+};
+const imagesJson = JSON.stringify(jsonData, null, 2);
 
 // Specify the output JSON file name
 const outputJsonFile = 'images.json';
