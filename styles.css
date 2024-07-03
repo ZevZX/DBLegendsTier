@@ -145,14 +145,14 @@ img.draggable.dragged,
 
 .buttons {
 	display: flex;
-	justify-content: right;
+	justify-content: flex-end;
+	align-items: flex-start;
 }
 
 #export-button,
 #import-input {
 	font-size: 16px;
 	cursor: pointer;
-	margin: 0 10px;
 }
 
 .tier-icon {
@@ -376,10 +376,53 @@ span.items {
 
 .tier-icon {
 	max-width: 100%;
-	max-height: 50px; /* Adjust as needed */
+	max-height: 50px;
 }
 
 .header label {
 	text-align: center;
 	word-break: break-word;
+}
+
+.button-container,
+.import-container {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	height: 50px;
+	margin-left: 10px;
+}
+
+.custom-button {
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	cursor: pointer;
+	background-color: #4b63b9;
+	color: white;
+	border-radius: 3px;
+	font-size: 16px;
+	transition: background-color 0.3s;
+}
+
+.custom-button:hover {
+	background-color: #5b6eae;
+}
+
+#import-input {
+	display: none;
+}
+
+#file-name {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 14px;
+	color: #ccc;
+	text-align: center;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }

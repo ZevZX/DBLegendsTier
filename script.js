@@ -723,7 +723,6 @@ document.addEventListener('dragend', (evt) => {
 document.getElementById('export-button').addEventListener('click', exportTierlist);
 
 document.getElementById('import-input').addEventListener('change', function(event) {
-    if (event.target.files.length > 0) {
-        importTierlist(event.target.files[0]);
-    }
+    const fileName = event.target.files[0]?.name;
+    document.getElementById('file-name').textContent = fileName || '';
 });
