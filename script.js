@@ -234,53 +234,7 @@ function add_row(index, tierData) {
     header.appendChild(icon);
 
 	let row_buttons = document.createElement('div');
-	row_buttons.classList.add('row-buttons');
-	let btn_plus_up = document.createElement('input');
-	btn_plus_up.type = "button";
-	btn_plus_up.value = '˄';
-	btn_plus_up.title = "Add row above";
-	btn_plus_up.addEventListener('click', (evt) => {
-		let parent_div = evt.target.parentNode.parentNode;
-		let rows = Array.from(tierlist_div.children);
-		let idx = rows.indexOf(parent_div);
-		console.assert(idx >= 0);
-		let newRow = add_row(idx, 'NEW');
-		newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
-	});
-
-	let btn_rm = document.createElement('input');
-	btn_rm.type = "button";
-	btn_rm.value = '-';
-	btn_rm.title = "Remove row";
-	btn_rm.addEventListener('click', (evt) => {
-		let rows = Array.from(tierlist_div.querySelectorAll('.row'));
-		if (rows.length < 2) return;
-		let parent_div = evt.target.parentNode.parentNode;
-		let idx = rows.indexOf(parent_div);
-		console.assert(idx >= 0);
-		if (rows[idx].querySelectorAll('img').length === 0 ||
-			confirm(`Remove tier ${rows[idx].querySelector('.header label').innerText}? (This will move back all its content to the untiered pool)`))
-		{
-			rm_row(idx);
-		}
-	});
-	
-	let btn_plus_down = document.createElement('input');
-	btn_plus_down.type = "button";
-	btn_plus_down.value = '˅';
-	btn_plus_down.title = "Add row below";
-	btn_plus_down.addEventListener('click', (evt) => {
-		let parent_div = evt.target.parentNode.parentNode;
-		let rows = Array.from(tierlist_div.children);
-		let idx = rows.indexOf(parent_div);
-		console.assert(idx >= 0);
-		let newRow = add_row(idx + 1, 'NEW');
-		newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
-	});
-	row_buttons.appendChild(btn_plus_up);
-	row_buttons.appendChild(btn_rm);
-	row_buttons.appendChild(btn_plus_down);
-	div.appendChild(row_buttons);
+    row_buttons.classList.add('row-buttons');
 
     let btn_change_attr = document.createElement('input');
     btn_change_attr.type = "button";
@@ -351,16 +305,21 @@ function showTierAttributesPopup(row) {
         <label>
             Tier Icon:
             <div id="tier-icon-selection">
-                <div class="tier-icon-option${!icon.src || icon.style.display === 'none' ? ' selected' : ''}" data-icon="">
-                    <span>No Icon</span>
-                </div>
                 ${DEFAULT_TIERS.map(tier => `
                     <div class="tier-icon-option${icon.src && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
                         <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
                     </div>
                 `).join('')}
+                <div class="tier-icon-option${!icon.src || icon.style.display === 'none' ? ' selected' : ''}" data-icon="">
+                    <span>No Icon</span>
+                </div>
             </div>
         </label>
+        <div class="row-management">
+            <button id="add-row-above">Add Row Above</button>
+            <button id="remove-row">Remove Row</button>
+            <button id="add-row-below">Add Row Below</button>
+        </div>
         <div class="popup-buttons">
             <button id="save-tier-attributes">Save</button>
             <button id="cancel-tier-attributes">Cancel</button>
@@ -393,6 +352,30 @@ function showTierAttributesPopup(row) {
     });
 
     document.getElementById('cancel-tier-attributes').addEventListener('click', () => {
+        document.body.removeChild(popup);
+    });
+
+    document.getElementById('add-row-above').addEventListener('click', () => {
+        let newRow = add_row(Array.from(tierlist_div.children).indexOf(row), { name: 'NEW', color: '#fc3f32' });
+        newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
+        document.body.removeChild(popup);
+    });
+
+    document.getElementById('remove-row').addEventListener('click', () => {
+        let rows = Array.from(tierlist_div.querySelectorAll('.row'));
+        if (rows.length < 2) return;
+        let idx = rows.indexOf(row);
+        if (rows[idx].querySelectorAll('img').length === 0 ||
+            confirm(`Remove tier ${rows[idx].querySelector('.header label').innerText}? (This will move back all its content to the untiered pool)`))
+        {
+            rm_row(idx);
+            document.body.removeChild(popup);
+        }
+    });
+
+    document.getElementById('add-row-below').addEventListener('click', () => {
+        let newRow = add_row(Array.from(tierlist_div.children).indexOf(row) + 1, { name: 'NEW', color: '#fc3f32' });
+        newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
         document.body.removeChild(popup);
     });
 }
