@@ -51,7 +51,6 @@ function create_img_with_src(src) {
 function end_drag(evt) {
     if (dragged_image) {
         dragged_image.classList.remove("dragged");
-        dragged_image.style.opacity = '1';
         dragged_image = null;
     }
 }
@@ -179,7 +178,6 @@ function createPlaceholder() {
     
     const clone = draggedItem.cloneNode(true);
     clone.classList.remove('dragged');
-    clone.style.opacity = '0.6';
     
     ph.appendChild(clone);
     return ph;
@@ -260,20 +258,20 @@ function make_accept_drop(elem) {
         if (!draggedItem) return;
     
         let itemsContainer = elem.querySelector('.items') || elem;
-        let sourceRow = draggedItem.closest('.row');
     
         if (placeholder && placeholder.parentNode === itemsContainer) {
             itemsContainer.insertBefore(draggedItem, placeholder);
         } else {
             itemsContainer.appendChild(draggedItem);
         }
-        
+    
+        draggedItem.style.display = '';
+        draggedItem.classList.remove('dragged');
+    
         if (placeholder) {
             placeholder.remove();
         }
     
-        draggedItem.classList.remove('dragged');
-        
         requestAnimationFrame(() => {
             const sourceRow = draggedItem.closest('.row');
             const targetRow = elem.closest('.row');
@@ -287,7 +285,7 @@ function make_accept_drop(elem) {
                 adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
             }
         });
-
+    
         draggedItem = null;
         placeholder = null;
         unsaved_changes = true;
@@ -667,33 +665,57 @@ document.addEventListener('dragstart', (evt) => {
         evt.dataTransfer.setData('text/plain', '');
         evt.dataTransfer.effectAllowed = 'move';
         
-        // Store the original parent and next sibling
-        const originalParent = draggedItem.parentNode;
-        const nextSibling = draggedItem.nextSibling;
+        // Store the original position
+        draggedItem.originalParent = draggedItem.parentNode;
+        draggedItem.originalNextSibling = draggedItem.nextElementSibling;
         
         setTimeout(() => {
             placeholder = createPlaceholder();
-            // Insert the placeholder where the draggedItem was
-            if (nextSibling) {
-                originalParent.insertBefore(placeholder, nextSibling);
+            if (draggedItem.originalNextSibling) {
+                draggedItem.originalParent.insertBefore(placeholder, draggedItem.originalNextSibling);
             } else {
-                originalParent.appendChild(placeholder);
+                draggedItem.originalParent.appendChild(placeholder);
             }
-            // Remove the original item from the DOM
-            draggedItem.remove();
+            draggedItem.style.display = 'none';
         }, 0);
     }
 });
 
 document.addEventListener('dragend', (evt) => {
-    if (placeholder) {
-        // If the drag was cancelled, put the draggedItem back in its original position
-        if (draggedItem) {
-            placeholder.parentNode.insertBefore(draggedItem, placeholder);
-            draggedItem.classList.remove('dragged');
+    if (draggedItem) {
+        draggedItem.classList.remove('dragged');
+        draggedItem.style.display = '';
+        
+        // Always return the item to its original position unless it was properly dropped
+        if (!draggedItem.parentNode || !draggedItem.parentNode.classList.contains('items')) {
+            if (draggedItem.originalNextSibling) {
+                draggedItem.originalParent.insertBefore(draggedItem, draggedItem.originalNextSibling);
+            } else {
+                draggedItem.originalParent.appendChild(draggedItem);
+            }
         }
-        placeholder.remove();
+        
+        // Remove the placeholder
+        if (placeholder && placeholder.parentNode) {
+            placeholder.remove();
+        }
+        
+        // Adjust the height of affected containers
+        const affectedContainers = [
+            draggedItem.closest('.row'),
+            draggedItem.originalParent.closest('.row'),
+            document.querySelector('.images').closest('.row')
+        ];
+        
+        affectedContainers.forEach(container => {
+            if (container) adjustRowHeight(container);
+        });
+        
+        // Clear the stored original position
+        delete draggedItem.originalParent;
+        delete draggedItem.originalNextSibling;
     }
+    
     placeholder = null;
     draggedItem = null;
 });

@@ -266,17 +266,6 @@ img.draggable.dragged,
 	hyphens: auto;
 }
 
-.row,
-.header,
-.items {
-	transition: height 0.3s ease;
-}
-
-.header label,
-.header .tier-icon {
-	transition: margin-top 0.3s ease;
-}
-
 .tierlist div.row {
 	border: 0px solid #000000;
 	border-top-width: 1px;
@@ -324,17 +313,6 @@ span.items {
 
 .tier-attributes-popup .row-management button:hover {
 	background-color: #4a4b4c;
-}
-
-.row,
-.header,
-.items {
-	transition: height 0.3s ease;
-}
-
-.header label,
-.header .tier-icon {
-	transition: margin-top 0.3s ease;
 }
 
 .tierlist div.row {
