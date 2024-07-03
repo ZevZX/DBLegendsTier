@@ -308,100 +308,100 @@ span.items {
 }
 
 .tier-attributes-popup .row-management {
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
+	margin-top: 15px;
+	display: flex;
+	justify-content: space-between;
 }
 
 .tier-attributes-popup .row-management button {
-    padding: 5px 10px;
-    background-color: #3a3b3c;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
+	padding: 5px 10px;
+	background-color: #3a3b3c;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
 .tier-attributes-popup .row-management button:hover {
-    background-color: #4a4b4c;
+	background-color: #4a4b4c;
 }
 
 .row,
 .header,
 .items {
-    transition: height 0.3s ease;
+	transition: height 0.3s ease;
 }
 
 .header label,
 .header .tier-icon {
-    transition: margin-top 0.3s ease;
+	transition: margin-top 0.3s ease;
 }
 
 .tierlist div.row {
-    align-items: stretch;
+	align-items: stretch;
 }
 
 span.items {
-    align-content: flex-start;
-    overflow: hidden;
+	align-content: flex-start;
+	overflow: hidden;
 }
 
 .row {
-    display: flex;
-    overflow: hidden;
+	display: flex;
+	overflow: hidden;
 }
 
 .header {
-    flex: 0 0 auto;
+	flex: 0 0 auto;
 }
 
 .items {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
+	flex: 1;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
 }
 
 .item {
-    width: 50px;
-    height: 50px;
+	width: 50px;
+	height: 50px;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
 .tier-icon {
-    max-width: 100%;
-    max-height: 50px; /* Adjust as needed */
+	max-width: 100%;
+	max-height: 50px; /* Adjust as needed */
 }
 
 .header label {
-    text-align: center;
-    word-break: break-word;
+	text-align: center;
+	word-break: break-word;
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px;
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .tier-icon {
-    max-width: 100%;
-    max-height: 50px; /* Adjust as needed */
+	max-width: 100%;
+	max-height: 50px; /* Adjust as needed */
 }
 
 .header label {
-    text-align: center;
-    word-break: break-word;
+	text-align: center;
+	word-break: break-word;
 }
