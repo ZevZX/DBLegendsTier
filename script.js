@@ -610,8 +610,8 @@ function applyFilters() {
                     show = false;
                     break;
                 }
-            } else if (attr === 'has_zenkai') {
-                const hasZenkai = img.dataset.has_zenkai === 'true';
+            } else if (attr === 'zenkai') {
+                const hasZenkai = img.dataset.zenkai === 'true'; // Changed from has_zenkai to zenkai
                 if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
                     show = false;
                     break;
@@ -654,15 +654,19 @@ function loadImagesFromJson() {
                 img.querySelector('.draggable').dataset.tags = character.tags.join(',');
                 img.querySelector('.draggable').dataset.is_lf = character.is_lf;
                 img.querySelector('.draggable').dataset.is_tag = character.is_tag;
-                img.querySelector('.draggable').dataset.has_zenkai = character.has_zenkai;
+                img.querySelector('.draggable').dataset.zenkai = character.has_zenkai;
                 imagesContainer.appendChild(img);
             });
+
             console.log(`Loaded ${data.length} characters`);
             
             // Create filter buttons after loading characters
             createFilterButtons();
             
-            // Adjust the untiered images container after loading
+            // Apply default sorting after loading images
+            sortImages();
+            
+            // Adjust the untiered images container after loading and sorting
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
 
             // Set up the search feature after images are loaded
@@ -803,7 +807,6 @@ function exportTierlist() {
 }
 
 window.addEventListener('load', () => {
-    loadImagesFromJson();
     
     untiered_images = document.querySelector('.images');
     tierlist_div = document.querySelector('.tierlist');
@@ -885,6 +888,8 @@ window.addEventListener('load', () => {
 
     // Adjust the untiered images container
     adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+
+    sortImages();
 });
 
 window.addEventListener('mouseup', end_drag);
@@ -958,6 +963,88 @@ document.addEventListener('dragend', (evt) => {
     placeholder = null;
     draggedItem = null;
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sortButton = document.getElementById('sort-button');
+    const sortDropdown = document.getElementById('sort-dropdown');
+
+    sortButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sortDropdown.style.display = sortDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Handle checkboxes and order toggle buttons
+    document.querySelectorAll('#sort-dropdown input[type="checkbox"], .order-toggle').forEach(element => {
+        element.addEventListener('click', function() {
+            if (this.classList.contains('order-toggle')) {
+                const currentOrder = this.dataset.order;
+                this.dataset.order = currentOrder === 'desc' ? 'asc' : 'desc';
+                this.textContent = currentOrder === 'desc' ? '▲' : '▼';
+            }
+            sortImages();
+        });
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    document.addEventListener('click', function(event) {
+        if (!sortButton.contains(event.target) && !sortDropdown.contains(event.target)) {
+            sortDropdown.style.display = 'none';
+        }
+    });
+
+    // Load images and apply initial sorting
+    loadImagesFromJson();
+});
+
+function sortImages() {
+    console.log("Sorting images...");
+    
+    const imagesContainer = document.querySelector('.images');
+    const items = Array.from(imagesContainer.querySelectorAll('.item'));
+
+    const sortCardNumber = document.getElementById('sort-card-number').checked;
+    const sortColor = document.getElementById('sort-color').checked;
+    const sortRarity = document.getElementById('sort-rarity').checked;
+
+    const cardNumberOrder = document.getElementById('sort-card-number-order').dataset.order;
+    const colorOrder = document.getElementById('sort-color-order').dataset.order;
+    const rarityOrder = document.getElementById('sort-rarity-order').dataset.order;
+
+    const colorOrderArray = ['DRK', 'LGT', 'YEL', 'PUR', 'GRN', 'BLU', 'RED'];
+    const rarityOrderArray = ['ULTRA', 'LEGENDS LIMITED', 'SPARKING', 'EXTREME', 'HERO'];
+
+    items.sort((a, b) => {
+        let comparison = 0;
+
+        if (sortColor) {
+            const colorA = a.querySelector('.draggable').dataset.color;
+            const colorB = b.querySelector('.draggable').dataset.color;
+            comparison = colorOrderArray.indexOf(colorB) - colorOrderArray.indexOf(colorA);
+            if (colorOrder === 'asc') comparison *= -1;
+            if (comparison !== 0) return comparison;
+        }
+
+        if (sortRarity) {
+            const rarityA = a.querySelector('.draggable').dataset.rarity;
+            const rarityB = b.querySelector('.draggable').dataset.rarity;
+            comparison = rarityOrderArray.indexOf(rarityB) - rarityOrderArray.indexOf(rarityA);
+            if (rarityOrder === 'asc') comparison *= -1;
+            if (comparison !== 0) return comparison;
+        }
+
+        // Always sort by Card Number as the final criteria or if no other sort is selected
+        const cardNumberA = a.querySelector('.draggable').dataset.cardNumber;
+        const cardNumberB = b.querySelector('.draggable').dataset.cardNumber;
+        comparison = cardNumberB.localeCompare(cardNumberA, undefined, {numeric: true, sensitivity: 'base'});
+        if ((sortCardNumber && cardNumberOrder === 'asc') || (!sortCardNumber && !sortColor && !sortRarity)) comparison *= -1;
+
+        return comparison;
+    });
+
+    imagesContainer.innerHTML = '';
+    items.forEach(item => imagesContainer.appendChild(item));
+    adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+}
 
 document.getElementById('export-button').addEventListener('click', exportTierlist);
 

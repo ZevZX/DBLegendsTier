@@ -9,25 +9,50 @@
 </head>
   <body>
     <section class='main-content'>
-        <div class='tierlist'>
-        </div>
-        <div class="buttons">
-          <div class="search-container">
-              <input type="text" id="image-search" placeholder="Search images...">
+      <div class='tierlist'>
+      </div>
+      <div class="controls-container">
+          <div class="search-and-sort">
+              <div class="search-container">
+                  <input type="text" id="image-search" placeholder="Search images...">
+              </div>
+              <div class="sort-container">
+                  <button id="sort-button">Sort ▼</button>
+                  <div id="sort-dropdown" class="sort-dropdown">
+                    <div>
+                      <input type="checkbox" id="sort-card-number" checked>
+                      <label for="sort-card-number">Card Number</label>
+                      <button id="sort-card-number-order" class="order-toggle" data-order="desc">▼</button>
+                  </div>
+                  <div>
+                      <input type="checkbox" id="sort-color">
+                      <label for="sort-color">Color</label>
+                      <button id="sort-color-order" class="order-toggle" data-order="desc">▼</button>
+                  </div>
+                  <div>
+                      <input type="checkbox" id="sort-rarity">
+                      <label for="sort-rarity">Rarity</label>
+                      <button id="sort-rarity-order" class="order-toggle" data-order="desc">▼</button>
+                  </div>
+                  </div>
+              </div>
           </div>
           <div id="filter-container"></div>
-          <div class="import-container">
-              <label for="import-input" class="custom-button">Import</label>
-              <input type="file" id="import-input" accept=".json">
-              <span id="file-name"></span>
+          <div class="import-export-container">
+              <div class="import-container">
+                  <label for="import-input" class="custom-button">Import</label>
+                  <input type="file" id="import-input" accept=".json">
+                  <span id="file-name"></span>
+              </div>
+              <div class="button-container">
+                  <button id="export-button" class="custom-button">Export</button>
+              </div>
           </div>
-          <div class="button-container">
-              <button id="export-button" class="custom-button">Export</button>
-          </div>
-        </div>
-        <div class='bottom-container'>
+      </div>
+      <div class='bottom-container'>
           <section class='images'></section>
-        </div>
-    </section>
-  </body>
-</html>
+      </div>
+  </section>
+      <script src='script.js'></script>
+      </body>
+      </html>
