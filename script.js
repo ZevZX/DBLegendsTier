@@ -459,6 +459,155 @@ function reset_row(row) {
 	});
 }
 
+function createFilterButtons(characters) {
+    const filterContainer = document.getElementById('filter-container');
+    const attributes = ['color', 'rarity', 'tags', 'has_zenkai'];
+    
+    const excludedValues = {
+        'tags': ['Male', 'Female', 'Unknown']
+    };
+
+    const optionCounts = {};
+
+    attributes.forEach(attr => {
+        const buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('filter-button-container');
+
+        const button = document.createElement('button');
+        button.textContent = attr.charAt(0).toUpperCase() + attr.slice(1);
+        button.classList.add('filter-button');
+        
+        buttonContainer.appendChild(button);
+
+        if (attr === 'has_zenkai') {
+            button.classList.add('toggle-button');
+            button.addEventListener('click', () => {
+                button.classList.toggle('active');
+                applyFilters();
+            });
+        } else {
+            const popup = document.createElement('div');
+            popup.classList.add('filter-popup');
+            
+            const options = new Set();
+            characters.forEach(char => {
+                if (attr === 'tags') {
+                    char[attr].forEach(tag => {
+                        if (!tag.startsWith('DBL') && !excludedValues['tags'].includes(tag)) {
+                            optionCounts[tag] = (optionCounts[tag] || 0) + 1;
+                            options.add(tag);
+                        }
+                    });
+                } else {
+                    const value = char[attr].toString();
+                    if (!excludedValues[attr] || !excludedValues[attr].includes(value)) {
+                        options.add(value);
+                    }
+                }
+            });
+            
+            options.forEach(option => {
+                const label = document.createElement('label');
+                label.classList.add('filter-option');
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = option;
+                
+                // Add event listener to each checkbox
+                checkbox.addEventListener('change', applyFilters);
+                
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(option));
+                popup.appendChild(label);
+            });
+            
+            button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isCurrentPopupOpen = popup.style.display === 'block';
+                closeAllPopups();
+                if (!isCurrentPopupOpen) {
+                    popup.style.display = 'block';
+                }
+            });
+            
+            popup.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            
+            buttonContainer.appendChild(popup);
+        }
+        
+        filterContainer.appendChild(buttonContainer);
+    });
+
+    // Close popups when clicking outside
+    document.addEventListener('click', closeAllPopups);
+
+    console.log("Filter buttons created");
+}
+
+function closeAllPopups() {
+    document.querySelectorAll('.filter-popup').forEach(popup => {
+        popup.style.display = 'none';
+    });
+}
+
+function applyFilters() {
+    console.log("Applying filters...");
+    const filters = {};
+    document.querySelectorAll('.filter-button-container').forEach(container => {
+        const button = container.querySelector('.filter-button');
+        const popup = container.querySelector('.filter-popup');
+        if (popup) {
+            const attr = button.textContent.toLowerCase();
+            filters[attr] = Array.from(popup.querySelectorAll('input:checked')).map(input => input.value);
+        }
+    });
+    
+    const hasZenkaiFilter = document.querySelector('.filter-button.toggle-button.active');
+    
+    console.log("Filters:", filters);
+    console.log("Has Zenkai filter active:", hasZenkaiFilter !== null);
+
+    const items = document.querySelectorAll('.images .item');
+    console.log("Total items:", items.length);
+
+    let visibleCount = 0;
+    items.forEach(item => {
+        const img = item.querySelector('.draggable');
+        let show = true;
+        
+        for (let [attr, values] of Object.entries(filters)) {
+            if (values.length === 0) continue;
+            
+            if (attr === 'tags') {
+                const charTags = img.dataset.tags.split(',');
+                if (!values.some(v => charTags.includes(v))) {
+                    show = false;
+                    break;
+                }
+            } else {
+                if (!values.includes(img.dataset[attr])) {
+                    show = false;
+                    break;
+                }
+            }
+        }
+        
+        if (hasZenkaiFilter && img.dataset.has_zenkai !== 'true') {
+            show = false;
+        }
+        
+        item.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+    });
+
+    console.log("Visible items after filtering:", visibleCount);
+    
+    adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+}
+
 function loadImagesFromJson() {
     fetch('characters.json')
         .then(response => response.json())
@@ -472,9 +621,14 @@ function loadImagesFromJson() {
                 img.querySelector('.draggable').dataset.name = character.name;
                 img.querySelector('.draggable').dataset.color = character.color;
                 img.querySelector('.draggable').dataset.tags = character.tags.join(',');
+                img.querySelector('.draggable').dataset.is_lf = character.is_lf;
+                img.querySelector('.draggable').dataset.is_tag = character.is_tag;
+                img.querySelector('.draggable').dataset.has_zenkai = character.has_zenkai;
                 imagesContainer.appendChild(img);
             });
             console.log(`Loaded ${data.length} characters`);
+            
+            createFilterButtons(data);
             
             // Adjust the untiered images container after loading
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
