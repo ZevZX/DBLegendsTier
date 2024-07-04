@@ -531,3 +531,47 @@ span.items {
     flex-wrap: wrap;
     align-items: center;
 }
+
+.filter-popup {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #3a3b3c;
+}
+
+.include-all-container {
+    position: sticky;
+    top: 0;
+    background-color: #3a3b3c;
+    padding: 10px;
+    z-index: 1;
+    border-bottom: 1px solid #666;
+}
+
+.filter-separator {
+    display: none; /* We don't need this anymore */
+}
+
+.options-container {
+    padding: 10px;
+    padding-top: 5px;
+}
+
+.filter-option {
+    white-space: nowrap;
+    overflow: visible;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 2px 0;
+}
+
+.filter-option input[type="checkbox"] {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.include-all-option {
+    font-weight: bold;
+}

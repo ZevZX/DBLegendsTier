@@ -459,98 +459,110 @@ function reset_row(row) {
 	});
 }
 
-function createFilterButtons(characters) {
-    const filterContainer = document.getElementById('filter-container');
-    const attributes = ['color', 'rarity', 'tags', 'has_zenkai'];
-    
-    const excludedValues = {
-        'tags': ['Male', 'Female', 'Unknown']
-    };
-
-    const optionCounts = {};
-
-    attributes.forEach(attr => {
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('filter-button-container');
-
-        const button = document.createElement('button');
-        button.textContent = attr.charAt(0).toUpperCase() + attr.slice(1);
-        button.classList.add('filter-button');
-        
-        buttonContainer.appendChild(button);
-
-        if (attr === 'has_zenkai') {
-            button.classList.add('toggle-button');
-            button.addEventListener('click', () => {
-                button.classList.toggle('active');
-                applyFilters();
-            });
-        } else {
-            const popup = document.createElement('div');
-            popup.classList.add('filter-popup');
+function createFilterButtons() {
+    fetch('filter_options.json')
+        .then(response => response.json())
+        .then(filterOptions => {
+            const filterContainer = document.getElementById('filter-container');
             
-            const options = new Set();
-            characters.forEach(char => {
+            Object.entries(filterOptions).forEach(([attr, options]) => {
+                const buttonContainer = document.createElement('div');
+                buttonContainer.classList.add('filter-button-container');
+
+                const button = document.createElement('button');
+                button.textContent = attr.charAt(0).toUpperCase() + attr.slice(1);
+                button.classList.add('filter-button');
+                
+                buttonContainer.appendChild(button);
+
+                const popup = document.createElement('div');
+                popup.classList.add('filter-popup');
+                
+                let maxOptionWidth = 0;
+                
                 if (attr === 'tags') {
-                    char[attr].forEach(tag => {
-                        if (!tag.startsWith('DBL') && !excludedValues['tags'].includes(tag)) {
-                            optionCounts[tag] = (optionCounts[tag] || 0) + 1;
-                            options.add(tag);
+                    const allTagsContainer = document.createElement('div');
+                    allTagsContainer.classList.add('include-all-container');
+
+                    const allTagsLabel = document.createElement('label');
+                    allTagsLabel.classList.add('filter-option', 'include-all-option');
+                    
+                    const allTagsCheckbox = document.createElement('input');
+                    allTagsCheckbox.type = 'checkbox';
+                    allTagsCheckbox.id = `include-all-${attr}`;
+                    allTagsCheckbox.addEventListener('change', applyFilters);
+                    
+                    allTagsLabel.appendChild(allTagsCheckbox);
+                    allTagsLabel.appendChild(document.createTextNode('Include all selected tags'));
+                    allTagsContainer.appendChild(allTagsLabel);
+                    popup.appendChild(allTagsContainer);
+
+                    // Measure width of "Include all selected tags"
+                    maxOptionWidth = Math.max(maxOptionWidth, getTextWidth('Include all selected tags'));
+                }
+                
+                const optionsContainer = document.createElement('div');
+                optionsContainer.classList.add('options-container');
+                
+                options.forEach(option => {
+                    const label = document.createElement('label');
+                    label.classList.add('filter-option');
+                    
+                    const checkbox = document.createElement('input');
+                    checkbox.type = 'checkbox';
+                    checkbox.value = option;
+                    
+                    // Add event listener to each checkbox
+                    checkbox.addEventListener('change', applyFilters);
+                    
+                    label.appendChild(checkbox);
+                    label.appendChild(document.createTextNode(option));
+                    optionsContainer.appendChild(label);
+                    
+                    // Measure the width of this option
+                    maxOptionWidth = Math.max(maxOptionWidth, getTextWidth(option));
+                });
+
+                popup.appendChild(optionsContainer);
+                
+                // Set the width of the popup, accounting for checkbox, padding, and potential scrollbar
+                popup.style.width = `${maxOptionWidth + 60}px`; // 60px for checkbox, padding, and scrollbar
+                
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isCurrentPopupOpen = popup.style.display === 'block';
+                    closeAllPopups();
+                    if (!isCurrentPopupOpen) {
+                        popup.style.display = 'block';
+                        // Check if scrollbar is present and adjust width if necessary
+                        if (popup.scrollHeight > popup.clientHeight) {
+                            popup.style.width = `${maxOptionWidth + 77}px`; // Additional 17px for scrollbar
                         }
-                    });
-                } else {
-                    const value = char[attr].toString();
-                    if (!excludedValues[attr] || !excludedValues[attr].includes(value)) {
-                        options.add(value);
                     }
-                }
-            });
-            
-            options.forEach(option => {
-                const label = document.createElement('label');
-                label.classList.add('filter-option');
+                });
                 
-                const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.value = option;
+                popup.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
                 
-                // Add event listener to each checkbox
-                checkbox.addEventListener('change', applyFilters);
-                
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(option));
-                popup.appendChild(label);
+                buttonContainer.appendChild(popup);
+                filterContainer.appendChild(buttonContainer);
             });
-            
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isCurrentPopupOpen = popup.style.display === 'block';
-                closeAllPopups();
-                if (!isCurrentPopupOpen) {
-                    popup.style.display = 'block';
-                }
-            });
-            
-            popup.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-            
-            buttonContainer.appendChild(popup);
-        }
-        
-        filterContainer.appendChild(buttonContainer);
-    });
 
-    // Close popups when clicking outside
-    document.addEventListener('click', closeAllPopups);
+            // Close popups when clicking outside
+            document.addEventListener('click', closeAllPopups);
 
-    console.log("Filter buttons created");
+            console.log("Filter buttons created");
+        })
+        .catch(error => console.error('Error loading filter options:', error));
 }
 
-function closeAllPopups() {
-    document.querySelectorAll('.filter-popup').forEach(popup => {
-        popup.style.display = 'none';
-    });
+function getTextWidth(text) {
+    const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+    const context = canvas.getContext("2d");
+    context.font = "16px sans-serif"; // Match this with your CSS font settings
+    const metrics = context.measureText(text);
+    return metrics.width;
 }
 
 function applyFilters() {
@@ -559,16 +571,14 @@ function applyFilters() {
     document.querySelectorAll('.filter-button-container').forEach(container => {
         const button = container.querySelector('.filter-button');
         const popup = container.querySelector('.filter-popup');
-        if (popup) {
-            const attr = button.textContent.toLowerCase();
-            filters[attr] = Array.from(popup.querySelectorAll('input:checked')).map(input => input.value);
-        }
+        const attr = button.textContent.toLowerCase();
+        filters[attr] = {
+            values: Array.from(popup.querySelectorAll('input:not([id^="include-all"]):checked')).map(input => input.value),
+            includeAll: attr === 'tags' ? popup.querySelector('#include-all-tags').checked : false
+        };
     });
     
-    const hasZenkaiFilter = document.querySelector('.filter-button.toggle-button.active');
-    
     console.log("Filters:", filters);
-    console.log("Has Zenkai filter active:", hasZenkaiFilter !== null);
 
     const items = document.querySelectorAll('.images .item');
     console.log("Total items:", items.length);
@@ -578,25 +588,40 @@ function applyFilters() {
         const img = item.querySelector('.draggable');
         let show = true;
         
-        for (let [attr, values] of Object.entries(filters)) {
-            if (values.length === 0) continue;
+        for (let [attr, filterData] of Object.entries(filters)) {
+            if (filterData.values.length === 0) continue;
             
             if (attr === 'tags') {
                 const charTags = img.dataset.tags.split(',');
-                if (!values.some(v => charTags.includes(v))) {
+                if (filterData.includeAll) {
+                    if (!filterData.values.every(v => charTags.includes(v))) {
+                        show = false;
+                        break;
+                    }
+                } else {
+                    if (!filterData.values.some(v => charTags.includes(v))) {
+                        show = false;
+                        break;
+                    }
+                }
+            } else if (attr === 'episode') {
+                const charTags = img.dataset.tags.split(',');
+                if (!filterData.values.some(v => charTags.includes(v))) {
+                    show = false;
+                    break;
+                }
+            } else if (attr === 'has_zenkai') {
+                const hasZenkai = img.dataset.has_zenkai === 'true';
+                if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
                     show = false;
                     break;
                 }
             } else {
-                if (!values.includes(img.dataset[attr])) {
+                if (!filterData.values.includes(img.dataset[attr])) {
                     show = false;
                     break;
                 }
             }
-        }
-        
-        if (hasZenkaiFilter && img.dataset.has_zenkai !== 'true') {
-            show = false;
         }
         
         item.style.display = show ? '' : 'none';
@@ -606,6 +631,12 @@ function applyFilters() {
     console.log("Visible items after filtering:", visibleCount);
     
     adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+}
+
+function closeAllPopups() {
+    document.querySelectorAll('.filter-popup').forEach(popup => {
+        popup.style.display = 'none';
+    });
 }
 
 function loadImagesFromJson() {
@@ -628,7 +659,8 @@ function loadImagesFromJson() {
             });
             console.log(`Loaded ${data.length} characters`);
             
-            createFilterButtons(data);
+            // Create filter buttons after loading characters
+            createFilterButtons();
             
             // Adjust the untiered images container after loading
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
@@ -657,11 +689,8 @@ function setupSearchFeature() {
             if (!img) return;
             
             const name = img.dataset.name.toLowerCase();
-            const tags = img.dataset.tags.toLowerCase();
-            const color = img.dataset.color.toLowerCase();
-            const rarity = img.dataset.rarity.toLowerCase();
 
-            if (name.includes(searchTerm) || tags.includes(searchTerm) || color.includes(searchTerm) || rarity.includes(searchTerm)) {
+            if (name.includes(searchTerm)) {
                 item.style.display = '';
             } else {
                 item.style.display = 'none';
