@@ -24,7 +24,7 @@ let headers_orig_min_width;
 
 // DOM elems
 let untiered_images;
-let tierlist_div;
+let tierlist_div = document.querySelector('.tierlist');
 let dragged_image;
 
 let draggedItem = null;
@@ -317,14 +317,19 @@ function add_row(index, tierData) {
     div.appendChild(header);
     div.appendChild(items);
 
-    // Create icon element
-    let icon = document.createElement('img');
-    icon.src = tierData.icon || '';
-    icon.classList.add('tier-icon');
-    icon.style.display = tierData.icon ? 'inline-block' : 'none';
-    header.appendChild(icon);
+    // Create icon element only if there's an icon
+    if (tierData.icon && tierData.icon !== '') {
+        let icon = document.createElement('img');
+        icon.classList.add('tier-icon');
+        icon.src = tierData.icon;
+        icon.style.display = 'inline-block';
+        header.appendChild(icon);
+        header.dataset.hasIcon = 'true';
+    } else {
+        header.dataset.hasIcon = 'false';
+    }
 
-	let row_buttons = document.createElement('div');
+    let row_buttons = document.createElement('div');
     row_buttons.classList.add('row-buttons');
 
     let btn_change_attr = document.createElement('input');
@@ -348,10 +353,12 @@ function add_row(index, tierData) {
     create_label_input(div, index, tierData.name);
 
     // Set the background color
-    header.style.backgroundColor = tierData.color;
+    header.style.backgroundColor = tierData.color || '#fc3f32'; // Default to red if no color provided
 
     // Add the mutation observer
     observeItemChanges(div);
+
+    return div;
 }
 
 function showTierAttributesPopup(row) {
@@ -361,6 +368,9 @@ function showTierAttributesPopup(row) {
 
     let popup = document.createElement('div');
     popup.classList.add('tier-attributes-popup');
+
+    // Check if the tier has no icon
+    const hasNoIcon = header.dataset.hasIcon === 'false';
 
     let content = `
         <h2>Edit Tier</h2>
@@ -372,11 +382,11 @@ function showTierAttributesPopup(row) {
             Tier Icon:
             <div id="tier-icon-selection">
                 ${DEFAULT_TIERS.map(tier => `
-                    <div class="tier-icon-option${icon.src && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
+                    <div class="tier-icon-option${!hasNoIcon && icon && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
                         <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
                     </div>
                 `).join('')}
-                <div class="tier-icon-option${!icon.src || icon.style.display === 'none' ? ' selected' : ''}" data-icon="">
+                <div class="tier-icon-option${hasNoIcon ? ' selected' : ''}" data-icon="">
                     <span>No Icon</span>
                 </div>
             </div>
@@ -406,11 +416,26 @@ function showTierAttributesPopup(row) {
     document.getElementById('save-tier-attributes').addEventListener('click', () => {
         let newColor = document.getElementById('tier-color').value;
         let newIcon = document.querySelector('.tier-icon-option.selected').dataset.icon;
-
+    
         if (newColor) header.style.backgroundColor = newColor;
-        icon.src = newIcon;
-        icon.style.display = newIcon ? 'inline-block' : 'none';
-
+        
+        // Remove existing icon if there is one
+        let existingIcon = header.querySelector('.tier-icon');
+        if (existingIcon) {
+            existingIcon.remove();
+        }
+    
+        if (newIcon) {
+            let icon = document.createElement('img');
+            icon.src = newIcon;
+            icon.classList.add('tier-icon');
+            icon.style.display = 'inline-block';
+            header.insertBefore(icon, header.firstChild);
+            header.dataset.hasIcon = 'true';
+        } else {
+            header.dataset.hasIcon = 'false';
+        }
+    
         unsaved_changes = true;
         document.body.removeChild(popup);
     });
@@ -706,49 +731,6 @@ function setupSearchFeature() {
     });
 }
 
-function importTierlist(file) {
-    let reader = new FileReader();
-    reader.onload = function(e) {
-        let serializedTierlist = JSON.parse(e.target.result);
-        
-        // Clear current tierlist
-        document.querySelector('.tierlist').innerHTML = '';
-        document.querySelector('.images').innerHTML = '';
-
-        // Recreate tiers
-        serializedTierlist.tiers.forEach((tier, index) => {
-            let row = add_row(index, {
-                name: tier.name,
-                icon: tier.icon,
-                color: tier.color
-            });
-            
-            tier.images.forEach(imgData => {
-                let img = create_img_with_src(imgData.src);
-                img.dataset.rarity = imgData.rarity;
-                img.dataset.cardNumber = imgData.cardNumber;
-                img.dataset.name = imgData.name;
-                img.dataset.color = imgData.color;
-                img.dataset.tags = imgData.tags.join(',');
-                row.querySelector('.items').appendChild(img);
-            });
-        });
-
-        // Recreate untiered images
-        let untieredContainer = document.querySelector('.images');
-        serializedTierlist.untieredImages.forEach(imgData => {
-            let img = create_img_with_src(imgData.src);
-            img.dataset.rarity = imgData.rarity;
-            img.dataset.cardNumber = imgData.cardNumber;
-            img.dataset.name = imgData.name;
-            img.dataset.color = imgData.color;
-            img.dataset.tags = imgData.tags.join(',');
-            untieredContainer.appendChild(img);
-        });
-    };
-    reader.readAsText(file);
-}
-
 function exportTierlist() {
     let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
     if (!fileName) return;
@@ -765,19 +747,22 @@ function exportTierlist() {
         let tier = {
             name: headerElement.querySelector('label').innerText,
             color: headerElement.style.backgroundColor,
-            icon: iconElement.src,
+            icon: iconElement ? iconElement.src : '',
             images: []
         };
 
         row.querySelectorAll('.item').forEach(item => {
-            let img = item.querySelector('div');
+            let img = item.querySelector('.draggable');
             tier.images.push({
-                src: img.style.backgroundImage.slice(5, -2),
+                src: img.dataset.path,
                 rarity: img.dataset.rarity,
                 cardNumber: img.dataset.cardNumber,
                 name: img.dataset.name,
                 color: img.dataset.color,
-                tags: img.dataset.tags.split(',')
+                tags: img.dataset.tags.split(','),
+                is_lf: img.dataset.is_lf === 'true',
+                is_tag: img.dataset.is_tag === 'true',
+                zenkai: img.dataset.zenkai === 'true'
             });
         });
 
@@ -786,14 +771,17 @@ function exportTierlist() {
 
     // Serialize untiered images
     document.querySelectorAll('.images .item').forEach(item => {
-        let img = item.querySelector('div');
+        let img = item.querySelector('.draggable');
         serializedTierlist.untieredImages.push({
-            src: img.style.backgroundImage.slice(5, -2),
+            src: img.dataset.path,
             rarity: img.dataset.rarity,
             cardNumber: img.dataset.cardNumber,
             name: img.dataset.name,
             color: img.dataset.color,
-            tags: img.dataset.tags.split(',')
+            tags: img.dataset.tags.split(','),
+            is_lf: img.dataset.is_lf === 'true',
+            is_tag: img.dataset.is_tag === 'true',
+            zenkai: img.dataset.zenkai === 'true'
         });
     });
 
@@ -804,6 +792,66 @@ function exportTierlist() {
     a.href = url;
     a.download = `${fileName}.json`;
     a.click();
+}
+
+function importTierlist(file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let serializedTierlist = JSON.parse(e.target.result);
+        
+        // Clear current tierlist
+        document.querySelector('.tierlist').innerHTML = '';
+        document.querySelector('.images').innerHTML = '';
+
+        // Recreate tiers
+        serializedTierlist.tiers.forEach((tier, index) => {
+            let row = add_row(index, {
+                name: tier.name,
+                icon: tier.icon || '',  // Use empty string if there's no icon
+                color: tier.color || '#fc3f32'  // Default to red if no color provided
+            });
+            
+            if (row) {
+                tier.images.forEach(imgData => {
+                    let img = create_img_with_src(imgData.src);
+                    let draggable = img.querySelector('.draggable');
+                    draggable.dataset.rarity = imgData.rarity;
+                    draggable.dataset.cardNumber = imgData.cardNumber;
+                    draggable.dataset.name = imgData.name;
+                    draggable.dataset.color = imgData.color;
+                    draggable.dataset.tags = imgData.tags.join(',');
+                    draggable.dataset.is_lf = imgData.is_lf;
+                    draggable.dataset.is_tag = imgData.is_tag;
+                    draggable.dataset.zenkai = imgData.zenkai;
+                    row.querySelector('.items').appendChild(img);
+                });
+            }
+        });
+
+        // Recreate untiered images
+        let untieredContainer = document.querySelector('.images');
+        serializedTierlist.untieredImages.forEach(imgData => {
+            let img = create_img_with_src(imgData.src);
+            let draggable = img.querySelector('.draggable');
+            draggable.dataset.rarity = imgData.rarity;
+            draggable.dataset.cardNumber = imgData.cardNumber;
+            draggable.dataset.name = imgData.name;
+            draggable.dataset.color = imgData.color;
+            draggable.dataset.tags = imgData.tags.join(',');
+            draggable.dataset.is_lf = imgData.is_lf;
+            draggable.dataset.is_tag = imgData.is_tag;
+            draggable.dataset.zenkai = imgData.zenkai;
+            untieredContainer.appendChild(img);
+        });
+
+        // Adjust row heights and apply sorting
+        document.querySelectorAll('.row').forEach(row => {
+            adjustRowHeight(row);
+        });
+        adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
+        sortImages();
+    };
+    reader.readAsText(file);
 }
 
 window.addEventListener('load', () => {
@@ -1049,6 +1097,11 @@ function sortImages() {
 document.getElementById('export-button').addEventListener('click', exportTierlist);
 
 document.getElementById('import-input').addEventListener('change', function(event) {
-    const fileName = event.target.files[0]?.name;
-    document.getElementById('file-name').textContent = fileName || '';
+    const file = event.target.files[0];
+    if (file) {
+        importTierlist(file);
+    }
+    // Update the file name display
+    const fileName = file?.name || '';
+    document.getElementById('file-name').textContent = fileName;
 });
