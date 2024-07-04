@@ -372,101 +372,277 @@ function showTierAttributesPopup(row) {
     // Check if the tier has no icon
     const hasNoIcon = header.dataset.hasIcon === 'false';
 
+    // Combine default tier colors and additional colors
+    const defaultColors = DEFAULT_TIERS.map(tier => tier.color);
+    const additionalColors = ['#ff7f7e', '#ffbf7f', '#ffdf80', '#feff7f', '#beff7f', '#7eff80'];
+    const allColors = [...new Set([...defaultColors, ...additionalColors])];
+
     let content = `
+    <div class="popup-header">
         <h2>Edit Tier</h2>
-        <label>
-            Tier Color:
-            <input type="color" id="tier-color" value="${rgbToHex(header.style.backgroundColor)}">
-        </label>
-        <label>
-            Tier Icon:
-            <div id="tier-icon-selection">
-                ${DEFAULT_TIERS.map(tier => `
-                    <div class="tier-icon-option${!hasNoIcon && icon && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
-                        <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
+        <button class="close-popup">×</button>
+    </div>
+    <div class="tier-attributes-content">
+        <div class="tier-color-section">
+            <label>Tier Color:</label>
+            <div class="color-picker-container">
+                <div class="color-picker-left">
+                    <div class="color-wheel"></div>
+                    <div class="color-slider">
+                        <div class="color-slider-thumb"></div>
                     </div>
-                `).join('')}
-                <div class="tier-icon-option${hasNoIcon ? ' selected' : ''}" data-icon="">
-                    <span>No Icon</span>
+                </div>
+                <div class="color-picker-right">
+                    <div class="color-input-preview">
+                        <input type="text" id="hex-input" value="${rgbToHex(header.style.backgroundColor)}">
+                        <div class="color-preview" style="background-color: ${rgbToHex(header.style.backgroundColor)}"></div>
+                    </div>
+                    <div class="color-palette">
+                        ${allColors.map(color => `
+                            <div class="color-option" style="background-color: ${color};" data-color="${color}"></div>
+                        `).join('')}
+                    </div>
                 </div>
             </div>
-        </label>
-        <div class="row-management">
+        </div>
+        <div class="tier-icon-section">
+            <label>Tier Icon:</label>
+            <div id="tier-icon-selection">
+                <div class="tier-icon-row">
+                    ${DEFAULT_TIERS.slice(0, 5).map(tier => `
+                        <div class="tier-icon-option${!hasNoIcon && icon && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
+                            <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="tier-icon-row">
+                    ${DEFAULT_TIERS.slice(5, 10).map(tier => `
+                        <div class="tier-icon-option${!hasNoIcon && icon && icon.src.includes(tier.icon) ? ' selected' : ''}" data-icon="${tier.icon}">
+                            <img src="${tier.icon}" alt="${tier.name}" title="${tier.name}">
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="tier-icon-row">
+                    <div class="tier-icon-option no-icon${hasNoIcon ? ' selected' : ''}" data-icon="">
+                        <span>No Icon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-management">
+        <div class="row-add-buttons">
             <button id="add-row-above">Add Row Above</button>
             <button id="add-row-below">Add Row Below</button>
-            <button id="remove-row">Remove Row</button>
         </div>
-        <div class="popup-buttons">
-            <button id="save-tier-attributes">Save</button>
-            <button id="cancel-tier-attributes">Cancel</button>
-        </div>
+        <button id="remove-row">Remove Row</button>
+    </div>
     `;
 
     popup.innerHTML = content;
     document.body.appendChild(popup);
 
-    // Add event listeners for icon selection
+    // Close popup when clicking the close button
+    popup.querySelector('.close-popup').addEventListener('click', () => {
+        document.body.removeChild(popup);
+    });
+
+    // Color picker functionality
+    const colorWheel = popup.querySelector('.color-wheel');
+    const colorSlider = popup.querySelector('.color-slider');
+    const colorSliderThumb = popup.querySelector('.color-slider-thumb');
+    const hexInput = document.getElementById('hex-input');
+    const colorPreview = popup.querySelector('.color-preview');
+
+    let hue = 0;
+    let saturation = 100;
+    let lightness = 50;
+
+    function updateColor() {
+        const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        header.style.backgroundColor = color;
+        colorPreview.style.backgroundColor = color;
+        hexInput.value = hslToHex(hue, saturation, lightness);
+        colorSlider.style.background = `linear-gradient(to right, hsl(${hue}, 100%, 50%), white)`;
+        unsaved_changes = true;
+    }
+
+    colorWheel.addEventListener('mousedown', startColorSelection);
+    colorSlider.addEventListener('mousedown', startSliderSelection);
+
+    function startColorSelection(e) {
+        selectColor(e);
+        document.addEventListener('mousemove', selectColor);
+        document.addEventListener('mouseup', stopColorSelection);
+    }
+
+    function stopColorSelection() {
+        document.removeEventListener('mousemove', selectColor);
+        document.removeEventListener('mouseup', stopColorSelection);
+    }
+
+    function selectColor(e) {
+        const rect = colorWheel.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const x = e.clientX - rect.left - centerX;
+        const y = e.clientY - rect.top - centerY;
+        hue = (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+        updateColor();
+    }
+
+    function startSliderSelection(e) {
+        selectSlider(e);
+        document.addEventListener('mousemove', selectSlider);
+        document.addEventListener('mouseup', stopSliderSelection);
+    }
+
+    function stopSliderSelection() {
+        document.removeEventListener('mousemove', selectSlider);
+        document.removeEventListener('mouseup', stopSliderSelection);
+    }
+
+    function selectSlider(e) {
+        const rect = colorSlider.getBoundingClientRect();
+        let x = e.clientX - rect.left;
+        x = Math.max(0, Math.min(x, rect.width));
+        saturation = 100 - (x / rect.width) * 100;
+        colorSliderThumb.style.left = `${x}px`;
+        updateColor();
+    }
+
+    hexInput.addEventListener('input', (e) => {
+        let color = e.target.value;
+        if (!color.startsWith('#')) {
+            color = '#' + color;
+        }
+        if (/^#[0-9A-F]{6}$/i.test(color)) {
+            const [h, s, l] = hexToHSL(color);
+            hue = h;
+            saturation = s;
+            lightness = l;
+            updateColor();
+        }
+    });
+
+    // Color palette selection
+    document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', () => {
+            const color = option.dataset.color;
+            const [h, s, l] = hexToHSL(color);
+            hue = h;
+            saturation = s;
+            lightness = l;
+            updateColor();
+        });
+    });
+
+    // Initial color update
+    updateColor();
+
+    // Icon selection
     document.querySelectorAll('.tier-icon-option').forEach(option => {
         option.addEventListener('click', () => {
             document.querySelectorAll('.tier-icon-option').forEach(opt => opt.classList.remove('selected'));
             option.classList.add('selected');
+            
+            let newIcon = option.dataset.icon;
+            
+            // Remove existing icon if there is one
+            let existingIcon = header.querySelector('.tier-icon');
+            if (existingIcon) {
+                existingIcon.remove();
+            }
+
+            if (newIcon) {
+                let icon = document.createElement('img');
+                icon.src = newIcon;
+                icon.classList.add('tier-icon');
+                icon.style.display = 'inline-block';
+                header.insertBefore(icon, header.firstChild);
+                header.dataset.hasIcon = 'true';
+            } else {
+                header.dataset.hasIcon = 'false';
+            }
+
+            unsaved_changes = true;
         });
-    });
-
-    document.getElementById('save-tier-attributes').addEventListener('click', () => {
-        let newColor = document.getElementById('tier-color').value;
-        let newIcon = document.querySelector('.tier-icon-option.selected').dataset.icon;
-    
-        if (newColor) header.style.backgroundColor = newColor;
-        
-        // Remove existing icon if there is one
-        let existingIcon = header.querySelector('.tier-icon');
-        if (existingIcon) {
-            existingIcon.remove();
-        }
-    
-        if (newIcon) {
-            let icon = document.createElement('img');
-            icon.src = newIcon;
-            icon.classList.add('tier-icon');
-            icon.style.display = 'inline-block';
-            header.insertBefore(icon, header.firstChild);
-            header.dataset.hasIcon = 'true';
-        } else {
-            header.dataset.hasIcon = 'false';
-        }
-    
-        unsaved_changes = true;
-        document.body.removeChild(popup);
-    });
-
-    document.getElementById('cancel-tier-attributes').addEventListener('click', () => {
-        document.body.removeChild(popup);
     });
 
     document.getElementById('add-row-above').addEventListener('click', () => {
         let newRow = add_row(Array.from(tierlist_div.children).indexOf(row), { name: 'NEW', color: '#fc3f32' });
         newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
-        document.body.removeChild(popup);
+        unsaved_changes = true;
     });
 
     document.getElementById('remove-row').addEventListener('click', () => {
         let rows = Array.from(tierlist_div.querySelectorAll('.row'));
         if (rows.length < 2) return;
         let idx = rows.indexOf(row);
-        if (rows[idx].querySelectorAll('img').length === 0 ||
-            confirm(`Remove tier ${rows[idx].querySelector('.header label').innerText}? (This will move back all its content to the untiered pool)`))
-        {
-            rm_row(idx);
-            document.body.removeChild(popup);
-        }
+        rm_row(idx);
+        document.body.removeChild(popup);
+        unsaved_changes = true;
     });
 
     document.getElementById('add-row-below').addEventListener('click', () => {
         let newRow = add_row(Array.from(tierlist_div.children).indexOf(row) + 1, { name: 'NEW', color: '#fc3f32' });
         newRow.querySelector('.header').style.backgroundColor = '#fc3f32';
-        document.body.removeChild(popup);
+        unsaved_changes = true;
     });
+}
+
+function hslToHex(h, s, l) {
+    l /= 100;
+    const a = s * Math.min(l, 1 - l) / 100;
+    const f = n => {
+        const k = (n + h / 30) % 12;
+        const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+        return Math.round(255 * color).toString(16).padStart(2, '0');
+    };
+    return `#${f(0)}${f(8)}${f(4)}`;
+}
+
+function hexToHSL(H) {
+    let r = 0, g = 0, b = 0;
+    if (H.length == 4) {
+        r = "0x" + H[1] + H[1];
+        g = "0x" + H[2] + H[2];
+        b = "0x" + H[3] + H[3];
+    } else if (H.length == 7) {
+        r = "0x" + H[1] + H[2];
+        g = "0x" + H[3] + H[4];
+        b = "0x" + H[5] + H[6];
+    }
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    let cmin = Math.min(r,g,b),
+        cmax = Math.max(r,g,b),
+        delta = cmax - cmin,
+        h = 0,
+        s = 0,
+        l = 0;
+
+    if (delta == 0)
+        h = 0;
+    else if (cmax == r)
+        h = ((g - b) / delta) % 6;
+    else if (cmax == g)
+        h = (b - r) / delta + 2;
+    else
+        h = (r - g) / delta + 4;
+
+    h = Math.round(h * 60);
+
+    if (h < 0)
+        h += 360;
+
+    l = (cmax + cmin) / 2;
+    s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+    s = +(s * 100).toFixed(1);
+    l = +(l * 100).toFixed(1);
+
+    return [h, s, l];
 }
 
 function changeTierAttributes(row) {
