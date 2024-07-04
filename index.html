@@ -14,7 +14,7 @@
       <div class="controls-container">
           <div class="search-and-sort">
               <div class="search-container">
-                  <input type="text" id="image-search" placeholder="Search images...">
+                  <input type="text" id="image-search" placeholder="Search...">
               </div>
               <div class="sort-container">
                   <button id="sort-button">Sort ▼</button>
@@ -39,11 +39,11 @@
           </div>
           <div id="filter-container"></div>
           <div class="import-export-container">
-              <div class="import-container">
-                  <label for="import-input" class="custom-button">Import</label>
-                  <input type="file" id="import-input" accept=".json">
-                  <span id="file-name"></span>
-              </div>
+            <div class="import-container" id="import-drop-zone">
+                <label for="import-input" class="custom-button">Import</label>
+                <input type="file" id="import-input" accept=".json">
+                <span id="file-name"></span>
+            </div>
               <div class="button-container">
                   <button id="export-button" class="custom-button">Export</button>
               </div>

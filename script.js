@@ -1042,6 +1042,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load images and apply initial sorting
     loadImagesFromJson();
+
+    const dropZone = document.getElementById('import-drop-zone');
+    const fileInput = document.getElementById('import-input');
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    // Highlight drop zone when item is dragged over it
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, unhighlight, false);
+    });
+
+    // Handle dropped files
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dropZone.classList.add('highlight');
+    }
+
+    function unhighlight(e) {
+        dropZone.classList.remove('highlight');
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        if (files.length) {
+            const file = files[0];
+            if (file.name.endsWith('.json')) {
+                importTierlist(file);
+                document.getElementById('file-name').textContent = file.name;
+            } else {
+                alert('Please drop a JSON file.');
+            }
+        }
+    }
+
+    // Also handle files from input
+    fileInput.addEventListener('change', function(e) {
+        handleFiles(this.files);
+    });
 });
 
 function sortImages() {
