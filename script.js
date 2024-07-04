@@ -40,6 +40,8 @@ function create_img_with_src(src) {
     container.style.backgroundPosition = 'center';
     container.classList.add('draggable', 'resizable-image');
     container.draggable = true;
+    // Add the full path as a data attribute
+    container.setAttribute('data-path', src);
 
     let item = document.createElement('span');
     item.classList.add('item');
@@ -464,16 +466,96 @@ function loadImagesFromJson() {
             const imagesContainer = document.querySelector('.images');
             data.images.forEach(imageData => {
                 const img = create_img_with_src(imageData.path);
-                img.dataset.rarity = imageData.rarity;
-                img.dataset.cardNumber = imageData.cardNumber;
+                img.querySelector('.draggable').dataset.rarity = imageData.rarity;
+                img.querySelector('.draggable').dataset.cardNumber = imageData.cardNumber;
+                img.querySelector('.draggable').setAttribute('data-path', imageData.path);
                 imagesContainer.appendChild(img);
             });
             console.log(`Loaded ${data.images.length} images`);
             
             // Adjust the untiered images container after loading
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+
+            // Set up the search feature after images are loaded
+            setupSearchFeature();
         })
         .catch(error => console.error('Error loading images:', error));
+}
+
+function setupSearchFeature() {
+    const searchInput = document.getElementById('image-search');
+    const imagesContainer = document.querySelector('.images');
+
+    console.log('Setting up search feature');
+    console.log('Search input:', searchInput);
+    console.log('Images container:', imagesContainer);
+
+    if (!searchInput || !imagesContainer) {
+        console.error('Search input or images container not found');
+        return;
+    }
+
+    searchInput.addEventListener('input', function() {
+        console.log('Search term:', this.value);
+        const searchTerm = this.value.toLowerCase();
+        const allItems = imagesContainer.querySelectorAll('.item');
+
+        allItems.forEach(item => {
+            const img = item.querySelector('.draggable');
+            if (!img) return;
+            
+            const imagePath = img.getAttribute('data-path').toLowerCase();
+            console.log('Comparing:', {imagePath, searchTerm});
+            if (imagePath.includes(searchTerm)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Adjust the container height after filtering
+        adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+    });
+
+    console.log('Search feature set up successfully');
+}
+
+  function importTierlist(file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+        let serializedTierlist = JSON.parse(e.target.result);
+        
+        // Clear current tierlist
+        document.querySelector('.tierlist').innerHTML = '';
+        document.querySelector('.images').innerHTML = '';
+
+        // Recreate tiers
+        serializedTierlist.tiers.forEach((tier, index) => {
+            let row = add_row(index, {
+                name: tier.name,
+                icon: tier.icon,
+                color: tier.color
+            });
+            
+            tier.images.forEach(imgData => {
+                let img = create_img_with_src(imgData.src);
+                img.dataset.rarity = imgData.rarity;
+                img.dataset.cardNumber = imgData.cardNumber;
+                row.querySelector('.items').appendChild(img);
+            });
+        });
+
+        // Recreate untiered images
+        let untieredContainer = document.querySelector('.images');
+        serializedTierlist.untieredImages.forEach(imgData => {
+            let img = create_img_with_src(imgData.src);
+            img.dataset.rarity = imgData.rarity;
+            img.dataset.cardNumber = imgData.cardNumber;
+            untieredContainer.appendChild(img);
+        });
+
+    };
+    reader.readAsText(file);
 }
 
 function exportTierlist() {
@@ -527,49 +609,11 @@ function exportTierlist() {
     a.click();
 }
 
-function importTierlist(file) {
-    let reader = new FileReader();
-    reader.onload = function(e) {
-        let serializedTierlist = JSON.parse(e.target.result);
-        
-        // Clear current tierlist
-        document.querySelector('.tierlist').innerHTML = '';
-        document.querySelector('.images').innerHTML = '';
-
-        // Recreate tiers
-        serializedTierlist.tiers.forEach((tier, index) => {
-            let row = add_row(index, {
-                name: tier.name,
-                icon: tier.icon,
-                color: tier.color
-            });
-            
-            tier.images.forEach(imgData => {
-                let img = create_img_with_src(imgData.src);
-                img.dataset.rarity = imgData.rarity;
-                img.dataset.cardNumber = imgData.cardNumber;
-                row.querySelector('.items').appendChild(img);
-            });
-        });
-
-        // Recreate untiered images
-        let untieredContainer = document.querySelector('.images');
-        serializedTierlist.untieredImages.forEach(imgData => {
-            let img = create_img_with_src(imgData.src);
-            img.dataset.rarity = imgData.rarity;
-            img.dataset.cardNumber = imgData.cardNumber;
-            untieredContainer.appendChild(img);
-        });
-
-    };
-    reader.readAsText(file);
-}
-
 window.addEventListener('load', () => {
     loadImagesFromJson();
     
-    untiered_images =  document.querySelector('.images');
-    tierlist_div =  document.querySelector('.tierlist');
+    untiered_images = document.querySelector('.images');
+    tierlist_div = document.querySelector('.tierlist');
 
     for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
         add_row(i, DEFAULT_TIERS[i]);
@@ -578,6 +622,8 @@ window.addEventListener('load', () => {
     headers_orig_min_width = all_headers[0][0].clientWidth;
 
     make_accept_drop(document.querySelector('.images'));
+
+    setupSearchFeature();
 
 	document.getElementById('load-img-input').addEventListener('input', (evt) => {
 		// @Speed: maybe we can do some async stuff to optimize this
