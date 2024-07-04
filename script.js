@@ -460,18 +460,21 @@ function reset_row(row) {
 }
 
 function loadImagesFromJson() {
-    fetch('images.json')
+    fetch('characters.json')
         .then(response => response.json())
         .then(data => {
             const imagesContainer = document.querySelector('.images');
-            data.images.forEach(imageData => {
-                const img = create_img_with_src(imageData.path);
-                img.querySelector('.draggable').dataset.rarity = imageData.rarity;
-                img.querySelector('.draggable').dataset.cardNumber = imageData.cardNumber;
-                img.querySelector('.draggable').setAttribute('data-path', imageData.path);
+            data.forEach(character => {
+                const img = create_img_with_src(character.image_url);
+                img.querySelector('.draggable').dataset.rarity = character.rarity;
+                img.querySelector('.draggable').dataset.cardNumber = character.id;
+                img.querySelector('.draggable').setAttribute('data-path', character.image_url);
+                img.querySelector('.draggable').dataset.name = character.name;
+                img.querySelector('.draggable').dataset.color = character.color;
+                img.querySelector('.draggable').dataset.tags = character.tags.join(',');
                 imagesContainer.appendChild(img);
             });
-            console.log(`Loaded ${data.images.length} images`);
+            console.log(`Loaded ${data.length} characters`);
             
             // Adjust the untiered images container after loading
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
@@ -479,16 +482,12 @@ function loadImagesFromJson() {
             // Set up the search feature after images are loaded
             setupSearchFeature();
         })
-        .catch(error => console.error('Error loading images:', error));
+        .catch(error => console.error('Error loading characters:', error));
 }
 
 function setupSearchFeature() {
     const searchInput = document.getElementById('image-search');
     const imagesContainer = document.querySelector('.images');
-
-    console.log('Setting up search feature');
-    console.log('Search input:', searchInput);
-    console.log('Images container:', imagesContainer);
 
     if (!searchInput || !imagesContainer) {
         console.error('Search input or images container not found');
@@ -496,7 +495,6 @@ function setupSearchFeature() {
     }
 
     searchInput.addEventListener('input', function() {
-        console.log('Search term:', this.value);
         const searchTerm = this.value.toLowerCase();
         const allItems = imagesContainer.querySelectorAll('.item');
 
@@ -504,9 +502,12 @@ function setupSearchFeature() {
             const img = item.querySelector('.draggable');
             if (!img) return;
             
-            const imagePath = img.getAttribute('data-path').toLowerCase();
-            console.log('Comparing:', {imagePath, searchTerm});
-            if (imagePath.includes(searchTerm)) {
+            const name = img.dataset.name.toLowerCase();
+            const tags = img.dataset.tags.toLowerCase();
+            const color = img.dataset.color.toLowerCase();
+            const rarity = img.dataset.rarity.toLowerCase();
+
+            if (name.includes(searchTerm) || tags.includes(searchTerm) || color.includes(searchTerm) || rarity.includes(searchTerm)) {
                 item.style.display = '';
             } else {
                 item.style.display = 'none';
@@ -516,11 +517,9 @@ function setupSearchFeature() {
         // Adjust the container height after filtering
         adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
     });
-
-    console.log('Search feature set up successfully');
 }
 
-  function importTierlist(file) {
+function importTierlist(file) {
     let reader = new FileReader();
     reader.onload = function(e) {
         let serializedTierlist = JSON.parse(e.target.result);
@@ -541,6 +540,9 @@ function setupSearchFeature() {
                 let img = create_img_with_src(imgData.src);
                 img.dataset.rarity = imgData.rarity;
                 img.dataset.cardNumber = imgData.cardNumber;
+                img.dataset.name = imgData.name;
+                img.dataset.color = imgData.color;
+                img.dataset.tags = imgData.tags.join(',');
                 row.querySelector('.items').appendChild(img);
             });
         });
@@ -551,9 +553,11 @@ function setupSearchFeature() {
             let img = create_img_with_src(imgData.src);
             img.dataset.rarity = imgData.rarity;
             img.dataset.cardNumber = imgData.cardNumber;
+            img.dataset.name = imgData.name;
+            img.dataset.color = imgData.color;
+            img.dataset.tags = imgData.tags.join(',');
             untieredContainer.appendChild(img);
         });
-
     };
     reader.readAsText(file);
 }
@@ -583,7 +587,10 @@ function exportTierlist() {
             tier.images.push({
                 src: img.style.backgroundImage.slice(5, -2),
                 rarity: img.dataset.rarity,
-                cardNumber: img.dataset.cardNumber
+                cardNumber: img.dataset.cardNumber,
+                name: img.dataset.name,
+                color: img.dataset.color,
+                tags: img.dataset.tags.split(',')
             });
         });
 
@@ -596,7 +603,10 @@ function exportTierlist() {
         serializedTierlist.untieredImages.push({
             src: img.style.backgroundImage.slice(5, -2),
             rarity: img.dataset.rarity,
-            cardNumber: img.dataset.cardNumber
+            cardNumber: img.dataset.cardNumber,
+            name: img.dataset.name,
+            color: img.dataset.color,
+            tags: img.dataset.tags.split(',')
         });
     });
 
