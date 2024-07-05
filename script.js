@@ -83,12 +83,30 @@ function adjustRowHeight(row) {
     header.style.height = `${newHeight}px`;
     items.style.height = `${newHeight}px`;
     
+    // Special handling for the bottom container
+    if (row.classList.contains('images')) {
+        row.style.height = 'auto';
+    }
+    
     // Remove the transitions after they're complete
     setTimeout(() => {
         row.style.transition = '';
         header.style.transition = '';
         items.style.transition = '';
     }, 300);
+}
+
+function adjustBottomContainerHeight() {
+    const bottomContainer = document.querySelector('.images');
+    const items = bottomContainer.querySelectorAll('.item');
+    const containerWidth = bottomContainer.clientWidth;
+    const itemWidth = 50;
+    const itemHeight = 50;
+    const itemsPerRow = Math.floor(containerWidth / itemWidth);
+    const rowsNeeded = Math.ceil(items.length / itemsPerRow);
+    const newHeight = rowsNeeded * itemHeight;
+    
+    bottomContainer.style.height = `${newHeight}px`;
 }
 
 function adjustHeaderHeight(header) {
@@ -332,13 +350,35 @@ function add_row(index, tierData) {
     let row_buttons = document.createElement('div');
     row_buttons.classList.add('row-buttons');
 
+    let gear_button = document.createElement('div');
+    gear_button.classList.add('gear-button');
+
     let btn_change_attr = document.createElement('input');
     btn_change_attr.type = "button";
     btn_change_attr.value = '⚙️';
     btn_change_attr.title = "Change tier attributes";
     btn_change_attr.addEventListener('click', () => changeTierAttributes(div));
-    row_buttons.appendChild(btn_change_attr);
+    gear_button.appendChild(btn_change_attr);
 
+    let shift_buttons = document.createElement('div');
+    shift_buttons.classList.add('shift-buttons');
+
+    let btn_shift_up = document.createElement('input');
+    btn_shift_up.type = "button";
+    btn_shift_up.value = '↑';
+    btn_shift_up.title = "Shift row up";
+    btn_shift_up.addEventListener('click', () => shiftRowUp(div));
+    shift_buttons.appendChild(btn_shift_up);
+
+    let btn_shift_down = document.createElement('input');
+    btn_shift_down.type = "button";
+    btn_shift_down.value = '↓';
+    btn_shift_down.title = "Shift row down";
+    btn_shift_down.addEventListener('click', () => shiftRowDown(div));
+    shift_buttons.appendChild(btn_shift_down);
+
+    row_buttons.appendChild(gear_button);
+    row_buttons.appendChild(shift_buttons);
     div.appendChild(row_buttons);
 
     let rows = tierlist_div.children;
@@ -359,6 +399,35 @@ function add_row(index, tierData) {
     observeItemChanges(div);
 
     return div;
+}
+
+function updateRowButtonsVisibility() {
+    const rows = document.querySelectorAll('.tierlist .row');
+    rows.forEach((row, index) => {
+        const upButton = row.querySelector('.shift-buttons input[value="↑"]');
+        const downButton = row.querySelector('.shift-buttons input[value="↓"]');
+        
+        if (upButton) upButton.style.display = index === 0 ? 'none' : 'block';
+        if (downButton) downButton.style.display = index === rows.length - 1 ? 'none' : 'block';
+    });
+}
+
+function shiftRowUp(row) {
+    let prevRow = row.previousElementSibling;
+    if (prevRow) {
+        tierlist_div.insertBefore(row, prevRow);
+        unsaved_changes = true;
+        updateRowButtonsVisibility();
+    }
+}
+
+function shiftRowDown(row) {
+    let nextRow = row.nextElementSibling;
+    if (nextRow) {
+        tierlist_div.insertBefore(nextRow, row);
+        unsaved_changes = true;
+        updateRowButtonsVisibility();
+    }
 }
 
 function showTierAttributesPopup(row) {
@@ -784,6 +853,7 @@ function applyFilters() {
     
     console.log("Filters:", filters);
 
+    const searchTerm = document.getElementById('image-search').value.toLowerCase();
     const items = document.querySelectorAll('.images .item');
     console.log("Total items:", items.length);
 
@@ -792,44 +862,55 @@ function applyFilters() {
         const img = item.querySelector('.draggable');
         let show = true;
         
-        for (let [attr, filterData] of Object.entries(filters)) {
-            if (filterData.values.length === 0) continue;
-            
-            if (attr === 'color') {
-                const charColors = JSON.parse(img.dataset.color);
-                if (!filterData.values.some(v => charColors.includes(v))) {
-                    show = false;
-                    break;
-                }
-            } else if (attr === 'tags') {
-                const charTags = img.dataset.tags.split(',');
-                if (filterData.includeAll) {
-                    if (!filterData.values.every(v => charTags.includes(v))) {
+        // Apply search filter
+        if (searchTerm) {
+            const name = img.dataset.name.toLowerCase();
+            if (!name.includes(searchTerm)) {
+                show = false;
+            }
+        }
+        
+        // Apply other filters only if the item passes the search filter
+        if (show) {
+            for (let [attr, filterData] of Object.entries(filters)) {
+                if (filterData.values.length === 0) continue;
+                
+                if (attr === 'color') {
+                    const charColors = JSON.parse(img.dataset.color);
+                    if (!filterData.values.some(v => charColors.includes(v))) {
                         show = false;
                         break;
                     }
-                } else {
+                } else if (attr === 'tags') {
+                    const charTags = img.dataset.tags.split(',');
+                    if (filterData.includeAll) {
+                        if (!filterData.values.every(v => charTags.includes(v))) {
+                            show = false;
+                            break;
+                        }
+                    } else {
+                        if (!filterData.values.some(v => charTags.includes(v))) {
+                            show = false;
+                            break;
+                        }
+                    }
+                } else if (attr === 'episode' || attr === 'type') {
+                    const charTags = img.dataset.tags.split(',');
                     if (!filterData.values.some(v => charTags.includes(v))) {
                         show = false;
                         break;
                     }
-                }
-            } else if (attr === 'episode' || attr === 'type') {
-                const charTags = img.dataset.tags.split(',');
-                if (!filterData.values.some(v => charTags.includes(v))) {
-                    show = false;
-                    break;
-                }
-            } else if (attr === 'zenkai') {
-                const hasZenkai = img.dataset.zenkai === 'true';
-                if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
-                    show = false;
-                    break;
-                }
-            } else {
-                if (!filterData.values.includes(img.dataset[attr])) {
-                    show = false;
-                    break;
+                } else if (attr === 'zenkai') {
+                    const hasZenkai = img.dataset.zenkai === 'true';
+                    if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
+                        show = false;
+                        break;
+                    }
+                } else {
+                    if (!filterData.values.includes(img.dataset[attr])) {
+                        show = false;
+                        break;
+                    }
                 }
             }
         }
@@ -886,26 +967,7 @@ function setupSearchFeature() {
         return;
     }
 
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase();
-        const allItems = imagesContainer.querySelectorAll('.item');
-
-        allItems.forEach(item => {
-            const img = item.querySelector('.draggable');
-            if (!img) return;
-            
-            const name = img.dataset.name.toLowerCase();
-
-            if (name.includes(searchTerm)) {
-                item.style.display = '';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-
-        // Adjust the container height after filtering
-        adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
-    });
+    searchInput.addEventListener('input', applyFilters);
 }
 
 function exportTierlist() {
@@ -1038,6 +1100,8 @@ window.addEventListener('load', () => {
 
     setupSearchFeature();
 
+    adjustBottomContainerHeight();
+
 	document.getElementById('load-img-input').addEventListener('input', (evt) => {
 		// @Speed: maybe we can do some async stuff to optimize this
 		let images = document.querySelector('.images');
@@ -1096,6 +1160,7 @@ window.addEventListener('load', () => {
             adjustRowHeight(row);
         });
         adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+        adjustBottomContainerHeight();
     });
     
     document.querySelectorAll('.row').forEach(row => {
