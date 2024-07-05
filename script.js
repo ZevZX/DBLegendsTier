@@ -377,6 +377,9 @@ function showTierAttributesPopup(row) {
     const additionalColors = ['#ff7f7e', '#ffbf7f', '#ffdf80', '#feff7f', '#beff7f', '#7eff80'];
     const allColors = [...new Set([...defaultColors, ...additionalColors])];
 
+    // Get the current background color
+    const currentColor = rgbToHex(header.style.backgroundColor);
+
     let content = `
     <div class="popup-header">
         <h2>Edit Tier</h2>
@@ -394,8 +397,8 @@ function showTierAttributesPopup(row) {
                 </div>
                 <div class="color-picker-right">
                     <div class="color-input-preview">
-                        <input type="text" id="hex-input" value="${rgbToHex(header.style.backgroundColor)}">
-                        <div class="color-preview" style="background-color: ${rgbToHex(header.style.backgroundColor)}"></div>
+                        <input type="text" id="hex-input" value="${currentColor}">
+                        <div class="color-preview" style="background-color: ${currentColor}"></div>
                     </div>
                     <div class="color-palette">
                         ${allColors.map(color => `
@@ -454,17 +457,17 @@ function showTierAttributesPopup(row) {
     const hexInput = document.getElementById('hex-input');
     const colorPreview = popup.querySelector('.color-preview');
 
-    let hue = 0;
-    let saturation = 100;
-    let lightness = 50;
+    // Initialize color values from the current background color
+    let [hue, saturation, lightness] = hexToHSL(currentColor);
 
-    function updateColor() {
+    function updateColor(updateHeader = false) {
         const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-        header.style.backgroundColor = color;
+        if (updateHeader) {
+            header.style.backgroundColor = color;
+        }
         colorPreview.style.backgroundColor = color;
         hexInput.value = hslToHex(hue, saturation, lightness);
         colorSlider.style.background = `linear-gradient(to right, hsl(${hue}, 100%, 50%), white)`;
-        unsaved_changes = true;
     }
 
     colorWheel.addEventListener('mousedown', startColorSelection);
@@ -479,6 +482,8 @@ function showTierAttributesPopup(row) {
     function stopColorSelection() {
         document.removeEventListener('mousemove', selectColor);
         document.removeEventListener('mouseup', stopColorSelection);
+        updateColor(true);
+        unsaved_changes = true;
     }
 
     function selectColor(e) {
@@ -500,6 +505,8 @@ function showTierAttributesPopup(row) {
     function stopSliderSelection() {
         document.removeEventListener('mousemove', selectSlider);
         document.removeEventListener('mouseup', stopSliderSelection);
+        updateColor(true);
+        unsaved_changes = true;
     }
 
     function selectSlider(e) {
@@ -517,11 +524,9 @@ function showTierAttributesPopup(row) {
             color = '#' + color;
         }
         if (/^#[0-9A-F]{6}$/i.test(color)) {
-            const [h, s, l] = hexToHSL(color);
-            hue = h;
-            saturation = s;
-            lightness = l;
-            updateColor();
+            [hue, saturation, lightness] = hexToHSL(color);
+            updateColor(true);
+            unsaved_changes = true;
         }
     });
 
@@ -529,11 +534,9 @@ function showTierAttributesPopup(row) {
     document.querySelectorAll('.color-option').forEach(option => {
         option.addEventListener('click', () => {
             const color = option.dataset.color;
-            const [h, s, l] = hexToHSL(color);
-            hue = h;
-            saturation = s;
-            lightness = l;
-            updateColor();
+            [hue, saturation, lightness] = hexToHSL(color);
+            updateColor(true);
+            unsaved_changes = true;
         });
     });
 
