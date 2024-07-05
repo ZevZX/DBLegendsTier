@@ -1,15 +1,15 @@
 const MAX_NAME_LEN = 200;
 const DEFAULT_TIERS = [
-    { name: '', icon: 'assets/equipmentswebp/GodlyRankEquip.webp', color: '#59dffa' },
-    { name: '', icon: 'assets/equipmentswebp/ZplusRankEquip.webp', color: '#f979ad' },
-    { name: '', icon: 'assets/equipmentswebp/ZRankEquip.webp', color: '#f8d423' },
-    { name: '', icon: 'assets/equipmentswebp/SRankEquip.webp', color: '#d85cfb' },
-    { name: '', icon: 'assets/equipmentswebp/ARankEquip.webp', color: '#7dc6f6' },
-    { name: '', icon: 'assets/equipmentswebp/BRankEquip.webp', color: '#70d46c' },
-    { name: '', icon: 'assets/equipmentswebp/CRankEquip.webp', color: '#c6d0b3' },
-    { name: '', icon: 'assets/equipmentswebp/DRankEquip.webp', color: '#b4b49e' },
-    { name: '', icon: 'assets/equipmentswebp/ERankEquip.webp', color: '#a5b3a3' },
-    { name: '', icon: 'assets/equipmentswebp/FRankEquip.webp', color: '#788080' }
+    { name: '', icon: 'assets/equipments/GodlyRankEquip.webp', color: '#59dffa' },
+    { name: '', icon: 'assets/equipments/ZplusRankEquip.webp', color: '#f979ad' },
+    { name: '', icon: 'assets/equipments/ZRankEquip.webp', color: '#f8d423' },
+    { name: '', icon: 'assets/equipments/SRankEquip.webp', color: '#d85cfb' },
+    { name: '', icon: 'assets/equipments/ARankEquip.webp', color: '#7dc6f6' },
+    { name: '', icon: 'assets/equipments/BRankEquip.webp', color: '#70d46c' },
+    { name: '', icon: 'assets/equipments/CRankEquip.webp', color: '#c6d0b3' },
+    { name: '', icon: 'assets/equipments/DRankEquip.webp', color: '#b4b49e' },
+    { name: '', icon: 'assets/equipments/ERankEquip.webp', color: '#a5b3a3' },
+    { name: '', icon: 'assets/equipments/FRankEquip.webp', color: '#788080' }
 ];
 
 let unique_id = 0;
@@ -792,7 +792,13 @@ function applyFilters() {
         for (let [attr, filterData] of Object.entries(filters)) {
             if (filterData.values.length === 0) continue;
             
-            if (attr === 'tags') {
+            if (attr === 'color') {
+                const charColors = JSON.parse(img.dataset.color);
+                if (!filterData.values.some(v => charColors.includes(v))) {
+                    show = false;
+                    break;
+                }
+            } else if (attr === 'tags') {
                 const charTags = img.dataset.tags.split(',');
                 if (filterData.includeAll) {
                     if (!filterData.values.every(v => charTags.includes(v))) {
@@ -805,14 +811,14 @@ function applyFilters() {
                         break;
                     }
                 }
-            } else if (attr === 'episode') {
+            } else if (attr === 'episode' || attr === 'type') {
                 const charTags = img.dataset.tags.split(',');
                 if (!filterData.values.some(v => charTags.includes(v))) {
                     show = false;
                     break;
                 }
             } else if (attr === 'zenkai') {
-                const hasZenkai = img.dataset.zenkai === 'true'; // Changed from has_zenkai to zenkai
+                const hasZenkai = img.dataset.zenkai === 'true';
                 if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
                     show = false;
                     break;
@@ -847,30 +853,22 @@ function loadImagesFromJson() {
             const imagesContainer = document.querySelector('.images');
             data.forEach(character => {
                 const img = create_img_with_src(character.image_url);
-                img.querySelector('.draggable').dataset.rarity = character.rarity;
-                img.querySelector('.draggable').dataset.cardNumber = character.id;
-                img.querySelector('.draggable').setAttribute('data-path', character.image_url);
-                img.querySelector('.draggable').dataset.name = character.name;
-                img.querySelector('.draggable').dataset.color = character.color;
-                img.querySelector('.draggable').dataset.tags = character.tags.join(',');
-                img.querySelector('.draggable').dataset.is_lf = character.is_lf;
-                img.querySelector('.draggable').dataset.is_tag = character.is_tag;
-                img.querySelector('.draggable').dataset.zenkai = character.has_zenkai;
+                let draggable = img.querySelector('.draggable');
+                draggable.dataset.rarity = character.rarity;
+                draggable.dataset.cardNumber = character.id;
+                draggable.setAttribute('data-path', character.image_url);
+                draggable.dataset.name = character.name;
+                draggable.dataset.color = JSON.stringify(character.color);
+                draggable.dataset.tags = character.tags.join(',');
+                draggable.dataset.zenkai = character.has_zenkai;
                 imagesContainer.appendChild(img);
             });
 
             console.log(`Loaded ${data.length} characters`);
             
-            // Create filter buttons after loading characters
             createFilterButtons();
-            
-            // Apply default sorting after loading images
             sortImages();
-            
-            // Adjust the untiered images container after loading and sorting
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
-
-            // Set up the search feature after images are loaded
             setupSearchFeature();
         })
         .catch(error => console.error('Error loading characters:', error));
@@ -936,8 +934,6 @@ function exportTierlist() {
                 name: img.dataset.name,
                 color: img.dataset.color,
                 tags: img.dataset.tags.split(','),
-                is_lf: img.dataset.is_lf === 'true',
-                is_tag: img.dataset.is_tag === 'true',
                 zenkai: img.dataset.zenkai === 'true'
             });
         });
@@ -955,8 +951,6 @@ function exportTierlist() {
             name: img.dataset.name,
             color: img.dataset.color,
             tags: img.dataset.tags.split(','),
-            is_lf: img.dataset.is_lf === 'true',
-            is_tag: img.dataset.is_tag === 'true',
             zenkai: img.dataset.zenkai === 'true'
         });
     });
@@ -996,8 +990,6 @@ function importTierlist(file) {
                     draggable.dataset.name = imgData.name;
                     draggable.dataset.color = imgData.color;
                     draggable.dataset.tags = imgData.tags.join(',');
-                    draggable.dataset.is_lf = imgData.is_lf;
-                    draggable.dataset.is_tag = imgData.is_tag;
                     draggable.dataset.zenkai = imgData.zenkai;
                     row.querySelector('.items').appendChild(img);
                 });
@@ -1014,8 +1006,6 @@ function importTierlist(file) {
             draggable.dataset.name = imgData.name;
             draggable.dataset.color = imgData.color;
             draggable.dataset.tags = imgData.tags.join(',');
-            draggable.dataset.is_lf = imgData.is_lf;
-            draggable.dataset.is_tag = imgData.is_tag;
             draggable.dataset.zenkai = imgData.zenkai;
             untieredContainer.appendChild(img);
         });
@@ -1299,9 +1289,14 @@ function sortImages() {
         let comparison = 0;
 
         if (sortColor) {
-            const colorA = a.querySelector('.draggable').dataset.color;
-            const colorB = b.querySelector('.draggable').dataset.color;
-            comparison = colorOrderArray.indexOf(colorB) - colorOrderArray.indexOf(colorA);
+            const colorsA = JSON.parse(a.querySelector('.draggable').dataset.color);
+            const colorsB = JSON.parse(b.querySelector('.draggable').dataset.color);
+            // Compare the first color of each character
+            comparison = colorOrderArray.indexOf(colorsB[0]) - colorOrderArray.indexOf(colorsA[0]);
+            if (comparison === 0 && colorsA.length > 1 && colorsB.length > 1) {
+                // If first colors are the same and both have second colors, compare second colors
+                comparison = colorOrderArray.indexOf(colorsB[1]) - colorOrderArray.indexOf(colorsA[1]);
+            }
             if (colorOrder === 'asc') comparison *= -1;
             if (comparison !== 0) return comparison;
         }
