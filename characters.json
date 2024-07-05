@@ -2027,7 +2027,7 @@
     "image_url": "https://i.imgur.com/kM3CpKZ.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Nappa",
@@ -4019,7 +4019,7 @@
     "image_url": "https://i.imgur.com/k6NwKAh.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -5374,7 +5374,7 @@
     "image_url": "https://i.imgur.com/I7MC5Yf.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "God of Destruction Champa",
@@ -6418,7 +6418,7 @@
     "image_url": "https://i.imgur.com/yGYKa0X.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Lavender",
@@ -7786,7 +7786,6 @@
     "rarity": "SPARKING",
     "tags": [
       "Saiyan",
-      "Super Saiyan",
       "Fusion",
       "Fusion Warrior",
       "Male",
@@ -9922,7 +9921,6 @@
     "tags": [
       "Vegeta Clan",
       "Hybrid Saiyan",
-      "Super Saiyan",
       "Future",
       "Legends Road",
       "Event Exclusive",
@@ -10073,7 +10071,7 @@
     "image_url": "assets/renders/BChaCut_0564_GohanKidKrillin_564.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Majuub",
@@ -10426,7 +10424,7 @@
     "image_url": "assets/renders/BChaCut_0473_GohanFTrunks_473.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Final Form Frieza",
@@ -10579,7 +10577,7 @@
     "image_url": "https://i.imgur.com/OkyWm7D.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Final Form Cooler",
@@ -14207,7 +14205,7 @@
     "image_url": "https://i.imgur.com/imsCG01.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Vegeta",
@@ -14819,7 +14817,7 @@
     "image_url": "assets/renders/BChaCut_9000_ShallotSS1_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 2 Shallot",
@@ -14855,7 +14853,7 @@
     "image_url": "assets/renders/BChaCut_9000_ShallotSS2_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 3 Shallot",
@@ -14891,7 +14889,7 @@
     "image_url": "assets/renders/BChaCut_9000_ShallotSS3_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God Shallot",
@@ -14928,7 +14926,7 @@
     "image_url": "assets/renders/BChaCut_9000_ShallotSSG_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Shallot",
@@ -14963,7 +14961,7 @@
     "image_url": "assets/renders/BChaCut_9800_Shallot_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan Shallot",
@@ -14999,7 +14997,7 @@
     "image_url": "assets/renders/BChaCut_9800_ShallotSS1_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 2 Shallot",
@@ -15035,7 +15033,7 @@
     "image_url": "assets/renders/BChaCut_9800_ShallotSS2_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 3 Shallot",
@@ -15071,7 +15069,7 @@
     "image_url": "assets/renders/BChaCut_9800_ShallotSS3_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God Shallot",
@@ -15108,7 +15106,7 @@
     "image_url": "assets/renders/BChaCut_9800_ShallotSSG_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Shallot",
@@ -15145,7 +15143,7 @@
     "image_url": "assets/renders/BChaCut_9800_ShallotSSGSS_01.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Full Power Gokua",
@@ -15170,7 +15168,7 @@
     "image_url": "assets/renders/BChaCut_0334_GokuaFP_334.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Gohan",
@@ -15197,7 +15195,7 @@
     "image_url": "https://i.imgur.com/NjuMYNZ.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Trunks (Youth)",
@@ -15224,7 +15222,7 @@
     "image_url": "assets/renders/BChaCut_0473_TrunksTF_473.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Gohan (Kid)",
@@ -15254,7 +15252,7 @@
     "image_url": "https://i.imgur.com/0g68Pgp.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Krillin",
@@ -15284,7 +15282,7 @@
     "image_url": "assets/renders/BChaCut_0564_Krillin_564.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Kaioken Goku",
@@ -15386,7 +15384,7 @@
     "image_url": "assets/renders/BChaCut_0226_TrunksSS1_226.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Kaioken Goku",
@@ -15438,7 +15436,7 @@
     "image_url": "assets/renders/BChaCut_0238_GohanTeenSS2_238.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Piccolo",
@@ -15488,7 +15486,7 @@
     "image_url": "assets/renders/BChaCut_0257_VegetaSS1_257.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan Gohan",
@@ -15539,7 +15537,7 @@
     "image_url": "assets/renders/BChaCut_0266_Cooler2nd_266.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Golden Frieza",
@@ -15566,7 +15564,7 @@
     "image_url": "assets/renders/BChaCut_0268_FriezaGold_268.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God Vegeta",
@@ -15590,7 +15588,7 @@
     "image_url": "assets/renders/BChaCut_0287_VegetaSSG_287.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Android #21: Transformed (Evil)",
@@ -15644,7 +15642,7 @@
     "image_url": "assets/renders/BChaCut_0305_Bardock_305.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Vegito",
@@ -15668,7 +15666,7 @@
     "image_url": "assets/renders/BChaCut_0306_VegitoSV_306.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Pikkon",
@@ -15692,7 +15690,7 @@
     "image_url": "assets/renders/BChaCut_0311_PaikuhanNoOuterwear_311.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 3 Gotenks",
@@ -15720,7 +15718,7 @@
     "image_url": "assets/renders/BChaCut_0313_GotenksSS3_313.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Ultimate Gohan",
@@ -15745,7 +15743,7 @@
     "image_url": "assets/renders/BChaCut_0326_GohanUltimate_326.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan Goten (Kid)",
@@ -15772,7 +15770,7 @@
     "image_url": "assets/renders/BChaCut_0343_GotenTeenSS1_343.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan Trunks (Kid)",
@@ -15797,7 +15795,7 @@
     "image_url": "assets/renders/BChaCut_0344_TrunksTeenSS1_344.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Perfect Cell",
@@ -15877,7 +15875,7 @@
     "image_url": "assets/renders/BChaCut_0350_GokuBlackRose_350.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Demon King Piccolo",
@@ -15900,7 +15898,7 @@
     "image_url": "assets/renders/BChaCut_0381_PiccoloKing_381.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -15926,7 +15924,7 @@
     "image_url": "assets/renders/BChaCut_0386_GokuDie_386.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 2 Gohan (Youth)",
@@ -15954,7 +15952,7 @@
     "image_url": "assets/renders/BChaCut_0409_GohanTeenSS2_409.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Full Power Boujack",
@@ -15984,7 +15982,7 @@
     "image_url": "assets/renders/BChaCut_0411_BojackFP_411.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Gohan (Kid)",
@@ -16038,7 +16036,7 @@
     "image_url": "assets/renders/BChaCut_0460_Frieza4thTailCut_460.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Android #17",
@@ -16072,7 +16070,7 @@
     "image_url": "https://i.imgur.com/gQI4Xel.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Android #18",
@@ -16106,7 +16104,7 @@
     "image_url": "assets/renders/BChaCut_0472_Android18_472.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -16133,7 +16131,7 @@
     "image_url": "assets/renders/BChaCut_0478_VegetaSSGSS_478.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 4 Goku",
@@ -16165,7 +16163,7 @@
     "image_url": "https://i.imgur.com/2c5Nolu.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 4 Vegeta",
@@ -16197,7 +16195,7 @@
     "image_url": "assets/renders/BChaCut_0501_VegetaSS4_501.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 2 Trunks (Adult)",
@@ -16234,7 +16232,7 @@
     "image_url": "https://i.imgur.com/l9DVcrN.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -16271,7 +16269,7 @@
     "image_url": "assets/renders/BChaCut_0514_VegetaSSGSS_514.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Ultra Instinct -Sign- Goku",
@@ -16300,7 +16298,7 @@
     "image_url": "assets/renders/BChaCut_0527_GokuUIS_527.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Perfect Form Cell",
@@ -16329,7 +16327,7 @@
     "image_url": "assets/renders/BChaCut_0534_Cell3rd_534.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 3 Goku",
@@ -16361,7 +16359,7 @@
     "image_url": "https://i.imgur.com/T8EUYEY.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan 2 Vegeta",
@@ -16393,7 +16391,7 @@
     "image_url": "assets/renders/BChaCut_0536_VegetaSS2_536.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Goku",
@@ -16430,12 +16428,12 @@
     "image_url": "https://i.imgur.com/dwGJdB2.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Final Form Frieza",
     "id": "DBL59-01S",
-    "color": "PUR",
+    "color": "BLU",
     "rarity": "LEGENDS LIMITED",
     "tags": [
       "Son Family",
@@ -16467,7 +16465,7 @@
     "image_url": "assets/renders/BChaCut_0539_Frieza4th_539.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Jiren: Full Power",
@@ -16497,7 +16495,7 @@
     "image_url": "assets/renders/BChaCut_0540_JirenFP_540.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Gamma 1",
@@ -16527,7 +16525,7 @@
     "image_url": "https://i.imgur.com/mbAMGnV.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Gamma 2",
@@ -16557,7 +16555,7 @@
     "image_url": "assets/renders/BChaCut_0549_Gamma2_549.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Orange Piccolo",
@@ -16591,7 +16589,7 @@
     "image_url": "assets/renders/BChaCut_0551_OrangePiccolo_551.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Goku Captain Ginyu",
@@ -16617,7 +16615,7 @@
     "image_url": "assets/renders/BChaCut_0560_GinyuGoku_560.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Jeice",
@@ -16647,12 +16645,12 @@
     "image_url": "https://i.imgur.com/DJklomV.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Burter",
     "id": "DBL62-03S",
-    "color": "RED",
+    "color": "BLU",
     "rarity": "SPARKING",
     "tags": [
       "Frieza Force",
@@ -16677,7 +16675,7 @@
     "image_url": "assets/renders/BChaCut_0561_Burter_561.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Recoome",
@@ -16706,12 +16704,12 @@
     "image_url": "https://i.imgur.com/KqHbO1d.png",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Guldo",
     "id": "DBL62-02S",
-    "color": "YEL",
+    "color": "GRN",
     "rarity": "SPARKING",
     "tags": [
       "Frieza Force",
@@ -16735,7 +16733,7 @@
     "image_url": "assets/renders/BChaCut_0562_Guldo_562.webp",
     "is_lf": false,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Gogeta",
@@ -16771,7 +16769,7 @@
     "image_url": "assets/renders/BChaCut_0573_GogetaSS1_573.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Evolved Vegeta",
@@ -16806,7 +16804,7 @@
     "image_url": "https://i.imgur.com/wOsNEut.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Kaioken Goku",
@@ -16841,7 +16839,7 @@
     "image_url": "assets/renders/BChaCut_0576_GokuSSGSSKAIOU_576.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Beast Gohan",
@@ -16876,7 +16874,7 @@
     "image_url": "assets/renders/BChaCut_0579_GohanSHB_579.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Goku",
@@ -16910,12 +16908,12 @@
     "image_url": "https://i.imgur.com/COqVARx.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Bardock",
     "id": "DBL66-01S",
-    "color": "BLU",
+    "color": "GRN",
     "rarity": "LEGENDS LIMITED",
     "tags": [
       "Son Family",
@@ -16944,7 +16942,7 @@
     "image_url": "assets/renders/BChaCut_0583_Bardock_583.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Vegeta",
@@ -16975,7 +16973,7 @@
     "image_url": "assets/renders/BChaCut_0607_Vegeta_607.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Goku & Vegeta",
@@ -17013,7 +17011,7 @@
     "image_url": "assets/renders/BChaCut_0608_GokuVegetaSSGSS_608.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -17051,7 +17049,7 @@
     "image_url": "https://i.imgur.com/iaYh7HS.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -17089,7 +17087,7 @@
     "image_url": "assets/renders/BChaCut_0608_VegetaSSGSS_608.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Vegeta & Goku",
@@ -17127,7 +17125,7 @@
     "image_url": "assets/renders/BChaCut_0609_VegetaGoku_609.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Vegeta",
@@ -17165,7 +17163,7 @@
     "image_url": "https://i.imgur.com/Usiwp0Q.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Goku",
@@ -17203,7 +17201,7 @@
     "image_url": "assets/renders/BChaCut_0609_Goku_609.webp",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -17236,7 +17234,7 @@
     "image_url": "https://i.imgur.com/iFbMWA8.png",
     "is_lf": true,
     "is_tag": false,
-    "has_zenkai": true
+    "has_zenkai": false
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -17269,6 +17267,89 @@
     "image_url": "assets/renders/BChaCut_0448_VegetaSSGSS_448.webp",
     "is_lf": true,
     "is_tag": false,
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Gogeta",
+    "id": "DBL10-11S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Saiyan",
+      "Super Saiyan",
+      "Fusion",
+      "Fusion Warrior",
+      "Male",
+      "SPARKING",
+      "Ranged Type",
+      "BLU",
+      "Sagas From the Movies",
+      "Gogeta",
+      "DBL10-11S",
+      "Assault",
+      "Rising Power",
+      "Transform",
+      "Defense UP (Powerful Opponent)",
+      "No Switching"
+    ],
+    "image_url": "assets/renders/BChaCut_0192_Gts_192.webp",
+    "is_lf": false,
+    "is_tag": false,
     "has_zenkai": true
+  },
+  {
+    "name": "Super Saiyan Trunks (Youth)",
+    "id": "DBL-EVT-03S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Legends Road",
+      "Event Exclusive",
+      "Male",
+      "SPARKING",
+      "Melee Type",
+      "BLU",
+      "Androids Saga (Z)",
+      "Trunks",
+      "Trunks (Youth) (DBL-EVT-03S)",
+      "Rage",
+      "Synergy",
+      "Assault",
+      "Transform"
+    ],
+    "image_url": "assets/renders/BChaCut_0169_TrunksTFSS1_169.webp",
+    "is_lf": false,
+    "is_tag": false,
+    "has_zenkai": true
+  },
+  {
+    "name": "Giblet",
+    "id": "DBL00-04",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Saiyan",
+      "Game Originals"
+    ],
+    "image_url": "assets/renders/BChaCut_0523_Jiblet_523.webp",
+    "is_lf": false,
+    "is_tag": false,
+    "has_zenkai": false
   }
+  // {
+  //   "name": "",
+  //   "id": "DBL-",
+  //   "color": "",
+  //   "rarity": "",
+  //   "tags": [
+  //     "",
+  //     ""
+  //   ],
+  //   "image_url": "assets/renders/",
+  //   "has_zenkai": false
+  // }
 ]

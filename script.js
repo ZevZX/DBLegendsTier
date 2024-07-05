@@ -1293,7 +1293,7 @@ function sortImages() {
     const rarityOrder = document.getElementById('sort-rarity-order').dataset.order;
 
     const colorOrderArray = ['DRK', 'LGT', 'YEL', 'PUR', 'GRN', 'BLU', 'RED'];
-    const rarityOrderArray = ['ULTRA', 'LEGENDS LIMITED', 'SPARKING', 'EXTREME', 'HERO'];
+    const rarityOrderArray = ['HERO', 'EXTREME', 'SPARKING', 'LEGENDS LIMITED', 'ULTRA'];
 
     items.sort((a, b) => {
         let comparison = 0;
