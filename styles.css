@@ -1129,3 +1129,79 @@ span.items {
 .tierlist span.items {
     padding-right: 50px;
 }
+
+.row {
+    position: relative;
+    display: flex;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+  }
+  
+  .header {
+    flex-shrink: 0;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+  
+
+  .items {
+    flex-grow: 1;
+    min-height: 50px;
+  }
+  
+  .row-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: stretch;
+    width: 50px;
+    border-left: 1px solid black;
+  }
+  
+  .gear-button {
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b63b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    flex-grow: 1;
+    border-right: 1px solid black;
+  }
+  
+  .shift-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 25px;
+  }
+  
+  .shift-buttons button {
+    flex-grow: 1;
+    background-color: #4b63b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .shift-buttons button:first-child {
+    border-bottom: 1px solid black;
+  }
+  
+  .gear-button:hover,
+  .shift-buttons button:hover {
+    background-color: #5b6eae;
+  }
+  
+  .tierlist span.items {
+    padding-right: 50px;
+  }

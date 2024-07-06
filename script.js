@@ -57,43 +57,41 @@ function end_drag(evt) {
     }
 }
 
+function updateRowBorders() {
+    const rows = Array.from(tierlist_div.children);
+    rows.forEach((row, index) => {
+        if (index === rows.length - 1) {
+            row.style.borderBottom = '1px solid black';
+        } else {
+            row.style.borderBottom = 'none';
+        }
+    });
+}
+
 function adjustRowHeight(row) {
     const header = row.querySelector('.header');
     const items = row.querySelector('.items');
+    const rowButtons = row.querySelector('.row-buttons');
     
     // Reset heights to auto to get the natural content height
     header.style.height = 'auto';
     items.style.height = 'auto';
     row.style.height = 'auto';
+    rowButtons.style.height = 'auto';
     
-    // Calculate the number of items and rows
-    const itemCount = items.children.length;
-    const itemWidth = 50; // Assuming each item is 50px wide
-    const itemHeight = 50; // Assuming each item is 50px tall
-    const containerWidth = items.clientWidth;
-    const itemsPerRow = Math.max(1, Math.floor(containerWidth / itemWidth));
-    const rowsNeeded = Math.ceil(itemCount / itemsPerRow);
-    
-    // Calculate the new height (itemHeight per row, with a minimum of 1 row)
-    const contentHeight = Math.max(1, rowsNeeded) * itemHeight;
+    // Calculate the new height
     const headerHeight = header.scrollHeight;
-    const newHeight = Math.max(headerHeight, contentHeight);
+    const itemsHeight = items.scrollHeight;
+    const newHeight = Math.max(headerHeight, itemsHeight, 50); // Minimum height of 50px
     
+    // Set the new height
     row.style.height = `${newHeight}px`;
     header.style.height = `${newHeight}px`;
     items.style.height = `${newHeight}px`;
-    
-    // Special handling for the bottom container
-    if (row.classList.contains('images')) {
-        row.style.height = 'auto';
-    }
-    
-    // Remove the transitions after they're complete
-    setTimeout(() => {
-        row.style.transition = '';
-        header.style.transition = '';
-        items.style.transition = '';
-    }, 300);
+    rowButtons.style.height = `${newHeight}px`;
+
+    // Update borders for all rows
+    updateRowBorders();
 }
 
 function adjustBottomContainerHeight() {
@@ -326,14 +324,14 @@ function rm_row(idx) {
 }
 
 function add_row(index, tierData) {
-    let div = document.createElement('div');
-    let header = document.createElement('span');
-    let items = document.createElement('span');
-    div.classList.add('row');
-    header.classList.add('header');
-    items.classList.add('items');
-    div.appendChild(header);
-    div.appendChild(items);
+    const template = document.getElementById('row-template');
+    const row = template.content.cloneNode(true).querySelector('.row');
+    
+    const header = row.querySelector('.header');
+    const items = row.querySelector('.items');
+
+    // Set background color
+    header.style.backgroundColor = tierData.color || '#fc3f32';
 
     // Create icon element only if there's an icon
     if (tierData.icon && tierData.icon !== '') {
@@ -347,58 +345,26 @@ function add_row(index, tierData) {
         header.dataset.hasIcon = 'false';
     }
 
-    let row_buttons = document.createElement('div');
-    row_buttons.classList.add('row-buttons');
-
-    let gear_button = document.createElement('div');
-    gear_button.classList.add('gear-button');
-
-    let btn_change_attr = document.createElement('input');
-    btn_change_attr.type = "button";
-    btn_change_attr.value = '⚙️';
-    btn_change_attr.title = "Change tier attributes";
-    btn_change_attr.addEventListener('click', () => changeTierAttributes(div));
-    gear_button.appendChild(btn_change_attr);
-
-    let shift_buttons = document.createElement('div');
-    shift_buttons.classList.add('shift-buttons');
-
-    let btn_shift_up = document.createElement('input');
-    btn_shift_up.type = "button";
-    btn_shift_up.value = '↑';
-    btn_shift_up.title = "Shift row up";
-    btn_shift_up.addEventListener('click', () => shiftRowUp(div));
-    shift_buttons.appendChild(btn_shift_up);
-
-    let btn_shift_down = document.createElement('input');
-    btn_shift_down.type = "button";
-    btn_shift_down.value = '↓';
-    btn_shift_down.title = "Shift row down";
-    btn_shift_down.addEventListener('click', () => shiftRowDown(div));
-    shift_buttons.appendChild(btn_shift_down);
-
-    row_buttons.appendChild(gear_button);
-    row_buttons.appendChild(shift_buttons);
-    div.appendChild(row_buttons);
+    // Add event listeners
+    row.querySelector('.gear-button').addEventListener('click', () => changeTierAttributes(row));
+    row.querySelector('.shift-up').addEventListener('click', () => shiftRowUp(row));
+    row.querySelector('.shift-down').addEventListener('click', () => shiftRowDown(row));
 
     let rows = tierlist_div.children;
     if (index === rows.length) {
-        tierlist_div.appendChild(div);
+        tierlist_div.appendChild(row);
     } else {
         let nxt_child = rows[index];
-        tierlist_div.insertBefore(div, nxt_child);
+        tierlist_div.insertBefore(row, nxt_child);
     }
 
-    make_accept_drop(div);
-    create_label_input(div, index, tierData.name);
-
-    // Set the background color
-    header.style.backgroundColor = tierData.color || '#fc3f32'; // Default to red if no color provided
+    make_accept_drop(row);
+    create_label_input(row, index, tierData.name);
 
     // Add the mutation observer
-    observeItemChanges(div);
+    observeItemChanges(row);
 
-    return div;
+    return row;
 }
 
 function updateRowButtonsVisibility() {
@@ -1100,8 +1066,8 @@ window.addEventListener('load', () => {
 
     setupSearchFeature();
 
-    adjustBottomContainerHeight();
-
+    updateRowBorders();
+    
 	document.getElementById('load-img-input').addEventListener('input', (evt) => {
 		// @Speed: maybe we can do some async stuff to optimize this
 		let images = document.querySelector('.images');
