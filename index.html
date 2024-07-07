@@ -5,24 +5,25 @@
     <title>Dragon Ball Legends Tier List</title>
     <link rel='stylesheet' href='styles.css'/>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <script src='script.js' async></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
   <body>
-    <section class='main-content'>
-      <div class='tierlist'>
-        <template id="row-template">
-            <div class="row">
-              <span class="header"></span>
-              <span class="items"></span>
-              <div class="row-buttons">
-                <button class="gear-button" title="Change tier attributes">⚙️</button>
-                <div class="shift-buttons">
+    <template id="row-template">
+      <div class="row">
+          <span class="header"></span>
+          <span class="items"></span>
+          <div class="row-buttons">
+              <button class="gear-button" title="Change tier attributes">⚙️</button>
+              <div class="shift-buttons">
                   <button class="shift-up" title="Shift row up">↑</button>
                   <button class="shift-down" title="Shift row down">↓</button>
-                </div>
               </div>
-            </div>
-          </template>
+          </div>
+      </div>
+  </template>
+    <section class='main-content'>
+      <div class='tierlist'>
       </div>
       <div class="controls-container">
           <div class="search-and-sort">
@@ -37,11 +38,11 @@
                       <label for="sort-card-number">Card Number</label>
                       <button id="sort-card-number-order" class="order-toggle" data-order="desc">▼</button>
                   </div>
-                  <div>
+                  <!-- <div>
                       <input type="checkbox" id="sort-color">
                       <label for="sort-color">Color</label>
                       <button id="sort-color-order" class="order-toggle" data-order="desc">▼</button>
-                  </div>
+                  </div> -->
                   <div>
                       <input type="checkbox" id="sort-rarity">
                       <label for="sort-rarity">Rarity</label>
@@ -66,6 +67,16 @@
           <section class='images'></section>
       </div>
   </section>
+  <footer>
+    <div class="footer-left">
+    <a href="https://zevzx.github.io/LandingPage/"><img src="logo.png" alt="ZX Logo" class="logo"></a>
+    </div>
+    <div class="footer-right">
+    <div class="social-icons">
+        <a href="https://github.com/ZevZX/" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com/ZevZX" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/channel/UCLAVlkqJu3zVtNV--pKd_wg" target="_blank"><i class="fab fa-youtube"></i></a>
+    </div></footer>
       <script src='script.js'></script>
       </body>
       </html>

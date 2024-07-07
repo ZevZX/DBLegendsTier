@@ -3,6 +3,30 @@ body {
 	font-family: sans-serif;
 }
 
+footer {
+    display: flex;
+    padding: 1rem;
+    background-color: #222;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    height: 50px;
+}
+
+.social-icons {
+    display: flex;
+    margin-right: 20px;
+}
+
+.social-icons a {
+    color: white;
+    margin-left: 15px;
+    font-size: 1.2rem;
+}
+
 .main-content {
 	display: flex;
 	flex-flow: column;
