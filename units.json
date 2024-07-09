@@ -544,6 +544,7 @@
       "Future",
       "Super Saiyan 2",
       "God Ki",
+      "Super Saiyan God SS",
       "Ranged",
       "\"Future\" Trunks Saga (S)"
     ],
@@ -2971,7 +2972,7 @@
       "Shadow Dragon Saga (GT)"
     ],
     "image_url": "assets/renders/NLEakip.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan 3 Goku",
@@ -9642,6 +9643,7 @@
       "Future",
       "Super Saiyan 2",
       "God Ki",
+      "Super Saiyan God SS",
       "Ranged",
       "\"Future\" Trunks Saga (S)"
     ],
@@ -9660,6 +9662,7 @@
       "Future",
       "Super Saiyan 2",
       "God Ki",
+      "Super Saiyan God SS",
       "Ranged",
       "\"Future\" Trunks Saga (S)"
     ],
@@ -10205,6 +10208,23 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/BChaCut_0523_Jiblet_523.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 4 Gogeta",
+    "id": "DBL-73-01U",
+    "color": "PUR",
+    "rarity": "ULTRA",
+    "tags": [
+      "Saiyan",
+      "GT",
+      "Fusion",
+      "Fusion Warrior",
+      "Super Saiyan 4",
+      "Melee",
+      "Shadow Dragon Saga (GT)"
+    ],
+    "image_url": "assets/renders/",
     "has_zenkai": false
   }
 ]

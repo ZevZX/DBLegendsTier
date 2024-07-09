@@ -904,7 +904,7 @@ function closeAllPopups() {
 }
 
 function loadImagesFromJson() {
-    fetch('characters.json')
+    fetch('units.json')
         .then(response => response.json())
         .then(data => {
             const imagesContainer = document.querySelector('.images');
