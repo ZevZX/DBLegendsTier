@@ -1369,45 +1369,78 @@ function sortImages() {
     const items = Array.from(imagesContainer.querySelectorAll('.item'));
 
     const sortCardNumber = document.getElementById('sort-card-number').checked;
-    // const sortColor = document.getElementById('sort-color').checked;
+    const sortColor = document.getElementById('sort-color').checked;
     const sortRarity = document.getElementById('sort-rarity').checked;
 
     const cardNumberOrder = document.getElementById('sort-card-number-order').dataset.order;
-    // const colorOrder = document.getElementById('sort-color-order').dataset.order;
+    const colorOrder = document.getElementById('sort-color-order').dataset.order;
     const rarityOrder = document.getElementById('sort-rarity-order').dataset.order;
 
-    // const colorOrderArray = ['DRK', 'LGT', 'YEL', 'PUR', 'GRN', 'BLU', 'RED'];
+    console.log("Sort options:", { sortCardNumber, sortColor, sortRarity, cardNumberOrder, colorOrder, rarityOrder });
+
+    const colorOrderArray = ['RED', 'BLU', 'GRN', 'PUR', 'YEL', 'LGT', 'DRK'];
     const rarityOrderArray = ['HERO', 'EXTREME', 'SPARKING', 'LEGENDS LIMITED', 'ULTRA'];
+
+    function getColorScore(colorData) {
+        console.log("Raw color data:", colorData);
+        let colors;
+        try {
+            colors = JSON.parse(colorData);
+        } catch (e) {
+            console.error("Error parsing color data:", e);
+            colors = colorData;
+        }
+        
+        if (typeof colors === 'string') {
+            colors = [colors];
+        }
+        
+        if (!Array.isArray(colors)) {
+            console.error("Invalid color data after processing:", colors);
+            return -1;
+        }
+        
+        console.log("Processed colors:", colors);
+        let score = colorOrderArray.indexOf(colors[0]) * 100;
+        if (colors.length > 1) {
+            score += colorOrderArray.indexOf(colors[1]);
+        }
+        return score;
+    }
 
     items.sort((a, b) => {
         let comparison = 0;
 
-        // if (sortColor) {
-        //     const colorsA = JSON.parse(a.querySelector('.draggable').dataset.color);
-        //     const colorsB = JSON.parse(b.querySelector('.draggable').dataset.color);
-        //     // Compare the first color of each character
-        //     comparison = colorOrderArray.indexOf(colorsB[0]) - colorOrderArray.indexOf(colorsA[0]);
-        //     if (comparison === 0 && colorsA.length > 1 && colorsB.length > 1) {
-        //         // If first colors are the same and both have second colors, compare second colors
-        //         comparison = colorOrderArray.indexOf(colorsB[1]) - colorOrderArray.indexOf(colorsA[1]);
-        //     }
-        //     if (colorOrder === 'asc') comparison *= -1;
-        //     if (comparison !== 0) return comparison;
-        // }
+        const itemAData = a.querySelector('.draggable').dataset;
+        const itemBData = b.querySelector('.draggable').dataset;
+
+        console.log("Comparing items:", 
+            { nameA: itemAData.name, nameB: itemBData.name, 
+              colorA: itemAData.color, colorB: itemBData.color,
+              rarityA: itemAData.rarity, rarityB: itemBData.rarity,
+              cardNumberA: itemAData.cardNumber, cardNumberB: itemBData.cardNumber });
+
+        if (sortColor) {
+            const scoreA = getColorScore(itemAData.color);
+            const scoreB = getColorScore(itemBData.color);
+            comparison = scoreA - scoreB;
+            
+            if (colorOrder === 'asc') comparison *= -1;
+            console.log("Color comparison result:", comparison);
+            if (comparison !== 0) return comparison;
+        }
 
         if (sortRarity) {
-            const rarityA = a.querySelector('.draggable').dataset.rarity;
-            const rarityB = b.querySelector('.draggable').dataset.rarity;
-            comparison = rarityOrderArray.indexOf(rarityB) - rarityOrderArray.indexOf(rarityA);
+            comparison = rarityOrderArray.indexOf(itemBData.rarity) - rarityOrderArray.indexOf(itemAData.rarity);
             if (rarityOrder === 'asc') comparison *= -1;
+            console.log("Rarity comparison result:", comparison);
             if (comparison !== 0) return comparison;
         }
 
         // Always sort by Card Number as the final criteria or if no other sort is selected
-        const cardNumberA = a.querySelector('.draggable').dataset.cardNumber;
-        const cardNumberB = b.querySelector('.draggable').dataset.cardNumber;
-        comparison = cardNumberB.localeCompare(cardNumberA, undefined, {numeric: true, sensitivity: 'base'});
+        comparison = itemBData.cardNumber.localeCompare(itemAData.cardNumber, undefined, {numeric: true, sensitivity: 'base'});
         if ((sortCardNumber && cardNumberOrder === 'asc') || (!sortCardNumber && !sortColor && !sortRarity)) comparison *= -1;
+        console.log("Card number comparison result:", comparison);
 
         return comparison;
     });
@@ -1415,6 +1448,8 @@ function sortImages() {
     imagesContainer.innerHTML = '';
     items.forEach(item => imagesContainer.appendChild(item));
     adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+
+    console.log("Sorting complete");
 }
 
 document.getElementById('export-button').addEventListener('click', exportTierlist);
