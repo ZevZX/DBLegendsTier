@@ -380,7 +380,7 @@ span.items {
 
 .tier-icon {
 	max-width: 100%;
-	max-height: 50px; /* Adjust as needed */
+	max-height: 50px;
 }
 
 .header label {
@@ -571,7 +571,7 @@ span.items {
 }
 
 .filter-separator {
-    display: none; /* We don't need this anymore */
+    display: none;
 }
 
 .options-container {
@@ -1229,3 +1229,18 @@ span.items {
   .tierlist span.items {
     padding-right: 50px;
   }
+
+#reset-filters-button {
+    padding: 8px 16px;
+    background-color: #4b63b9;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+}
+
+#reset-filters-button:hover {
+    background-color: #5b6eae;
+}

@@ -1282,6 +1282,16 @@ document.addEventListener('dragend', (evt) => {
     draggedItem = null;
 });
 
+function resetFilters() {
+    document.querySelectorAll('#filter-container input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    document.getElementById('image-search').value = '';
+
+    applyFilters();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const sortButton = document.getElementById('sort-button');
     const sortDropdown = document.getElementById('sort-dropdown');
@@ -1370,6 +1380,9 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.addEventListener('change', function(e) {
         handleFiles(this.files);
     });
+
+    const resetFiltersButton = document.getElementById('reset-filters-button');
+    resetFiltersButton.addEventListener('click', resetFilters);
 });
 
 function closeAllEditTierPopups() {
