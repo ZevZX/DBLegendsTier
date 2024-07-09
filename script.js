@@ -404,6 +404,8 @@ function shiftRowDown(row) {
 }
 
 function showTierAttributesPopup(row) {
+    closeAllEditTierPopups();
+
     let header = row.querySelector('.header');
     let icon = header.querySelector('.tier-icon');
     let label = header.querySelector('label');
@@ -490,6 +492,13 @@ function showTierAttributesPopup(row) {
     // Close popup when clicking the close button
     popup.querySelector('.close-popup').addEventListener('click', () => {
         document.body.removeChild(popup);
+    });
+
+    document.addEventListener('click', function closePopup(e) {
+        if (!popup.contains(e.target) && e.target !== row.querySelector('.gear-button')) {
+            document.body.removeChild(popup);
+            document.removeEventListener('click', closePopup);
+        }
     });
 
     // Color picker functionality
@@ -691,6 +700,7 @@ function hexToHSL(H) {
 }
 
 function changeTierAttributes(row) {
+    closeAllPopups();
     showTierAttributesPopup(row);
 }
 
@@ -1361,6 +1371,13 @@ document.addEventListener('DOMContentLoaded', function() {
         handleFiles(this.files);
     });
 });
+
+function closeAllEditTierPopups() {
+    const existingPopups = document.querySelectorAll('.tier-attributes-popup');
+    existingPopups.forEach(popup => {
+        document.body.removeChild(popup);
+    });
+}
 
 function sortImages() {
     console.log("Sorting images...");
