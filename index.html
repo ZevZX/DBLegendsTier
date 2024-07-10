@@ -55,15 +55,15 @@
             <button id="reset-filters-button">Reset Filters</button>
           </div>
           <div class="import-export-container">
-            <div class="import-container" id="import-drop-zone">
-                <label for="import-input" class="custom-button">Import</label>
-                <input type="file" id="import-input" accept=".json">
-                <span id="file-name"></span>
+            <div class="import-wrapper">
+                <button id="import-button" class="custom-button">Import</button>
+                <div id="file-name-container">
+                    <span id="file-name"></span>
+                </div>
+                <input type="file" id="import-input" accept=".json" style="display: none;">
             </div>
-              <div class="button-container">
-                  <button id="export-button" class="custom-button">Export</button>
-              </div>
-          </div>
+            <button id="export-button" class="custom-button">Export</button>
+        </div>
       </div>
       <div class='bottom-container'>
           <section class='images'></section>

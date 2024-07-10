@@ -1484,12 +1484,19 @@ function sortImages() {
 
 document.getElementById('export-button').addEventListener('click', exportTierlist);
 
+document.getElementById('import-button').addEventListener('click', function() {
+    document.getElementById('import-input').click();
+});
+
 document.getElementById('import-input').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         importTierlist(file);
+        // Update the file name display
+        document.getElementById('file-name').textContent = file.name;
+        document.getElementById('file-name-container').style.display = 'block';
     }
-    // Update the file name display
-    const fileName = file?.name || '';
-    document.getElementById('file-name').textContent = fileName;
 });
+
+// Initially hide the file name container
+document.getElementById('file-name-container').style.display = 'none';
