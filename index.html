@@ -56,13 +56,13 @@
           </div>
           <div class="import-export-container">
             <div class="import-wrapper">
-                <button id="import-button" class="custom-button">Import</button>
+                <button id="import-button" class="custom-button">Import Tier</button>
                 <div id="file-name-container">
                     <span id="file-name"></span>
                 </div>
                 <input type="file" id="import-input" accept=".json" style="display: none;">
             </div>
-            <button id="export-button" class="custom-button">Export</button>
+            <button id="export-button" class="custom-button">Export Tier</button>
         </div>
       </div>
       <div class='bottom-container'>
@@ -80,7 +80,6 @@
         <a href="https://www.youtube.com/channel/UCLAVlkqJu3zVtNV--pKd_wg" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
   </footer>
-  <script src='script.js'></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         fetch('versions.json')
@@ -100,5 +99,6 @@
             .catch(error => console.error('Error loading versions:', error));
     });
 </script>
+  <script src='script.js'></script>
   </body>
 </html>
