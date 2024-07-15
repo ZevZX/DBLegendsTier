@@ -905,6 +905,7 @@ function applyFilters() {
     console.log("Visible items after filtering:", visibleCount);
     
     adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+    sortImages(); // Re-sort images after filtering
 }
 
 function closeAllPopups() {
@@ -1137,26 +1138,6 @@ window.addEventListener('load', () => {
     setupSearchFeature();
 
     updateRowBorders();
-    
-	document.getElementById('load-img-input').addEventListener('input', (evt) => {
-		// @Speed: maybe we can do some async stuff to optimize this
-		let images = document.querySelector('.images');
-		for (let file of evt.target.files) {
-			let reader = new FileReader();
-			reader.addEventListener('load', (load_evt) => {
-				let img = create_img_with_src(load_evt.target.result);
-				images.appendChild(img);
-				unsaved_changes = true;
-			});
-			reader.readAsDataURL(file);
-		}
-	});
-
-	document.getElementById('reset-list-input').addEventListener('click', () => {
-		if (confirm('Reset Tierlist? (this will place all images back in the pool)')) {
-			soft_reset_list();
-		}
-	});
 
 	document.getElementById('export-input').addEventListener('click', () => {
 		let name = prompt('Please give a name to this tierlist');
@@ -1283,16 +1264,48 @@ document.addEventListener('dragend', (evt) => {
 });
 
 function resetFilters() {
+    console.log("Resetting filters...");
+    
+    // Reset all checkboxes
     document.querySelectorAll('#filter-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
+    // Reset search input
     document.getElementById('image-search').value = '';
 
+    // Reset sort options
+    document.querySelectorAll('#sort-dropdown input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Set card number sorting to checked and descending
+    const cardNumberCheckbox = document.getElementById('sort-card-number');
+    if (cardNumberCheckbox) {
+        cardNumberCheckbox.checked = true;
+    }
+
+    const cardNumberOrderToggle = document.getElementById('sort-card-number-order');
+    if (cardNumberOrderToggle) {
+        cardNumberOrderToggle.textContent = '▼';
+        cardNumberOrderToggle.dataset.order = 'desc';
+    }
+
+    // Reset other sort order buttons
+    document.querySelectorAll('.order-toggle:not(#sort-card-number-order)').forEach(button => {
+        button.textContent = '▼';
+        button.dataset.order = 'desc';
+    });
+
+    // Apply the reset filters
     applyFilters();
+
+    console.log("Filters reset complete");
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+
     const sortButton = document.getElementById('sort-button');
     const sortDropdown = document.getElementById('sort-dropdown');
 
@@ -1322,15 +1335,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load images and apply initial sorting
     loadImagesFromJson();
+});
 
-    const dropZone = document.getElementById('import-drop-zone');
-    const fileInput = document.getElementById('import-input');
+document.addEventListener('DOMContentLoaded', function() {
+    const resetFiltersButton = document.getElementById('reset-filters-button');
+    console.log("Reset filters button:", resetFiltersButton);
 
+    if (resetFiltersButton) {
+        console.log("Adding click event listener to reset filters button");
+        resetFiltersButton.addEventListener('click', function() {
+            console.log("Reset filters button clicked");
+            resetFilters();
+        });
+    } else {
+        console.error("Reset filters button not found in the DOM");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     // Prevent default drag behaviors
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         dropZone.addEventListener(eventName, preventDefaults, false);
         document.body.addEventListener(eventName, preventDefaults, false);
     });
+
+    const dropZone = document.getElementById('import-drop-zone');
+    const fileInput = document.getElementById('import-input');
 
     // Highlight drop zone when item is dragged over it
     ['dragenter', 'dragover'].forEach(eventName => {
@@ -1380,9 +1410,6 @@ document.addEventListener('DOMContentLoaded', function() {
     fileInput.addEventListener('change', function(e) {
         handleFiles(this.files);
     });
-
-    const resetFiltersButton = document.getElementById('reset-filters-button');
-    resetFiltersButton.addEventListener('click', resetFilters);
 });
 
 function closeAllEditTierPopups() {
@@ -1406,13 +1433,10 @@ function sortImages() {
     const colorOrder = document.getElementById('sort-color-order').dataset.order;
     const rarityOrder = document.getElementById('sort-rarity-order').dataset.order;
 
-    console.log("Sort options:", { sortCardNumber, sortColor, sortRarity, cardNumberOrder, colorOrder, rarityOrder });
-
     const colorOrderArray = ['RED', 'BLU', 'GRN', 'PUR', 'YEL', 'LGT', 'DRK'];
     const rarityOrderArray = ['HERO', 'EXTREME', 'SPARKING', 'LEGENDS LIMITED', 'ULTRA'];
 
     function getColorScore(colorData) {
-        console.log("Raw color data:", colorData);
         let colors;
         try {
             colors = JSON.parse(colorData);
@@ -1430,7 +1454,6 @@ function sortImages() {
             return -1;
         }
         
-        console.log("Processed colors:", colors);
         let score = colorOrderArray.indexOf(colors[0]) * 100;
         if (colors.length > 1) {
             score += colorOrderArray.indexOf(colors[1]);
@@ -1444,33 +1467,24 @@ function sortImages() {
         const itemAData = a.querySelector('.draggable').dataset;
         const itemBData = b.querySelector('.draggable').dataset;
 
-        console.log("Comparing items:", 
-            { nameA: itemAData.name, nameB: itemBData.name, 
-              colorA: itemAData.color, colorB: itemBData.color,
-              rarityA: itemAData.rarity, rarityB: itemBData.rarity,
-              cardNumberA: itemAData.cardNumber, cardNumberB: itemBData.cardNumber });
-
         if (sortColor) {
             const scoreA = getColorScore(itemAData.color);
             const scoreB = getColorScore(itemBData.color);
             comparison = scoreA - scoreB;
             
             if (colorOrder === 'asc') comparison *= -1;
-            console.log("Color comparison result:", comparison);
             if (comparison !== 0) return comparison;
         }
 
         if (sortRarity) {
             comparison = rarityOrderArray.indexOf(itemBData.rarity) - rarityOrderArray.indexOf(itemAData.rarity);
             if (rarityOrder === 'asc') comparison *= -1;
-            console.log("Rarity comparison result:", comparison);
             if (comparison !== 0) return comparison;
         }
 
         // Always sort by Card Number as the final criteria or if no other sort is selected
         comparison = itemBData.cardNumber.localeCompare(itemAData.cardNumber, undefined, {numeric: true, sensitivity: 'base'});
-        if ((sortCardNumber && cardNumberOrder === 'asc') || (!sortCardNumber && !sortColor && !sortRarity)) comparison *= -1;
-        console.log("Card number comparison result:", comparison);
+        if (sortCardNumber && cardNumberOrder === 'asc') comparison *= -1;
 
         return comparison;
     });

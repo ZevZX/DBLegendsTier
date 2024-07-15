@@ -1,0 +1,12 @@
+{
+  "name": "",
+  "id": "DBL",
+  "color": "",
+  "rarity": "",
+  "tags": [
+    "",
+    ""
+  ],
+  "image_url": "assets/renders/",
+  "has_zenkai": false
+},

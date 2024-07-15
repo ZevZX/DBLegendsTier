@@ -78,7 +78,27 @@
         <a href="https://github.com/ZevZX/" target="_blank"><i class="fab fa-github"></i></a>
         <a href="https://twitter.com/ZevZX" target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://www.youtube.com/channel/UCLAVlkqJu3zVtNV--pKd_wg" target="_blank"><i class="fab fa-youtube"></i></a>
-    </div></footer>
-      <script src='script.js?v=1'></script>
-      </body>
-      </html>
+    </div>
+  </footer>
+  <script src='script.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('versions.json')
+            .then(response => response.json())
+            .then(versions => {
+                document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+                    if (link.href.includes('styles.css')) {
+                        link.href = `${link.href}?v=${versions.css}`;
+                    }
+                });
+                document.querySelectorAll('script').forEach(script => {
+                    if (script.src.includes('script.js')) {
+                        script.src = `${script.src}?v=${versions.js}`;
+                    }
+                });
+            })
+            .catch(error => console.error('Error loading versions:', error));
+    });
+</script>
+  </body>
+</html>
