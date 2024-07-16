@@ -1127,10 +1127,6 @@ function importTierlist(file) {
 }
 
 window.addEventListener('load', () => {
-    document.addEventListener('touchstart', handleTouchStart, {passive: false});
-    document.addEventListener('touchmove', handleTouchMove, {passive: false});
-    document.addEventListener('touchend', handleTouchEnd);
-
     untiered_images = document.querySelector('.images');
     tierlist_div = document.querySelector('.tierlist');
 
@@ -1521,60 +1517,3 @@ document.getElementById('import-input').addEventListener('change', function(even
 
 // Initially hide the file name container
 document.getElementById('file-name-container').style.display = 'none';
-
-let touchStartX, touchStartY;
-let touchedItem = null;
-
-function handleTouchStart(e) {
-    const touch = e.touches[0];
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
-    touchedItem = e.target.closest('.item');
-    if (touchedItem) {
-        touchedItem.classList.add('dragged');
-    }
-}
-
-function handleTouchMove(e) {
-    if (!touchedItem) return;
-    
-    const touch = e.touches[0];
-    const deltaX = touch.clientX - touchStartX;
-    const deltaY = touch.clientY - touchStartY;
-    
-    touchedItem.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-    
-    const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-    const droppableBelow = elemBelow.closest('.droppable');
-    
-    if (droppableBelow && droppableBelow !== touchedItem.parentElement) {
-        if (currentDroppable !== droppableBelow) {
-            if (currentDroppable) {
-                currentDroppable.classList.remove('drag-entered');
-            }
-            currentDroppable = droppableBelow;
-            currentDroppable.classList.add('drag-entered');
-        }
-    } else {
-        if (currentDroppable) {
-            currentDroppable.classList.remove('drag-entered');
-        }
-        currentDroppable = null;
-    }
-}
-
-function handleTouchEnd(e) {
-    if (!touchedItem) return;
-    
-    touchedItem.classList.remove('dragged');
-    touchedItem.style.transform = '';
-    
-    if (currentDroppable) {
-        currentDroppable.classList.remove('drag-entered');
-        currentDroppable.querySelector('.items').appendChild(touchedItem);
-        adjustRowHeight(currentDroppable);
-    }
-    
-    touchedItem = null;
-    currentDroppable = null;
-}
