@@ -42,11 +42,6 @@ function create_img_with_src(src) {
     container.draggable = true;
     container.setAttribute('data-path', src);
 
-    // Add touch event listeners
-    container.addEventListener('touchstart', handleTouchStart, {passive: false});
-    container.addEventListener('touchmove', handleTouchMove, {passive: false});
-    container.addEventListener('touchend', handleTouchEnd);
-
     let item = document.createElement('span');
     item.classList.add('item');
     item.appendChild(container);
