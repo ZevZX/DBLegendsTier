@@ -1,5 +1,5 @@
 body {
-	background-color: #242526;
+	background-color: #313233;
 	font-family: sans-serif;
 }
 
@@ -34,6 +34,7 @@ footer {
 
 .tierlist {
 	margin-bottom: 10px;
+    background-color: #242526;
 }
 
 .tierlist span {
@@ -455,7 +456,7 @@ span.items {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #666;
-    background-color: #3a3b3c;
+    background-color: #4e4f50;
     color: white;
     border-radius: 3px;
 }
@@ -1242,7 +1243,7 @@ span.items {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #666;
-    background-color: #3a3b3c;
+    background-color: #4d4d4e;
     color: white;
     border-radius: 3px;
 }
@@ -1307,4 +1308,56 @@ span.items {
     text-overflow: ellipsis;
     max-width: 80px;
     display: inline-block;
+}
+
+.draggable {
+    position: relative;
+    cursor: grab;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+}
+
+.color-indicator,
+.rarity-indicator {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    pointer-events: none;
+}
+
+.color-indicator {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+.rarity-indicator {
+    bottom: 0;
+    left: 0;
+    width: 25px;
+    height: 25px;
+}
+
+#toggle-details-button {
+    padding: 8px 16px;
+    background-color: #4b63b9;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 36px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+#toggle-details-button:hover {
+    background-color: #5b6eae;
 }

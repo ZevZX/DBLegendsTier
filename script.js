@@ -30,6 +30,7 @@ let dragged_image;
 let draggedItem = null;
 let placeholder = null;
 
+let showDetails = false;
 
 function create_img_with_src(src) {
     let container = document.createElement('div');
@@ -904,7 +905,8 @@ function applyFilters() {
     console.log("Visible items after filtering:", visibleCount);
     
     adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
-    sortImages(); // Re-sort images after filtering
+    sortImages();
+    updateDetailsDisplay();
 }
 
 function closeAllPopups() {
@@ -937,6 +939,7 @@ function loadImagesFromJson() {
             sortImages();
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
             setupSearchFeature();
+            updateDetailsDisplay();
         })
         .catch(error => console.error('Error loading characters:', error));
 }
@@ -1301,6 +1304,41 @@ function resetFilters() {
     console.log("Filters reset complete");
 }
 
+function toggleDetails() {
+    showDetails = !showDetails;
+    updateDetailsDisplay();
+}
+
+function updateDetailsDisplay() {
+    const items = document.querySelectorAll('.draggable');
+    items.forEach(item => {
+        let colorIndicator = item.querySelector('.color-indicator');
+        let rarityIndicator = item.querySelector('.rarity-indicator');
+
+        if (showDetails) {
+            if (!colorIndicator) {
+                colorIndicator = document.createElement('div');
+                colorIndicator.className = 'color-indicator';
+                item.appendChild(colorIndicator);
+            }
+            if (!rarityIndicator) {
+                rarityIndicator = document.createElement('div');
+                rarityIndicator.className = 'rarity-indicator';
+                item.appendChild(rarityIndicator);
+            }
+
+            const colors = JSON.parse(item.dataset.color);
+            colorIndicator.style.backgroundImage = `url('assets/render_colors/${colors}.webp')`;
+
+            const rarity = item.dataset.rarity.toLowerCase().replace(' ', '_');
+            rarityIndicator.style.backgroundImage = `url('assets/rarity/${rarity}.webp')`;
+        } else {
+            if (colorIndicator) colorIndicator.remove();
+            if (rarityIndicator) rarityIndicator.remove();
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM fully loaded and parsed");
 
@@ -1333,6 +1371,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load images and apply initial sorting
     loadImagesFromJson();
+
+    const toggleDetailsButton = document.getElementById('toggle-details-button');
+    toggleDetailsButton.addEventListener('click', toggleDetails);
+
+    updateDetailsDisplay();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1490,6 +1533,8 @@ function sortImages() {
     imagesContainer.innerHTML = '';
     items.forEach(item => imagesContainer.appendChild(item));
     adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+
+    updateDetailsDisplay();
 
     console.log("Sorting complete");
 }
