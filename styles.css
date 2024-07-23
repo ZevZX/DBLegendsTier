@@ -1338,8 +1338,8 @@ span.items {
 .rarity-indicator {
     bottom: 0;
     left: 0;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 #toggle-details-button {
