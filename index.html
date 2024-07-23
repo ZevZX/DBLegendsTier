@@ -50,7 +50,20 @@
                   </div>
                   </div>
               </div>
-              <button id="toggle-details-button">Details</button>
+              <div class="details-container">
+                <button id="toggle-details-button">Details ▼</button>
+                <div id="details-dropdown" class="details-dropdown">
+                    <label>
+                        <input type="checkbox" class="detail-option" name="color"> Color
+                    </label>
+                    <label>
+                        <input type="checkbox" class="detail-option" name="rarity"> Rarity
+                    </label>
+                    <label>
+                        <input type="checkbox" class="detail-option" name="zenkai"> Zenkai
+                    </label>
+                </div>
+            </div>
           </div>
           <div id="filter-container">
             <button id="reset-filters-button">Reset Filters</button>

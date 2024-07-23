@@ -31,17 +31,34 @@ let draggedItem = null;
 let placeholder = null;
 
 let showDetails = false;
+let detailsOptions = {
+    color: false,
+    rarity: false,
+    zenkai: false
+};
 
 function create_img_with_src(src) {
     let container = document.createElement('div');
     container.style.width = '50px';
     container.style.height = '50px';
-    container.style.backgroundImage = `url('${src}')`;
-    container.style.backgroundSize = 'cover';
-    container.style.backgroundPosition = 'center';
+    container.style.position = 'relative';
     container.classList.add('draggable', 'resizable-image');
     container.draggable = true;
     container.setAttribute('data-path', src);
+
+    let renderBg = document.createElement('div');
+    renderBg.className = 'render-bg';
+    container.appendChild(renderBg);
+
+    let characterImg = document.createElement('div');
+    characterImg.style.width = '100%';
+    characterImg.style.height = '100%';
+    characterImg.style.backgroundImage = `url('${src}')`;
+    characterImg.style.backgroundSize = 'cover';
+    characterImg.style.backgroundPosition = 'center';
+    characterImg.style.position = 'relative';
+    characterImg.style.zIndex = '1';
+    container.appendChild(characterImg);
 
     let item = document.createElement('span');
     item.classList.add('item');
@@ -1305,8 +1322,8 @@ function resetFilters() {
 }
 
 function toggleDetails() {
-    showDetails = !showDetails;
-    updateDetailsDisplay();
+    const detailsDropdown = document.getElementById('details-dropdown');
+    detailsDropdown.style.display = detailsDropdown.style.display === 'block' ? 'none' : 'block';
 }
 
 function updateDetailsDisplay() {
@@ -1314,29 +1331,50 @@ function updateDetailsDisplay() {
     items.forEach(item => {
         let colorIndicator = item.querySelector('.color-indicator');
         let rarityIndicator = item.querySelector('.rarity-indicator');
+        let zenkaiIndicator = item.querySelector('.zenkai-indicator');
 
-        if (showDetails) {
+        if (detailsOptions.color) {
             if (!colorIndicator) {
                 colorIndicator = document.createElement('div');
                 colorIndicator.className = 'color-indicator';
                 item.appendChild(colorIndicator);
             }
+            const colors = JSON.parse(item.dataset.color);
+            colorIndicator.style.backgroundImage = `url('assets/render_colors/${colors}.webp')`;
+        } else if (colorIndicator) {
+            colorIndicator.remove();
+        }
+
+        if (detailsOptions.rarity) {
             if (!rarityIndicator) {
                 rarityIndicator = document.createElement('div');
                 rarityIndicator.className = 'rarity-indicator';
                 item.appendChild(rarityIndicator);
             }
-
-            const colors = JSON.parse(item.dataset.color);
-            colorIndicator.style.backgroundImage = `url('assets/render_colors/${colors}.webp')`;
-
             const rarity = item.dataset.rarity.toLowerCase().replace(' ', '_');
             rarityIndicator.style.backgroundImage = `url('assets/rarity/${rarity}.webp')`;
-        } else {
-            if (colorIndicator) colorIndicator.remove();
-            if (rarityIndicator) rarityIndicator.remove();
+        } else if (rarityIndicator) {
+            rarityIndicator.remove();
+        }
+
+        if (detailsOptions.zenkai) {
+            if (!zenkaiIndicator && item.dataset.zenkai === 'true') {
+                zenkaiIndicator = document.createElement('div');
+                zenkaiIndicator.className = 'zenkai-indicator';
+                zenkaiIndicator.style.backgroundImage = "url('assets/zenkai.webp')";
+                item.appendChild(zenkaiIndicator);
+            } else if (zenkaiIndicator && item.dataset.zenkai !== 'true') {
+                zenkaiIndicator.remove();
+            }
+        } else if (zenkaiIndicator) {
+            zenkaiIndicator.remove();
         }
     });
+}
+
+function handleDetailOptionChange(event) {
+    detailsOptions[event.target.name] = event.target.checked;
+    updateDetailsDisplay();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -1375,6 +1413,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const toggleDetailsButton = document.getElementById('toggle-details-button');
     toggleDetailsButton.addEventListener('click', toggleDetails);
 
+    const detailOptions = document.querySelectorAll('.detail-option');
+    detailOptions.forEach(option => {
+        option.addEventListener('change', handleDetailOptionChange);
+    });
+
+    // Call this function after loading images and after any filtering or sorting
     updateDetailsDisplay();
 });
 
