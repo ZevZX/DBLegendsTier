@@ -1339,8 +1339,23 @@ function updateDetailsDisplay() {
                 colorIndicator.className = 'color-indicator';
                 item.appendChild(colorIndicator);
             }
-            const colors = JSON.parse(item.dataset.color);
-            colorIndicator.style.backgroundImage = `url('assets/render_colors/${colors}.webp')`;
+            const colorData = JSON.parse(item.dataset.color);
+            console.log("Color data for", item.dataset.name, ":", colorData);
+
+            if (Array.isArray(colorData) && colorData.length === 2) {
+                colorIndicator.classList.add('dual-color');
+                const color1 = colorData[0].toLowerCase();
+                const color2 = colorData[1].toLowerCase();
+                colorIndicator.style.setProperty('--color1', `url('assets/render_colors/${color1}.webp')`);
+                colorIndicator.style.setProperty('--color2', `url('assets/render_colors/${color2}.webp')`);
+                console.log("Dual color background set:", color1, color2);
+            } else {
+                colorIndicator.classList.remove('dual-color');
+                const singleColor = Array.isArray(colorData) ? colorData[0] : colorData;
+                colorIndicator.style.setProperty('--color1', `url('assets/render_colors/${singleColor}.webp')`);
+                colorIndicator.style.removeProperty('--color2');
+                console.log("Single color background set:", singleColor);
+            }
         } else if (colorIndicator) {
             colorIndicator.remove();
         }

@@ -483,7 +483,6 @@ span.items {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
     padding: 12px 16px;
 }
 
@@ -517,7 +516,7 @@ span.items {
     background-color: #3a3b3c;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 5;
     padding: 12px;
     border-radius: 5px;
     max-height: 300px;
@@ -1341,11 +1340,19 @@ span.items {
 }
 
 .color-indicator {
+    background-image: var(--color1);
     bottom: 0;
     left: 0;
     width: 100%;
     height: 30px;
     z-index: 1;
+}
+
+.color-indicator.dual-color {
+    background-image: var(--color1), var(--color2);
+    background-size: 50% 50%, 50% 50%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: left bottom, right bottom;
 }
 
 .rarity-indicator {
