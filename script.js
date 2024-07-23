@@ -409,6 +409,7 @@ function shiftRowUp(row) {
         unsaved_changes = true;
         updateRowButtonsVisibility();
     }
+    saveTierlistState();
 }
 
 function shiftRowDown(row) {
@@ -418,6 +419,7 @@ function shiftRowDown(row) {
         unsaved_changes = true;
         updateRowButtonsVisibility();
     }
+    saveTierlistState();
 }
 
 function showTierAttributesPopup(row) {
@@ -719,6 +721,7 @@ function hexToHSL(H) {
 function changeTierAttributes(row) {
     closeAllPopups();
     showTierAttributesPopup(row);
+    saveTierlistState();
 }
 
 function reset_row(row) {
@@ -737,6 +740,9 @@ function createFilterButtons() {
         .then(response => response.json())
         .then(filterOptions => {
             const filterContainer = document.getElementById('filter-container');
+            
+            // Clear existing filter buttons
+            filterContainer.innerHTML = '';
             
             Object.entries(filterOptions).forEach(([attr, options]) => {
                 const buttonContainer = document.createElement('div');
@@ -770,7 +776,6 @@ function createFilterButtons() {
                     allTagsContainer.appendChild(allTagsLabel);
                     popup.appendChild(allTagsContainer);
 
-                    // Measure width of "Include all selected tags"
                     maxOptionWidth = Math.max(maxOptionWidth, getTextWidth('Include all selected tags'));
                 }
                 
@@ -785,21 +790,18 @@ function createFilterButtons() {
                     checkbox.type = 'checkbox';
                     checkbox.value = option;
                     
-                    // Add event listener to each checkbox
                     checkbox.addEventListener('change', applyFilters);
                     
                     label.appendChild(checkbox);
                     label.appendChild(document.createTextNode(option));
                     optionsContainer.appendChild(label);
                     
-                    // Measure the width of this option
                     maxOptionWidth = Math.max(maxOptionWidth, getTextWidth(option));
                 });
 
                 popup.appendChild(optionsContainer);
                 
-                // Set the width of the popup, accounting for checkbox, padding, and potential scrollbar
-                popup.style.width = `${maxOptionWidth + 60}px`; // 60px for checkbox, padding, and scrollbar
+                popup.style.width = `${maxOptionWidth + 60}px`;
                 
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -807,9 +809,8 @@ function createFilterButtons() {
                     closeAllPopups();
                     if (!isCurrentPopupOpen) {
                         popup.style.display = 'block';
-                        // Check if scrollbar is present and adjust width if necessary
                         if (popup.scrollHeight > popup.clientHeight) {
-                            popup.style.width = `${maxOptionWidth + 77}px`; // Additional 17px for scrollbar
+                            popup.style.width = `${maxOptionWidth + 77}px`;
                         }
                     }
                 });
@@ -822,7 +823,6 @@ function createFilterButtons() {
                 filterContainer.appendChild(buttonContainer);
             });
 
-            // Close popups when clicking outside
             document.addEventListener('click', closeAllPopups);
 
             console.log("Filter buttons created");
@@ -938,16 +938,23 @@ function loadImagesFromJson() {
         .then(data => {
             const imagesContainer = document.querySelector('.images');
             data.forEach(character => {
-                const img = create_img_with_src(character.image_url);
-                let draggable = img.querySelector('.draggable');
-                draggable.dataset.rarity = character.rarity;
-                draggable.dataset.cardNumber = character.id;
-                draggable.setAttribute('data-path', character.image_url);
-                draggable.dataset.name = character.name;
-                draggable.dataset.color = JSON.stringify(character.color);
-                draggable.dataset.tags = character.tags.join(',');
-                draggable.dataset.zenkai = character.has_zenkai;
-                imagesContainer.appendChild(img);
+                // Generate a unique identifier for each character
+                const uniqueId = `${character.id}-${character.name.replace(/\s+/g, '_')}`;
+                
+                // Check if the character already exists
+                if (!document.querySelector(`[data-unique-id="${uniqueId}"]`)) {
+                    const img = create_img_with_src(character.image_url);
+                    let draggable = img.querySelector('.draggable');
+                    draggable.dataset.rarity = character.rarity;
+                    draggable.dataset.cardNumber = character.id;
+                    draggable.dataset.uniqueId = uniqueId;
+                    draggable.setAttribute('data-path', character.image_url);
+                    draggable.dataset.name = character.name;
+                    draggable.dataset.color = JSON.stringify(character.color);
+                    draggable.dataset.tags = character.tags.join(',');
+                    draggable.dataset.zenkai = character.has_zenkai;
+                    imagesContainer.appendChild(img);
+                }
             });
 
             console.log(`Loaded ${data.length} characters`);
@@ -957,6 +964,7 @@ function loadImagesFromJson() {
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
             setupSearchFeature();
             updateDetailsDisplay();
+            saveTierlistState(); // Save initial state
         })
         .catch(error => console.error('Error loading characters:', error));
 }
@@ -971,6 +979,42 @@ function setupSearchFeature() {
     }
 
     searchInput.addEventListener('input', applyFilters);
+}
+
+function resetTierlist() {
+    console.log("Reset function called");
+    if (confirm("Are you sure you want to reset the tierlist? This action cannot be undone.")) {
+        console.log("Reset confirmed");
+        // Clear local storage
+        localStorage.removeItem('tierlistState');
+
+        // Clear existing tierlist
+        document.querySelector('.tierlist').innerHTML = '';
+        document.querySelector('.images').innerHTML = '';
+
+        // Add default tiers
+        for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
+            add_row(i, DEFAULT_TIERS[i]);
+        }
+
+        // Load images from JSON
+        loadImagesFromJson();
+
+        // Reset filters and selections
+        resetAllSelectionsAndFilters();
+
+        // Recreate filter buttons
+        createFilterButtons();
+
+        // Adjust row heights and update details
+        document.querySelectorAll('.row').forEach(row => adjustRowHeight(row));
+        adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+        updateDetailsDisplay();
+
+        console.log("Tierlist has been reset");
+    } else {
+        console.log("Reset cancelled");
+    }
 }
 
 function exportTierlist() {
@@ -1141,12 +1185,21 @@ function importTierlist(file) {
     reader.readAsText(file);
 }
 
-window.addEventListener('load', () => {
+document.addEventListener('DOMContentLoaded', function() {
     untiered_images = document.querySelector('.images');
     tierlist_div = document.querySelector('.tierlist');
 
-    for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
-        add_row(i, DEFAULT_TIERS[i]);
+    const { loaded, hasCharacters } = loadTierlistState();
+
+    if (!loaded) {
+        // Only add default tiers if no state was loaded
+        for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
+            add_row(i, DEFAULT_TIERS[i]);
+        }
+    }
+
+    if (!hasCharacters) {
+        loadImagesFromJson();
     }
 
     headers_orig_min_width = all_headers[0][0].clientWidth;
@@ -1157,7 +1210,25 @@ window.addEventListener('load', () => {
 
     updateRowBorders();
 
-	document.getElementById('export-input').addEventListener('click', () => {
+    resetAllSelectionsAndFilters();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const resetButton = document.getElementById('reset-tierlist-button');
+    console.log("Reset button:", resetButton);
+    if (resetButton) {
+        resetButton.addEventListener('click', function() {
+            console.log("Reset button clicked");
+            resetTierlist();
+        });
+    } else {
+        console.error("Reset button not found in the DOM");
+    }
+}
+);
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('export-input').addEventListener('click', () => {
 		let name = prompt('Please give a name to this tierlist');
 		if (name) {
 			save_tierlist(`${name}.json`);
@@ -1279,6 +1350,8 @@ document.addEventListener('dragend', (evt) => {
     
     placeholder = null;
     draggedItem = null;
+
+    saveTierlistState();
 });
 
 function resetFilters() {
@@ -1435,6 +1508,86 @@ function resetAllSelectionsAndFilters() {
     updateDetailsDisplay();
 }
 
+function saveTierlistState() {
+    const tierlistState = {
+        tiers: [],
+        untieredImages: []
+    };
+
+    document.querySelectorAll('.tierlist .row').forEach((row, index) => {
+        const tierName = row.querySelector('.header label').innerText;
+        const tierColor = row.querySelector('.header').style.backgroundColor;
+        const tierIcon = row.querySelector('.tier-icon') ? row.querySelector('.tier-icon').src : '';
+        
+        const images = Array.from(row.querySelectorAll('.items .item .draggable')).map(img => ({
+            src: img.dataset.path,
+            name: img.dataset.name,
+            color: img.dataset.color,
+            rarity: img.dataset.rarity,
+            cardNumber: img.dataset.cardNumber,
+            uniqueId: img.dataset.uniqueId,
+            tags: img.dataset.tags,
+            zenkai: img.dataset.zenkai
+        }));
+
+        tierlistState.tiers.push({ name: tierName, color: tierColor, icon: tierIcon, images });
+    });
+
+    const untieredImages = Array.from(document.querySelectorAll('.images .item .draggable')).map(img => ({
+        src: img.dataset.path,
+        name: img.dataset.name,
+        color: img.dataset.color,
+        rarity: img.dataset.rarity,
+        cardNumber: img.dataset.cardNumber,
+        uniqueId: img.dataset.uniqueId,
+        tags: img.dataset.tags,
+        zenkai: img.dataset.zenkai
+    }));
+
+    tierlistState.untieredImages = untieredImages;
+
+    localStorage.setItem('tierlistState', JSON.stringify(tierlistState));
+}
+
+function loadTierlistState() {
+    const savedState = localStorage.getItem('tierlistState');
+    if (savedState) {
+        const tierlistState = JSON.parse(savedState);
+        
+        // Clear existing tierlist
+        document.querySelector('.tierlist').innerHTML = '';
+        document.querySelector('.images').innerHTML = '';
+
+        // Recreate tiers and add images
+        tierlistState.tiers.forEach((tier, index) => {
+            const row = add_row(index, { name: tier.name, color: tier.color, icon: tier.icon });
+            tier.images.forEach(imgData => {
+                const img = create_img_with_src(imgData.src);
+                const draggable = img.querySelector('.draggable');
+                Object.assign(draggable.dataset, imgData);
+                row.querySelector('.items').appendChild(img);
+            });
+        });
+
+        // Add untiered images
+        const untieredContainer = document.querySelector('.images');
+        tierlistState.untieredImages.forEach(imgData => {
+            const img = create_img_with_src(imgData.src);
+            const draggable = img.querySelector('.draggable');
+            Object.assign(draggable.dataset, imgData);
+            untieredContainer.appendChild(img);
+        });
+
+        // Adjust row heights and update details
+        document.querySelectorAll('.row').forEach(row => adjustRowHeight(row));
+        adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
+        updateDetailsDisplay();
+
+        return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
+    }
+    return { loaded: false, hasCharacters: false };
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM fully loaded and parsed");
 
@@ -1476,6 +1629,7 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('change', handleDetailOptionChange);
     });
 
+    loadTierlistState();
     resetAllSelectionsAndFilters();
 
     // Call this function after loading images and after any filtering or sorting
