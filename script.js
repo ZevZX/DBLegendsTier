@@ -1324,6 +1324,13 @@ function resetFilters() {
 function toggleDetails() {
     const detailsDropdown = document.getElementById('details-dropdown');
     detailsDropdown.style.display = detailsDropdown.style.display === 'block' ? 'none' : 'block';
+    
+    // Update detailsOptions based on current checkbox states
+    document.querySelectorAll('.detail-option').forEach(option => {
+        detailsOptions[option.name] = option.checked;
+    });
+    
+    updateDetailsDisplay();
 }
 
 function updateDetailsDisplay() {
@@ -1392,6 +1399,42 @@ function handleDetailOptionChange(event) {
     updateDetailsDisplay();
 }
 
+function resetAllSelectionsAndFilters() {
+    // Reset search input
+    document.getElementById('image-search').value = '';
+
+    // Reset filter options
+    document.querySelectorAll('.filter-button-container input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Reset sort options
+    document.querySelectorAll('#sort-dropdown input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    // Reset sort order buttons
+    document.querySelectorAll('.order-toggle').forEach(button => {
+        button.textContent = '▼';
+        button.dataset.order = 'desc';
+    });
+
+    // Reset details options
+    Object.keys(detailsOptions).forEach(key => {
+        detailsOptions[key] = false;
+    });
+    document.querySelectorAll('.detail-option').forEach(option => {
+        option.checked = false;
+    });
+
+    // Hide details dropdown
+    document.getElementById('details-dropdown').style.display = 'none';
+
+    // Apply the reset
+    applyFilters();
+    updateDetailsDisplay();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log("DOM fully loaded and parsed");
 
@@ -1432,6 +1475,8 @@ document.addEventListener('DOMContentLoaded', function() {
     detailOptions.forEach(option => {
         option.addEventListener('change', handleDetailOptionChange);
     });
+
+    resetAllSelectionsAndFilters();
 
     // Call this function after loading images and after any filtering or sorting
     updateDetailsDisplay();
