@@ -1,5 +1,38 @@
 [
   {
+    "name": "Rage Shenron",
+    "id": "DBL73-03S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Regeneration",
+      "GT",
+      "Shadow Dragon",
+      "Support",
+      "Shadow Dragon Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0593_Shenron5_593.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Omega Shenron",
+    "id": "DBL73-02S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Regeneration",
+      "GT",
+      "Absorption",
+      "Fusion Warrior",
+      "Shadow Dragon",
+      "Powerful Opponent",
+      "Ranged",
+      "Shadow Dragon Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0622_ShenronS1_622.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Super Saiyan 4 Gogeta",
     "id": "DBL73-01U",
     "color": "PUR",

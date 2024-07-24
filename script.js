@@ -1578,6 +1578,12 @@ function loadTierlistState() {
             untieredContainer.appendChild(img);
         });
 
+        // Reinitialize drag and drop functionality
+        make_accept_drop(untieredContainer);
+        document.querySelectorAll('.row').forEach(row => {
+            make_accept_drop(row);
+        });
+
         // Adjust row heights and update details
         document.querySelectorAll('.row').forEach(row => adjustRowHeight(row));
         adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
