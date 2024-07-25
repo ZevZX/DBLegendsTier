@@ -236,6 +236,18 @@ function createPlaceholder() {
     ph.style.margin = window.getComputedStyle(draggedItem).margin;
     ph.style.float = 'left';
     ph.style.flexShrink = '0';
+    ph.style.opacity = '0.6';
+    ph.style.pointerEvents = 'none';
+    
+    // Create a new image element instead of cloning
+    const imgContainer = document.createElement('div');
+    imgContainer.style.width = '100%';
+    imgContainer.style.height = '100%';
+    imgContainer.style.backgroundImage = `url('${draggedItem.querySelector('.draggable').dataset.path}')`;
+    imgContainer.style.backgroundSize = 'cover';
+    imgContainer.style.backgroundPosition = 'center';
+    
+    ph.appendChild(imgContainer);
     return ph;
 }
 
@@ -1337,18 +1349,9 @@ document.addEventListener('dragend', (evt) => {
         draggedItem.classList.remove('dragged');
         draggedItem.style.display = '';
         
-        // Always return the item to its original position unless it was properly dropped
-        if (!draggedItem.parentNode || !draggedItem.parentNode.classList.contains('items')) {
-            if (draggedItem.originalNextSibling && draggedItem.originalParent.contains(draggedItem.originalNextSibling)) {
-                draggedItem.originalParent.insertBefore(draggedItem, draggedItem.originalNextSibling);
-            } else {
-                draggedItem.originalParent.appendChild(draggedItem);
-            }
-        }
-        
         // Remove the placeholder
         if (placeholder && placeholder.parentNode) {
-            placeholder.remove();
+            placeholder.parentNode.removeChild(placeholder);
         }
         
         // Adjust the height of affected containers
