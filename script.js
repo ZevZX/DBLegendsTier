@@ -1434,8 +1434,8 @@ function updateDetailsDisplay() {
 
             if (Array.isArray(colorData) && colorData.length === 2) {
                 colorIndicator.classList.add('dual-color');
-                const color1 = colorData[0].toLowerCase();
-                const color2 = colorData[1].toLowerCase();
+                const color1 = colorData[0];
+                const color2 = colorData[1];
                 colorIndicator.style.setProperty('--color1', `url('assets/render_colors/${color1}.webp')`);
                 colorIndicator.style.setProperty('--color2', `url('assets/render_colors/${color2}.webp')`);
                 console.log("Dual color background set:", color1, color2);
@@ -1456,7 +1456,7 @@ function updateDetailsDisplay() {
                 rarityIndicator.className = 'rarity-indicator';
                 item.appendChild(rarityIndicator);
             }
-            const rarity = item.dataset.rarity.toLowerCase().replace(' ', '_');
+            const rarity = item.dataset.rarity.replace(' ', '_');
             rarityIndicator.style.backgroundImage = `url('assets/rarity/${rarity}.webp')`;
         } else if (rarityIndicator) {
             rarityIndicator.remove();
