@@ -1466,7 +1466,7 @@ function updateDetailsDisplay() {
             if (!zenkaiIndicator && item.dataset.zenkai === 'true') {
                 zenkaiIndicator = document.createElement('div');
                 zenkaiIndicator.className = 'zenkai-indicator';
-                zenkaiIndicator.style.backgroundImage = "url('assets/zenkai.webp')";
+                zenkaiIndicator.style.backgroundImage = "url('assets/Zenkai.webp')";
                 item.appendChild(zenkaiIndicator);
             } else if (zenkaiIndicator && item.dataset.zenkai !== 'true') {
                 zenkaiIndicator.remove();
