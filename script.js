@@ -234,11 +234,8 @@ function createPlaceholder() {
     ph.style.width = `${draggedItem.offsetWidth}px`;
     ph.style.height = `${draggedItem.offsetHeight}px`;
     ph.style.margin = window.getComputedStyle(draggedItem).margin;
-    
-    const clone = draggedItem.cloneNode(true);
-    clone.classList.remove('dragged');
-    
-    ph.appendChild(clone);
+    ph.style.float = 'left';
+    ph.style.flexShrink = '0';
     return ph;
 }
 
@@ -250,33 +247,12 @@ function updateDragPosition(e, container) {
     const items = Array.from(container.querySelectorAll('.item:not(.dragged)'));
     let insertBefore = null;
 
-    // Use binary search to find the insertion point
-    let low = 0;
-    let high = items.length - 1;
-
-    while (low <= high) {
-        let mid = Math.floor((low + high) / 2);
-        const itemRect = items[mid].getBoundingClientRect();
-        const itemY = itemRect.top - rect.top;
-
-        if (mouseY < itemY) {
-            high = mid - 1;
-        } else if (mouseY >= itemY + itemRect.height) {
-            low = mid + 1;
-        } else {
-            // We're in the correct row, now find the correct position in this row
-            while (mid > 0 && items[mid - 1].getBoundingClientRect().top === itemRect.top) {
-                mid--;
-            }
-            while (mid < items.length) {
-                const currentItemRect = items[mid].getBoundingClientRect();
-                if (currentItemRect.top !== itemRect.top) break;
-                if (mouseX < currentItemRect.left - rect.left + currentItemRect.width / 2) {
-                    insertBefore = items[mid];
-                    break;
-                }
-                mid++;
-            }
+    for (let i = 0; i < items.length; i++) {
+        const itemRect = items[i].getBoundingClientRect();
+        const itemCenterX = itemRect.left + itemRect.width / 2 - rect.left;
+        
+        if (mouseY < itemRect.bottom - rect.top && mouseX < itemCenterX) {
+            insertBefore = items[i];
             break;
         }
     }
@@ -285,10 +261,14 @@ function updateDragPosition(e, container) {
         placeholder = createPlaceholder();
     }
 
-    if (insertBefore) {
-        if (placeholder !== insertBefore.previousSibling) {
-            container.insertBefore(placeholder, insertBefore);
-        }
+    // Remove placeholder from its current position
+    if (placeholder.parentNode) {
+        placeholder.parentNode.removeChild(placeholder);
+    }
+
+    // Insert the placeholder
+    if (insertBefore && container.contains(insertBefore)) {
+        container.insertBefore(placeholder, insertBefore);
     } else {
         container.appendChild(placeholder);
     }
@@ -299,10 +279,11 @@ function make_accept_drop(elem) {
 
     let dragOverHandler = (evt) => {
         evt.preventDefault();
-        evt.target.closest('.droppable').classList.add('drag-entered');
+        const droppable = evt.currentTarget;
+        droppable.classList.add('drag-entered');
         
         if (draggedItem) {
-            const itemsContainer = elem.querySelector('.items') || elem;
+            const itemsContainer = droppable.querySelector('.items') || droppable;
             requestAnimationFrame(() => updateDragPosition(evt, itemsContainer));
         }
     };
@@ -1358,7 +1339,7 @@ document.addEventListener('dragend', (evt) => {
         
         // Always return the item to its original position unless it was properly dropped
         if (!draggedItem.parentNode || !draggedItem.parentNode.classList.contains('items')) {
-            if (draggedItem.originalNextSibling) {
+            if (draggedItem.originalNextSibling && draggedItem.originalParent.contains(draggedItem.originalNextSibling)) {
                 draggedItem.originalParent.insertBefore(draggedItem, draggedItem.originalNextSibling);
             } else {
                 draggedItem.originalParent.appendChild(draggedItem);
