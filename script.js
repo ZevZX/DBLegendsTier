@@ -86,26 +86,50 @@ function updateRowBorders() {
 }
 
 function adjustRowHeight(row) {
-    const header = row.querySelector('.header');
-    const items = row.querySelector('.items');
-    const rowButtons = row.querySelector('.row-buttons');
-    
-    // Reset heights to auto to get the natural content height
-    header.style.height = 'auto';
-    items.style.height = 'auto';
-    row.style.height = 'auto';
-    rowButtons.style.height = 'auto';
-    
-    // Calculate the new height
-    const headerHeight = header.scrollHeight;
-    const itemsHeight = items.scrollHeight;
-    const newHeight = Math.max(headerHeight, itemsHeight, 50); // Minimum height of 50px
-    
-    // Set the new height
-    row.style.height = `${newHeight}px`;
-    header.style.height = `${newHeight}px`;
-    items.style.height = `${newHeight}px`;
-    rowButtons.style.height = `${newHeight}px`;
+    if (!row) {
+        console.warn("Attempted to adjust height of non-existent row");
+        return;
+    }
+
+    if (row.classList.contains('images')) {
+        // Handle the images container differently
+        const items = row.querySelectorAll('.item');
+        const containerWidth = row.clientWidth;
+        const itemWidth = 50; // Assuming each item is 50px wide
+        const itemHeight = 50; // Assuming each item is 50px tall
+        const itemsPerRow = Math.floor(containerWidth / itemWidth);
+        const rowsNeeded = Math.ceil(items.length / itemsPerRow);
+        const newHeight = Math.max(rowsNeeded * itemHeight, 50); // Minimum height of 50px
+
+        row.style.height = `${newHeight}px`;
+    } else {
+        // Handle tier rows
+        const header = row.querySelector('.header');
+        const items = row.querySelector('.items');
+        const rowButtons = row.querySelector('.row-buttons');
+        
+        if (!header || !items || !rowButtons) {
+            console.warn("Row is missing essential elements", row);
+            return;
+        }
+        
+        // Reset heights to auto to get the natural content height
+        header.style.height = 'auto';
+        items.style.height = 'auto';
+        row.style.height = 'auto';
+        rowButtons.style.height = 'auto';
+        
+        // Calculate the new height
+        const headerHeight = header.scrollHeight;
+        const itemsHeight = items.scrollHeight;
+        const newHeight = Math.max(headerHeight, itemsHeight, 50); // Minimum height of 50px
+        
+        // Set the new height
+        row.style.height = `${newHeight}px`;
+        header.style.height = `${newHeight}px`;
+        items.style.height = `${newHeight}px`;
+        rowButtons.style.height = `${newHeight}px`;
+    }
 
     // Update borders for all rows
     updateRowBorders();
@@ -942,7 +966,12 @@ function applyFilters() {
 
     console.log("Visible items after filtering:", visibleCount);
     
-    adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
+    const imagesContainer = document.querySelector('.images');
+    if (imagesContainer) {
+        adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+    } else {
+        console.warn("Images container not found");
+    }
     sortImages();
     updateDetailsDisplay();
 }
@@ -1249,13 +1278,6 @@ document.addEventListener('DOMContentLoaded', function() {
 );
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('export-input').addEventListener('click', () => {
-		let name = prompt('Please give a name to this tierlist');
-		if (name) {
-			save_tierlist(`${name}.json`);
-		}
-	});
-
 	document.getElementById('import-input').addEventListener('input', (evt) => {
 		if (!evt.target.files) {
 			return;
@@ -1676,35 +1698,65 @@ document.addEventListener('DOMContentLoaded', function() {
     createFilterButtons();
 
     loadTierlistState();
-    resetAllSelectionsAndFilters();
 
-    // Call this function after loading images and after any filtering or sorting
+    try {
+        resetAllSelectionsAndFilters();
+    } catch (error) {
+        console.error("Error resetting selections and filters:", error);
+    }
+
     updateDetailsDisplay();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Prevent default drag behaviors
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, preventDefaults, false);
-        document.body.addEventListener(eventName, preventDefaults, false);
-    });
-
-    const dropZone = document.getElementById('import-drop-zone');
+    const dropZone = document.getElementById('import-wrapper');
+    const importButton = document.getElementById('import-button');
     const fileInput = document.getElementById('import-input');
+    const fileNameContainer = document.getElementById('file-name-container');
+    const fileName = document.getElementById('file-name');
+    const exportButton = document.getElementById('export-button');
 
-    // Highlight drop zone when item is dragged over it
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, highlight, false);
-    });
+    if (dropZone) {
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
 
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, unhighlight, false);
-    });
+        // Highlight drop zone when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
 
-    // Handle dropped files
-    dropZone.addEventListener('drop', handleDrop, false);
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
 
-    function preventDefaults (e) {
+        // Handle dropped files
+        dropZone.addEventListener('drop', handleDrop, false);
+    } else {
+        console.warn("Import drop zone not found in the DOM");
+    }
+
+    if (importButton && fileInput) {
+        importButton.addEventListener('click', function() {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', function(event) {
+            handleFiles(this.files);
+        });
+    } else {
+        console.warn("Import button or file input not found in the DOM");
+    }
+
+    if (exportButton) {
+        exportButton.addEventListener('click', exportTierlist);
+    } else {
+        console.warn("Export button not found in the DOM");
+    }
+
+    function preventDefaults(e) {
         e.preventDefault();
         e.stopPropagation();
     }
@@ -1720,7 +1772,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleDrop(e) {
         const dt = e.dataTransfer;
         const files = dt.files;
-
         handleFiles(files);
     }
 
@@ -1729,17 +1780,20 @@ document.addEventListener('DOMContentLoaded', function() {
             const file = files[0];
             if (file.name.endsWith('.json')) {
                 importTierlist(file);
-                document.getElementById('file-name').textContent = file.name;
+                if (fileName && fileNameContainer) {
+                    fileName.textContent = file.name;
+                    fileNameContainer.style.display = 'block';
+                }
             } else {
-                alert('Please drop a JSON file.');
+                alert('Please select a JSON file.');
             }
         }
     }
 
-    // Also handle files from input
-    fileInput.addEventListener('change', function(e) {
-        handleFiles(this.files);
-    });
+    // Initially hide the file name container
+    if (fileNameContainer) {
+        fileNameContainer.style.display = 'none';
+    }
 });
 
 function closeAllEditTierPopups() {
