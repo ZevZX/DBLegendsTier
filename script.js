@@ -744,16 +744,27 @@ function reset_row(row) {
 		item.parentNode.removeChild(item);
 	});
 }
-
 function createFilterButtons() {
     fetch('filter_options.json')
         .then(response => response.json())
         .then(filterOptions => {
             const filterContainer = document.getElementById('filter-container');
             
+            if (!filterContainer) {
+                console.error("Filter container not found");
+                return;
+            }
+
             // Clear existing filter buttons
             filterContainer.innerHTML = '';
             
+            // Create reset filters button
+            const resetFiltersButton = document.createElement('button');
+            resetFiltersButton.id = 'reset-filters-button';
+            resetFiltersButton.textContent = 'Reset Filters';
+            resetFiltersButton.addEventListener('click', resetFilters);
+            filterContainer.appendChild(resetFiltersButton);
+
             Object.entries(filterOptions).forEach(([attr, options]) => {
                 const buttonContainer = document.createElement('div');
                 buttonContainer.classList.add('filter-button-container');
@@ -843,7 +854,7 @@ function createFilterButtons() {
 function getTextWidth(text) {
     const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
     const context = canvas.getContext("2d");
-    context.font = "16px sans-serif"; // Match this with your CSS font settings
+    context.font = "16px sans-serif";
     const metrics = context.measureText(text);
     return metrics.width;
 }
@@ -974,7 +985,7 @@ function loadImagesFromJson() {
             adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
             setupSearchFeature();
             updateDetailsDisplay();
-            saveTierlistState(); // Save initial state
+            saveTierlistState();
         })
         .catch(error => console.error('Error loading characters:', error));
 }
@@ -1263,14 +1274,9 @@ document.addEventListener('DOMContentLoaded', function() {
 		});
 		reader.readAsText(file);
 	});
+});
 
-	window.addEventListener('beforeunload', (evt) => {
-		if (!unsaved_changes) return null;
-		var msg = "You have unsaved changes. Leave anyway?";
-		(evt || window.event).returnValue = msg;
-		return msg;
-	});
-
+document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', () => {
         document.querySelectorAll('.row').forEach(row => {
             adjustRowHeight(row);
@@ -1368,7 +1374,7 @@ function resetFilters() {
     console.log("Resetting filters...");
     
     // Reset all checkboxes
-    document.querySelectorAll('#filter-container input[type="checkbox"]').forEach(checkbox => {
+    document.querySelectorAll('.filter-button-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
@@ -1403,6 +1409,11 @@ function resetFilters() {
 
     console.log("Filters reset complete");
 }
+
+// Ensure this is called when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    createFilterButtons();
+});
 
 function toggleDetails() {
     const detailsDropdown = document.getElementById('details-dropdown');
@@ -1502,16 +1513,12 @@ function resetAllSelectionsAndFilters() {
         button.dataset.order = 'desc';
     });
 
-    // Reset details options
-    Object.keys(detailsOptions).forEach(key => {
-        detailsOptions[key] = false;
-    });
     document.querySelectorAll('.detail-option').forEach(option => {
-        option.checked = false;
+        option.checked = detailsOptions[option.name];
     });
 
     // Hide details dropdown
-    document.getElementById('details-dropdown').style.display = 'none';
+    // document.getElementById('details-dropdown').style.display = 'none';
 
     // Apply the reset
     applyFilters();
@@ -1521,7 +1528,8 @@ function resetAllSelectionsAndFilters() {
 function saveTierlistState() {
     const tierlistState = {
         tiers: [],
-        untieredImages: []
+        untieredImages: [],
+        detailsOptions: { ...detailsOptions } // Save details options
     };
 
     document.querySelectorAll('.tierlist .row').forEach((row, index) => {
@@ -1599,6 +1607,26 @@ function loadTierlistState() {
         adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
         updateDetailsDisplay();
 
+        // Load and apply details options
+        if (tierlistState.detailsOptions) {
+            Object.assign(detailsOptions, tierlistState.detailsOptions);
+            document.querySelectorAll('.detail-option').forEach(option => {
+                option.checked = detailsOptions[option.name];
+            });
+        }
+
+        // Always update details display, regardless of whether options were saved
+        updateDetailsDisplay();
+
+        // Show the details dropdown if any option is true
+        const shouldShowDetails = Object.values(detailsOptions).some(value => value);
+        if (shouldShowDetails) {
+            const detailsDropdown = document.getElementById('details-dropdown');
+            if (detailsDropdown) {
+                detailsDropdown.style.display = 'block';
+            }
+        }
+
         return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
     }
     return { loaded: false, hasCharacters: false };
@@ -1645,26 +1673,13 @@ document.addEventListener('DOMContentLoaded', function() {
         option.addEventListener('change', handleDetailOptionChange);
     });
 
+    createFilterButtons();
+
     loadTierlistState();
     resetAllSelectionsAndFilters();
 
     // Call this function after loading images and after any filtering or sorting
     updateDetailsDisplay();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const resetFiltersButton = document.getElementById('reset-filters-button');
-    console.log("Reset filters button:", resetFiltersButton);
-
-    if (resetFiltersButton) {
-        console.log("Adding click event listener to reset filters button");
-        resetFiltersButton.addEventListener('click', function() {
-            console.log("Reset filters button clicked");
-            resetFilters();
-        });
-    } else {
-        console.error("Reset filters button not found in the DOM");
-    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
