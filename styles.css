@@ -613,7 +613,7 @@ span.item {
 
 .search-container {
     flex-grow: 1;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 #image-search {
@@ -646,15 +646,23 @@ span.item {
 .filter-popup {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
+    background-color: #3a3b3c;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
+    z-index: 5;
+    padding: 0;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    min-width: 100px;
+    width: auto;
 }
 
-.filter-option {
-    display: block;
-    margin: 5px 0;
+.filter-option img {
+    width: auto;
+    height: 20px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .filter-button {
@@ -676,41 +684,26 @@ span.item {
     background-color: #2ecc71;
 }
 
-.filter-popup {
-    display: none;
-    position: absolute;
-    background-color: #3a3b3c;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 5;
-    padding: 12px;
-    border-radius: 5px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
 .filter-option {
-    display: block;
-    margin: 8px 0;
+    display: flex;
+    margin: 5px 0;
     color: white;
+    white-space: nowrap;
+    overflow: visible;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2px 0;
 }
 
 .filter-option input[type="checkbox"] {
     margin-right: 8px;
+    vertical-align: middle;
 }
 
 #filter-container {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-}
-
-.filter-popup {
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #3a3b3c;
 }
 
 .include-all-container {
@@ -729,20 +722,6 @@ span.item {
 .options-container {
     padding: 10px;
     padding-top: 5px;
-}
-
-.filter-option {
-    white-space: nowrap;
-    overflow: visible;
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    padding: 2px 0;
-}
-
-.filter-option input[type="checkbox"] {
-    margin-right: 8px;
-    vertical-align: middle;
 }
 
 .include-all-option {
@@ -795,6 +774,7 @@ span.item {
 
 .order-toggle {
     background: none;
+    color: white;
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -821,10 +801,6 @@ span.item {
 .search-and-sort {
     display: flex;
     align-items: center;
-}
-
-.search-container {
-    margin-right: 10px;
 }
 
 #image-search {
@@ -895,17 +871,6 @@ span.item {
     background-color: #5b6eae;
 }
 
-#reset-tierlist-button {
-    padding: 8px 16px;
-    background-color: #d9534f;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
 #reset-tierlist-button:hover {
     background-color: #c9302c;
 }
@@ -939,7 +904,9 @@ span.item {
 #sort-button,
 #import-button,
 #export-button,
-.import-container label.custom-button {
+.import-container label.custom-button,
+#reset-tierlist-button,
+#toggle-details-button {
     padding: 8px 16px;
     background-color: #4b63b9;
     color: white;
@@ -954,6 +921,15 @@ span.item {
     justify-content: center;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+#export-button {
+    margin-right: 0;
+}
+
+#reset-tierlist-button {
+    background-color: #d9534f;
+    transition: background-color 0.3s;
 }
 
 #filter-container button:hover,
@@ -1012,6 +988,7 @@ span.item {
     align-items: center;
     justify-content: center;
     margin-left: 5px;
+    margin-top: 5px;
 }
 
 #toggle-details-button:hover {

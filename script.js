@@ -664,7 +664,9 @@ function showTierAttributesPopup(row) {
             } else {
                 header.dataset.hasIcon = 'false';
             }
-
+    
+            adjustHeaderHeight(header);
+    
             unsaved_changes = true;
         });
     });
@@ -827,11 +829,20 @@ function createFilterButtons() {
                     const checkbox = document.createElement('input');
                     checkbox.type = 'checkbox';
                     checkbox.value = option;
-                    
                     checkbox.addEventListener('change', applyFilters);
                     
                     label.appendChild(checkbox);
-                    label.appendChild(document.createTextNode(option));
+
+                    if (attr === 'color' || attr === 'rarity') {
+                        const img = document.createElement('img');
+                        img.src = `assets/${attr}/${option.toLowerCase().replace(' ', '_')}.webp`;
+                        img.alt = option;
+                        img.title = option;
+                        label.appendChild(img);
+                    } else {
+                        label.appendChild(document.createTextNode(option));
+                    }
+
                     optionsContainer.appendChild(label);
                     
                     maxOptionWidth = Math.max(maxOptionWidth, getTextWidth(option));
@@ -839,7 +850,12 @@ function createFilterButtons() {
 
                 popup.appendChild(optionsContainer);
                 
-                popup.style.width = `${maxOptionWidth + 60}px`;
+                // Set the popup width based on content only once
+                requestAnimationFrame(() => {
+                    const contentWidth = popup.scrollWidth;
+                    popup.style.width = `${contentWidth + 20}px`; // Add some padding
+                    popup.dataset.width = popup.style.width; // Store the width
+                });
                 
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -847,9 +863,7 @@ function createFilterButtons() {
                     closeAllPopups();
                     if (!isCurrentPopupOpen) {
                         popup.style.display = 'block';
-                        if (popup.scrollHeight > popup.clientHeight) {
-                            popup.style.width = `${maxOptionWidth + 77}px`;
-                        }
+                        popup.style.width = popup.dataset.width; // Use the stored width
                     }
                 });
                 
@@ -1432,6 +1446,14 @@ function toggleDetails() {
     
     updateDetailsDisplay();
 }
+
+document.addEventListener('click', function(event) {
+    const detailsDropdown = document.getElementById('details-dropdown');
+    const toggleDetailsButton = document.getElementById('toggle-details-button');
+    if (!detailsDropdown.contains(event.target) && event.target !== toggleDetailsButton) {
+        detailsDropdown.style.display = 'none';
+    }
+});
 
 function updateDetailsDisplay() {
     const items = document.querySelectorAll('.draggable');
