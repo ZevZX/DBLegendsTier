@@ -565,6 +565,10 @@ function showTierAttributesPopup(row) {
         colorPreview.style.backgroundColor = color;
         hexInput.value = hslToHex(hue, saturation, lightness);
         colorSlider.style.background = `linear-gradient(to right, hsl(${hue}, 100%, 50%), white)`;
+
+        const sliderWidth = colorSlider.offsetWidth;
+        const thumbPosition = (100 - saturation) / 100 * sliderWidth;
+        colorSliderThumb.style.left = `${thumbPosition}px`;
     }
 
     colorWheel.addEventListener('mousedown', startColorSelection);
@@ -850,13 +854,6 @@ function createFilterButtons() {
 
                 popup.appendChild(optionsContainer);
                 
-                // Set the popup width based on content only once
-                requestAnimationFrame(() => {
-                    const contentWidth = popup.scrollWidth;
-                    popup.style.width = `${contentWidth + 20}px`; // Add some padding
-                    popup.dataset.width = popup.style.width; // Store the width
-                });
-                
                 button.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const isCurrentPopupOpen = popup.style.display === 'block';
@@ -1072,6 +1069,11 @@ function resetTierlist() {
     } else {
         console.log("Reset cancelled");
     }
+
+    const fileInput = document.getElementById('import-input');
+    if (fileInput) fileInput.value = '';
+    const fileNameContainer = document.getElementById('file-name-container');
+    if (fileNameContainer) fileNameContainer.style.display = 'none';
 }
 
 function exportTierlist() {

@@ -651,11 +651,13 @@ span.item {
     z-index: 5;
     padding: 0;
     border-radius: 5px;
-    max-height: 300px;
     overflow-y: auto;
+    overflow-x: hidden;
     box-sizing: border-box;
-    min-width: 100px;
+    min-width: 50px;
+    max-height: 270px;
     width: auto;
+    padding-right: 10px;
 }
 
 .filter-option img {
@@ -686,17 +688,15 @@ span.item {
 
 .filter-option {
     display: flex;
-    margin: 5px 0;
     color: white;
     white-space: nowrap;
     overflow: visible;
-    width: 100%;
     box-sizing: border-box;
-    padding: 2px 0;
+    margin: 10px 10px;
 }
 
 .filter-option input[type="checkbox"] {
-    margin-right: 8px;
+    margin-right: 5px;
     vertical-align: middle;
 }
 
@@ -710,7 +710,6 @@ span.item {
     position: sticky;
     top: 0;
     background-color: #3a3b3c;
-    padding: 10px;
     z-index: 1;
     border-bottom: 1px solid #666;
 }
@@ -719,13 +718,10 @@ span.item {
     display: none;
 }
 
-.options-container {
-    padding: 10px;
-    padding-top: 5px;
-}
-
 .include-all-option {
     font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .sort-container {
@@ -737,19 +733,19 @@ span.item {
     display: none;
     position: absolute;
     background-color: #3a3b3c;
-    min-width: 160px;
+    min-width: 50px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 12px;
     border-radius: 5px;
+    width: auto;
+    z-index: 1000;
 }
 
 .sort-dropdown div {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.sort-dropdown label {
-    margin-left: 5px;
+    white-space: nowrap;
     color: white;
 }
 
@@ -758,7 +754,6 @@ span.item {
     background-color: #4b63b9;
     color: white;
     border: none;
-    padding: 2px 5px;
     border-radius: 3px;
 }
 
@@ -784,11 +779,6 @@ span.item {
 .sort-dropdown div {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-}
-
-.sort-dropdown label {
-    margin-right: 10px;
 }
 
 .controls-container {
@@ -809,14 +799,6 @@ span.item {
 
 .sort-container {
     position: relative;
-}
-
-.sort-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 10px;
-    z-index: 1000;
 }
 
 #filter-container {
@@ -999,16 +981,18 @@ span.item {
     display: none;
     position: absolute;
     background-color: #3a3b3c;
-    min-width: 160px;
+    min-width: 40px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 3;
-    padding: 12px;
     border-radius: 5px;
 }
 
 .details-dropdown label {
     display: block;
+    margin-top: 10px;
     margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
     color: white;
 }
 
