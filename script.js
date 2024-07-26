@@ -835,7 +835,7 @@ function createFilterButtons() {
 
                     if (attr === 'color' || attr === 'rarity') {
                         const img = document.createElement('img');
-                        img.src = `assets/${attr}/${option.toLowerCase().replace(' ', '_')}.webp`;
+                        img.src = `assets/${attr}/${option.replace(' ', '_')}.webp`;
                         img.alt = option;
                         img.title = option;
                         label.appendChild(img);
