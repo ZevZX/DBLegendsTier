@@ -1519,6 +1519,7 @@ function updateDetailsDisplay() {
 function handleDetailOptionChange(event) {
     detailsOptions[event.target.name] = event.target.checked;
     updateDetailsDisplay();
+    saveTierlistState();
 }
 
 function resetAllSelectionsAndFilters() {
@@ -1557,7 +1558,7 @@ function saveTierlistState() {
     const tierlistState = {
         tiers: [],
         untieredImages: [],
-        detailsOptions: { ...detailsOptions } // Save details options
+        detailsOptions: { ...detailsOptions }
     };
 
     document.querySelectorAll('.tierlist .row').forEach((row, index) => {
@@ -1645,15 +1646,6 @@ function loadTierlistState() {
 
         // Always update details display, regardless of whether options were saved
         updateDetailsDisplay();
-
-        // Show the details dropdown if any option is true
-        const shouldShowDetails = Object.values(detailsOptions).some(value => value);
-        if (shouldShowDetails) {
-            const detailsDropdown = document.getElementById('details-dropdown');
-            if (detailsDropdown) {
-                detailsDropdown.style.display = 'block';
-            }
-        }
 
         return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
     }
