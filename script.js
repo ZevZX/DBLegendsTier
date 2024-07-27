@@ -120,7 +120,6 @@ function loadImagesFromJson() {
                     draggable.dataset.uniqueId = uniqueId;
                     draggable.setAttribute('data-path', character.image_url);
                     draggable.dataset.name = character.name;
-                    // Store color as JSON string, preserving array structure if it exists
                     draggable.dataset.color = JSON.stringify(character.color);
                     draggable.dataset.tags = character.tags.join(',');
                     draggable.dataset.zenkai = character.has_zenkai;
@@ -926,9 +925,15 @@ function createFilterButtons() {
                         label.appendChild(document.createTextNode(option));
                     }
 
+                    if (attr === 'zenkai') {
+                        options = ['Zenkai', 'Non Zenkai'];
+                    }
+
                     optionsContainer.appendChild(label);
                     
                     maxOptionWidth = Math.max(maxOptionWidth, getTextWidth(option));
+
+                    
                 });
 
                 popup.appendChild(optionsContainer);
@@ -1017,11 +1022,32 @@ function applyFilters() {
                         break;
                     }
                 } else if (attr === 'tags') {
-                    // ... (keep this part as is)
+                    const charTags = img.dataset.tags.split(',');
+                    if (filterData.includeAll) {
+                        if (!filterData.values.every(v => charTags.includes(v))) {
+                            show = false;
+                            break;
+                        }
+                    } else {
+                        if (!filterData.values.some(v => charTags.includes(v))) {
+                            show = false;
+                            break;
+                        }
+                    }
                 } else if (attr === 'episode' || attr === 'type') {
-                    // ... (keep this part as is)
+                    const charTags = img.dataset.tags.split(',');
+                    if (!filterData.values.some(v => charTags.includes(v))) {
+                        show = false;
+                        break;
+                    }
                 } else if (attr === 'zenkai') {
-                    // ... (keep this part as is)
+                    const hasZenkai = img.dataset.zenkai === 'true';
+                    if ((hasZenkai && !filterData.values.includes('Zenkai')) || 
+                        (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
+                        show = false;
+                        break;
+                    }
+                    console.log("Applying zenkai filter:", filterData.values, "Character zenkai:", img.dataset.zenkai);
                 } else {
                     if (!filterData.values.includes(img.dataset[attr])) {
                         show = false;
@@ -1216,6 +1242,24 @@ function importTierlist(file) {
                                     let draggable = img.querySelector('.draggable');
                                     Object.assign(draggable.dataset, unitData);
                                     draggable.dataset.uniqueId = imgData.uniqueId;
+                                    
+                                    // Ensure color data is in correct JSON format
+                                    if (typeof unitData.color === 'string') {
+                                        draggable.dataset.color = JSON.stringify(unitData.color);
+                                    } else {
+                                        draggable.dataset.color = JSON.stringify(unitData.color || []);
+                                    }
+                                    
+                                    // Ensure card number is assigned if available
+                                    if (unitData.id) {
+                                        draggable.dataset.cardNumber = unitData.id;
+                                    } else {
+                                        console.warn(`Card number missing for ${unitData.name}`);
+                                    }
+                                    
+                                    // Set zenkai data
+                                    draggable.dataset.zenkai = unitData.has_zenkai.toString();
+                                    
                                     row.querySelector('.items').appendChild(img);
                                 }
                             });
@@ -1232,6 +1276,24 @@ function importTierlist(file) {
                         let draggable = img.querySelector('.draggable');
                         Object.assign(draggable.dataset, unit);
                         draggable.dataset.uniqueId = uniqueId;
+                        
+                        // Ensure color data is in correct JSON format
+                        if (typeof unit.color === 'string') {
+                            draggable.dataset.color = JSON.stringify(unit.color);
+                        } else {
+                            draggable.dataset.color = JSON.stringify(unit.color || []);
+                        }
+                        
+                        // Ensure card number is assigned if available
+                        if (unit.id) {
+                            draggable.dataset.cardNumber = unit.id;
+                        } else {
+                            console.warn(`Card number missing for ${unit.name}`);
+                        }
+                        
+                        // Set zenkai data
+                        draggable.dataset.zenkai = unit.has_zenkai.toString();
+                        
                         imagesContainer.appendChild(img);
                     }
                 });
@@ -1504,7 +1566,13 @@ function updateDetailsDisplay() {
                 colorIndicator.className = 'color-indicator';
                 item.appendChild(colorIndicator);
             }
-            const colorData = JSON.parse(item.dataset.color);
+            let colorData;
+            try {
+                colorData = JSON.parse(item.dataset.color);
+            } catch (error) {
+                console.error(`Error parsing color data for ${item.dataset.name}:`, error);
+                colorData = [];
+            }
             console.log("Color data for", item.dataset.name, ":", colorData);
 
             if (Array.isArray(colorData) && colorData.length === 2) {
@@ -1538,17 +1606,21 @@ function updateDetailsDisplay() {
         }
 
         if (detailsOptions.zenkai) {
-            if (!zenkaiIndicator && item.dataset.zenkai === 'true') {
-                zenkaiIndicator = document.createElement('div');
-                zenkaiIndicator.className = 'zenkai-indicator';
-                zenkaiIndicator.style.backgroundImage = "url('assets/Zenkai.webp')";
-                item.appendChild(zenkaiIndicator);
-            } else if (zenkaiIndicator && item.dataset.zenkai !== 'true') {
+            if (item.dataset.zenkai === 'true') {
+                if (!zenkaiIndicator) {
+                    zenkaiIndicator = document.createElement('div');
+                    zenkaiIndicator.className = 'zenkai-indicator';
+                    zenkaiIndicator.style.backgroundImage = "url('assets/Zenkai.webp')";
+                    item.appendChild(zenkaiIndicator);
+                }
+            } else if (zenkaiIndicator) {
                 zenkaiIndicator.remove();
             }
         } else if (zenkaiIndicator) {
             zenkaiIndicator.remove();
         }
+
+        console.log("Zenkai data:", item.dataset.zenkai);
     });
 }
 
