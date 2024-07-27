@@ -46,8 +46,10 @@ function lazyLoadImages() {
             if (entry.isIntersecting) {
                 const img = entry.target.querySelector('.draggable');
                 if (img && img.dataset.path) {
-                    const characterImg = img.querySelector('div');
-                    characterImg.style.backgroundImage = `url('${img.dataset.path}')`;
+                    const characterImg = img.querySelector('div:not(.render-bg)');
+                    if (!characterImg.style.backgroundImage) {
+                        characterImg.style.backgroundImage = `url('${img.dataset.path}')`;
+                    }
                 }
                 observer.unobserve(entry.target);
             }
@@ -63,7 +65,7 @@ function lazyLoadImages() {
     });
 }
 
-function create_img_with_src(src) {
+function create_img_with_src(src, isLazy = false) {
     let container = document.createElement('div');
     container.style.width = '50px';
     container.style.height = '50px';
@@ -83,6 +85,11 @@ function create_img_with_src(src) {
     characterImg.style.backgroundPosition = 'center';
     characterImg.style.position = 'relative';
     characterImg.style.zIndex = '1';
+    
+    if (!isLazy) {
+        characterImg.style.backgroundImage = `url('${src}')`;
+    }
+    
     container.appendChild(characterImg);
 
     let item = document.createElement('span');
@@ -101,7 +108,7 @@ function loadImagesFromJson() {
                 const uniqueId = `${character.id}-${character.name.replace(/\s+/g, '_')}`;
                 
                 if (!document.querySelector(`[data-unique-id="${uniqueId}"]`)) {
-                    const img = create_img_with_src(character.image_url);
+                    const img = create_img_with_src(character.image_url, true);  // Set isLazy to true
                     let draggable = img.querySelector('.draggable');
                     draggable.dataset.rarity = character.rarity;
                     draggable.dataset.cardNumber = character.id;
@@ -1208,16 +1215,9 @@ function importTierlist(file) {
                     if (tier.images && Array.isArray(tier.images)) {
                         console.log(`Adding ${tier.images.length} images to tier ${index}`);
                         tier.images.forEach(imgData => {
-                            let img = create_img_with_src(imgData.src);
+                            let img = create_img_with_src(imgData.src, false);  // Non-lazy for tier images
                             let draggable = img.querySelector('.draggable');
-                            Object.assign(draggable.dataset, {
-                                rarity: imgData.rarity || '',
-                                cardNumber: imgData.cardNumber || '',
-                                name: imgData.name || '',
-                                color: imgData.color || '',
-                                tags: Array.isArray(imgData.tags) ? imgData.tags.join(',') : '',
-                                zenkai: imgData.zenkai || false
-                            });
+                            Object.assign(draggable.dataset, imgData);
                             row.querySelector('.items').appendChild(img);
                         });
                     } else {
@@ -1235,16 +1235,9 @@ function importTierlist(file) {
         if (serializedTierlist.untieredImages && Array.isArray(serializedTierlist.untieredImages)) {
             console.log(`Adding ${serializedTierlist.untieredImages.length} untiered images`);
             serializedTierlist.untieredImages.forEach(imgData => {
-                let img = create_img_with_src(imgData.src);
+                let img = create_img_with_src(imgData.src, true);  // Lazy loading for bottom container
                 let draggable = img.querySelector('.draggable');
-                Object.assign(draggable.dataset, {
-                    rarity: imgData.rarity || '',
-                    cardNumber: imgData.cardNumber || '',
-                    name: imgData.name || '',
-                    color: imgData.color || '',
-                    tags: Array.isArray(imgData.tags) ? imgData.tags.join(',') : '',
-                    zenkai: imgData.zenkai || false
-                });
+                Object.assign(draggable.dataset, imgData);
                 imagesContainer.appendChild(img);
             });
         } else {
@@ -1257,6 +1250,7 @@ function importTierlist(file) {
         });
         adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
         sortImages();
+        lazyLoadImages();
 
         console.log("Import completed");
     };
@@ -1283,6 +1277,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!hasCharacters) {
         loadImagesFromJson();
+    } else {
+        lazyLoadImages();
     }
 
     headers_orig_min_width = all_headers[0][0].clientWidth;
@@ -1643,7 +1639,7 @@ function loadTierlistState() {
         tierlistState.tiers.forEach((tier, index) => {
             const row = add_row(index, { name: tier.name, color: tier.color, icon: tier.icon });
             tier.images.forEach(imgData => {
-                const img = create_img_with_src(imgData.src);
+                const img = create_img_with_src(imgData.src, false);  // Non-lazy for tier images
                 const draggable = img.querySelector('.draggable');
                 Object.assign(draggable.dataset, imgData);
                 row.querySelector('.items').appendChild(img);
@@ -1653,7 +1649,7 @@ function loadTierlistState() {
         // Add untiered images
         const untieredContainer = document.querySelector('.images');
         tierlistState.untieredImages.forEach(imgData => {
-            const img = create_img_with_src(imgData.src);
+            const img = create_img_with_src(imgData.src, true);  // Lazy loading for bottom container
             const draggable = img.querySelector('.draggable');
             Object.assign(draggable.dataset, imgData);
             untieredContainer.appendChild(img);
@@ -1680,6 +1676,9 @@ function loadTierlistState() {
 
         // Always update details display, regardless of whether options were saved
         updateDetailsDisplay();
+
+        // Apply lazy loading
+        lazyLoadImages();
 
         return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
     }
