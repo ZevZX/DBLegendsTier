@@ -443,6 +443,7 @@ function rm_row(idx) {
 	let row = tierlist_div.children[idx];
 	reset_row(row);
 	tierlist_div.removeChild(row);
+    saveTierlistState();
 }
 
 function add_row(index, tierData) {
