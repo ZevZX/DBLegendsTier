@@ -2,7 +2,7 @@
 
 A website for creating tier lists with all Dragon Ball Legends characters.
 
-![DBLegendsTier](README_img.webp)
+![DBLegendsTier](./assets/README_img.webp)
 
 ## Features
 

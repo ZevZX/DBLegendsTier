@@ -100,7 +100,7 @@ function create_img_with_src(src, isLazy = false) {
 }
 
 function loadImagesFromJson() {
-    fetch('units.json')
+    fetch('./data/units.json')
         .then(response => response.json())
         .then(data => {
             const imagesContainer = document.querySelector('.images');
@@ -847,7 +847,7 @@ function reset_row(row) {
 	});
 }
 function createFilterButtons() {
-    fetch('filter_options.json')
+    fetch('./data/filter_options.json')
         .then(response => response.json())
         .then(filterOptions => {
             const filterContainer = document.getElementById('filter-container');
@@ -1221,7 +1221,7 @@ function importTierlist(file) {
         imagesContainer.innerHTML = '';
 
         // Load all units from units.json
-        fetch('units.json')
+        fetch('./data/units.json')
             .then(response => response.json())
             .then(allUnits => {
                 console.log("Recreating tiers...");
@@ -1580,13 +1580,13 @@ function updateDetailsDisplay() {
                 colorIndicator.classList.add('dual-color');
                 const color1 = colorData[0];
                 const color2 = colorData[1];
-                colorIndicator.style.setProperty('--color1', `url('assets/render_colors/${color1}.webp')`);
-                colorIndicator.style.setProperty('--color2', `url('assets/render_colors/${color2}.webp')`);
+                colorIndicator.style.setProperty('--color1', `url('assets/detail_color/${color1}.webp')`);
+                colorIndicator.style.setProperty('--color2', `url('assets/detail_color/${color2}.webp')`);
                 console.log("Dual color background set:", color1, color2);
             } else {
                 colorIndicator.classList.remove('dual-color');
                 const singleColor = Array.isArray(colorData) ? colorData[0] : colorData;
-                colorIndicator.style.setProperty('--color1', `url('assets/render_colors/${singleColor}.webp')`);
+                colorIndicator.style.setProperty('--color1', `url('assets/detail_color/${singleColor}.webp')`);
                 colorIndicator.style.removeProperty('--color2');
                 console.log("Single color background set:", singleColor);
             }
