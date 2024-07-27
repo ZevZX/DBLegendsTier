@@ -104,25 +104,35 @@ function loadImagesFromJson() {
         .then(response => response.json())
         .then(data => {
             const imagesContainer = document.querySelector('.images');
+            let loadedCount = 0;
+            let missingCardNumbers = [];
             data.forEach(character => {
-                const uniqueId = `${character.id}-${character.name.replace(/\s+/g, '_')}`;
+                const uniqueId = `${character.id}-${character.image_url.split('/').pop().split('.')[0]}`;
                 
                 if (!document.querySelector(`[data-unique-id="${uniqueId}"]`)) {
-                    const img = create_img_with_src(character.image_url, true);  // Set isLazy to true
+                    const img = create_img_with_src(character.image_url, true);
                     let draggable = img.querySelector('.draggable');
                     draggable.dataset.rarity = character.rarity;
                     draggable.dataset.cardNumber = character.id;
+                    if (!character.id) {
+                        missingCardNumbers.push(character.name);
+                    }
                     draggable.dataset.uniqueId = uniqueId;
                     draggable.setAttribute('data-path', character.image_url);
                     draggable.dataset.name = character.name;
+                    // Store color as JSON string, preserving array structure if it exists
                     draggable.dataset.color = JSON.stringify(character.color);
                     draggable.dataset.tags = character.tags.join(',');
                     draggable.dataset.zenkai = character.has_zenkai;
                     imagesContainer.appendChild(img);
+                    loadedCount++;
                 }
             });
 
-            console.log(`Loaded ${data.length} characters`);
+            console.log(`Loaded ${loadedCount} characters`);
+            if (missingCardNumbers.length > 0) {
+                console.warn(`Characters missing card numbers: ${missingCardNumbers.join(', ')}`);
+            }
             
             createFilterButtons();
             sortImages();
@@ -994,36 +1004,24 @@ function applyFilters() {
                 if (filterData.values.length === 0) continue;
                 
                 if (attr === 'color') {
-                    const charColors = JSON.parse(img.dataset.color);
+                    let charColors;
+                    try {
+                        charColors = JSON.parse(img.dataset.color);
+                    } catch (e) {
+                        console.error(`Error parsing color data for ${img.dataset.name}:`, e);
+                        charColors = [];
+                    }
+                    if (!Array.isArray(charColors)) charColors = [charColors];
                     if (!filterData.values.some(v => charColors.includes(v))) {
                         show = false;
                         break;
                     }
                 } else if (attr === 'tags') {
-                    const charTags = img.dataset.tags.split(',');
-                    if (filterData.includeAll) {
-                        if (!filterData.values.every(v => charTags.includes(v))) {
-                            show = false;
-                            break;
-                        }
-                    } else {
-                        if (!filterData.values.some(v => charTags.includes(v))) {
-                            show = false;
-                            break;
-                        }
-                    }
+                    // ... (keep this part as is)
                 } else if (attr === 'episode' || attr === 'type') {
-                    const charTags = img.dataset.tags.split(',');
-                    if (!filterData.values.some(v => charTags.includes(v))) {
-                        show = false;
-                        break;
-                    }
+                    // ... (keep this part as is)
                 } else if (attr === 'zenkai') {
-                    const hasZenkai = img.dataset.zenkai === 'true';
-                    if ((hasZenkai && !filterData.values.includes('Zenkai')) || (!hasZenkai && !filterData.values.includes('Non Zenkai'))) {
-                        show = false;
-                        break;
-                    }
+                    // ... (keep this part as is)
                 } else {
                     if (!filterData.values.includes(img.dataset[attr])) {
                         show = false;
@@ -1121,7 +1119,7 @@ function resetTierlist() {
 }
 
 function exportTierlist() {
-    console.log("Starting export process...");
+    console.log("Starting optimized export process...");
     let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
     if (!fileName) {
         console.log("Export cancelled: No filename provided");
@@ -1130,7 +1128,7 @@ function exportTierlist() {
 
     let serializedTierlist = {
         tiers: [],
-        untieredImages: []
+        tieredUnitIds: new Set()  // To keep track of units already in tiers
     };
 
     console.log("Serializing tiers...");
@@ -1149,37 +1147,19 @@ function exportTierlist() {
         row.querySelectorAll('.items .item').forEach(item => {
             let img = item.querySelector('.draggable');
             let imageData = {
-                src: img.dataset.path,
-                rarity: img.dataset.rarity,
-                cardNumber: img.dataset.cardNumber,
-                name: img.dataset.name,
-                color: img.dataset.color,
-                tags: img.dataset.tags.split(','),
-                zenkai: img.dataset.zenkai === 'true'
+                uniqueId: img.dataset.uniqueId,
+                src: img.dataset.path
             };
             tier.images.push(imageData);
+            serializedTierlist.tieredUnitIds.add(img.dataset.uniqueId);
         });
 
         console.log(`Tier ${index} has ${tier.images.length} images`);
         serializedTierlist.tiers.push(tier);
     });
 
-    console.log("Serializing untiered images...");
-    document.querySelectorAll('.images .item').forEach(item => {
-        let img = item.querySelector('.draggable');
-        let imageData = {
-            src: img.dataset.path,
-            rarity: img.dataset.rarity,
-            cardNumber: img.dataset.cardNumber,
-            name: img.dataset.name,
-            color: img.dataset.color,
-            tags: img.dataset.tags.split(','),
-            zenkai: img.dataset.zenkai === 'true'
-        };
-        serializedTierlist.untieredImages.push(imageData);
-    });
-
-    console.log(`Untiered images: ${serializedTierlist.untieredImages.length}`);
+    // Convert Set to Array before stringifying
+    serializedTierlist.tieredUnitIds = Array.from(serializedTierlist.tieredUnitIds);
 
     console.log("Saving to file...");
     let blob = new Blob([JSON.stringify(serializedTierlist, null, 2)], {type: 'application/json'});
@@ -1189,11 +1169,11 @@ function exportTierlist() {
     a.download = `${fileName}.json`;
     a.click();
 
-    console.log("Export completed");
+    console.log("Optimized export completed");
 }
 
 function importTierlist(file) {
-    console.log("Starting import process...");
+    console.log("Starting optimized import process...");
     let reader = new FileReader();
     reader.onload = function(e) {
         console.log("File read complete. Parsing JSON...");
@@ -1213,59 +1193,61 @@ function importTierlist(file) {
         tierlistContainer.innerHTML = '';
         imagesContainer.innerHTML = '';
 
-        console.log("Recreating tiers...");
-        if (serializedTierlist.tiers && Array.isArray(serializedTierlist.tiers)) {
-            serializedTierlist.tiers.forEach((tier, index) => {
-                console.log(`Creating tier ${index}:`, tier);
-                let row = add_row(index, {
-                    name: tier.name || "",
-                    icon: tier.icon || '',
-                    color: tier.color || '#fc3f32'
-                });
-                
-                if (row) {
-                    console.log(`Row ${index} created successfully`);
-                    if (tier.images && Array.isArray(tier.images)) {
-                        console.log(`Adding ${tier.images.length} images to tier ${index}`);
-                        tier.images.forEach(imgData => {
-                            let img = create_img_with_src(imgData.src, false);  // Non-lazy for tier images
-                            let draggable = img.querySelector('.draggable');
-                            Object.assign(draggable.dataset, imgData);
-                            row.querySelector('.items').appendChild(img);
+        // Load all units from units.json
+        fetch('units.json')
+            .then(response => response.json())
+            .then(allUnits => {
+                console.log("Recreating tiers...");
+                if (serializedTierlist.tiers && Array.isArray(serializedTierlist.tiers)) {
+                    serializedTierlist.tiers.forEach((tier, index) => {
+                        console.log(`Creating tier ${index}:`, tier);
+                        let row = add_row(index, {
+                            name: tier.name || "",
+                            icon: tier.icon || '',
+                            color: tier.color || '#fc3f32'
                         });
-                    } else {
-                        console.warn(`No images or invalid images for tier ${index}`);
-                    }
-                } else {
-                    console.error(`Failed to create row for tier ${index}`);
+                        
+                        if (tier.images && Array.isArray(tier.images)) {
+                            console.log(`Adding ${tier.images.length} images to tier ${index}`);
+                            tier.images.forEach(imgData => {
+                                const unitData = allUnits.find(unit => `${unit.id}-${unit.image_url.split('/').pop().split('.')[0]}` === imgData.uniqueId);
+                                if (unitData) {
+                                    let img = create_img_with_src(unitData.image_url, false);
+                                    let draggable = img.querySelector('.draggable');
+                                    Object.assign(draggable.dataset, unitData);
+                                    draggable.dataset.uniqueId = imgData.uniqueId;
+                                    row.querySelector('.items').appendChild(img);
+                                }
+                            });
+                        }
+                    });
                 }
-            });
-        } else {
-            console.error("Invalid or missing tiers in imported data");
-        }
 
-        console.log("Recreating untiered images...");
-        if (serializedTierlist.untieredImages && Array.isArray(serializedTierlist.untieredImages)) {
-            console.log(`Adding ${serializedTierlist.untieredImages.length} untiered images`);
-            serializedTierlist.untieredImages.forEach(imgData => {
-                let img = create_img_with_src(imgData.src, true);  // Lazy loading for bottom container
-                let draggable = img.querySelector('.draggable');
-                Object.assign(draggable.dataset, imgData);
-                imagesContainer.appendChild(img);
-            });
-        } else {
-            console.error("Invalid or missing untiered images in imported data");
-        }
+                // Add remaining units to the bottom container
+                const tieredUnitIds = new Set(serializedTierlist.tieredUnitIds);
+                allUnits.forEach(unit => {
+                    const uniqueId = `${unit.id}-${unit.image_url.split('/').pop().split('.')[0]}`;
+                    if (!tieredUnitIds.has(uniqueId)) {
+                        let img = create_img_with_src(unit.image_url, true);
+                        let draggable = img.querySelector('.draggable');
+                        Object.assign(draggable.dataset, unit);
+                        draggable.dataset.uniqueId = uniqueId;
+                        imagesContainer.appendChild(img);
+                    }
+                });
 
-        console.log("Adjusting row heights and sorting images...");
-        document.querySelectorAll('.row').forEach(row => {
-            adjustRowHeight(row);
-        });
-        adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
-        sortImages();
-        lazyLoadImages();
+                console.log("Adjusting row heights and sorting images...");
+                document.querySelectorAll('.row').forEach(row => {
+                    adjustRowHeight(row);
+                });
+                adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+                sortImages();
+                lazyLoadImages();
+                updateDetailsDisplay();
 
-        console.log("Import completed");
+                console.log("Import completed");
+            })
+            .catch(error => console.error('Error loading all units:', error));
     };
     reader.onerror = function(error) {
         console.error("Error reading file:", error);
@@ -1728,6 +1710,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (detailsDropdown !== exceptDropdown) detailsDropdown.style.display = 'none';
     }
 
+    document.querySelectorAll('#sort-dropdown input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', sortImages);
+    });
+
+    document.querySelectorAll('.order-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            this.textContent = this.textContent === '▼' ? '▲' : '▼';
+            this.dataset.order = this.textContent === '▼' ? 'desc' : 'asc';
+            sortImages();
+        });
+    });
+
+    const cardNumberOrderToggle = document.getElementById('sort-card-number-order');
+    if (cardNumberOrderToggle) {
+        cardNumberOrderToggle.textContent = '▼';
+        cardNumberOrderToggle.dataset.order = 'desc';
+    }
+
     sortButton.addEventListener('click', function(e) {
         e.stopPropagation();
         const isOpen = sortDropdown.style.display === 'block';
@@ -1889,19 +1889,10 @@ function sortImages() {
         try {
             colors = JSON.parse(colorData);
         } catch (e) {
-            console.error("Error parsing color data:", e);
-            colors = colorData;
+            console.error(`Error parsing color data: ${colorData}`, e);
+            colors = [];
         }
-        
-        if (typeof colors === 'string') {
-            colors = [colors];
-        }
-        
-        if (!Array.isArray(colors)) {
-            console.error("Invalid color data after processing:", colors);
-            return -1;
-        }
-        
+        if (!Array.isArray(colors)) colors = [colors];
         let score = colorOrderArray.indexOf(colors[0]) * 100;
         if (colors.length > 1) {
             score += colorOrderArray.indexOf(colors[1]);
@@ -1930,9 +1921,15 @@ function sortImages() {
             if (comparison !== 0) return comparison;
         }
 
-        // Always sort by Card Number as the final criteria or if no other sort is selected
-        comparison = itemBData.cardNumber.localeCompare(itemAData.cardNumber, undefined, {numeric: true, sensitivity: 'base'});
-        if (sortCardNumber && cardNumberOrder === 'asc') comparison *= -1;
+        // Apply card number sort if it's checked or if no other sort is selected
+        if (sortCardNumber || (!sortColor && !sortRarity)) {
+            if (itemAData.cardNumber && itemBData.cardNumber) {
+                comparison = itemBData.cardNumber.localeCompare(itemAData.cardNumber, undefined, {numeric: true, sensitivity: 'base'});
+                if (cardNumberOrder === 'asc') comparison *= -1;
+            } else {
+                console.warn("Card number missing for some items. Skipping card number sort.");
+            }
+        }
 
         return comparison;
     });
