@@ -37,6 +37,32 @@ let detailsOptions = {
     zenkai: false
 };
 
+function lazyLoadImages() {
+    const imageContainer = document.querySelector('.images');
+    const images = imageContainer.querySelectorAll('.item');
+
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target.querySelector('.draggable');
+                if (img && img.dataset.path) {
+                    const characterImg = img.querySelector('div');
+                    characterImg.style.backgroundImage = `url('${img.dataset.path}')`;
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    });
+
+    images.forEach(image => {
+        imageObserver.observe(image);
+    });
+}
+
 function create_img_with_src(src) {
     let container = document.createElement('div');
     container.style.width = '50px';
@@ -53,7 +79,6 @@ function create_img_with_src(src) {
     let characterImg = document.createElement('div');
     characterImg.style.width = '100%';
     characterImg.style.height = '100%';
-    characterImg.style.backgroundImage = `url('${src}')`;
     characterImg.style.backgroundSize = 'cover';
     characterImg.style.backgroundPosition = 'center';
     characterImg.style.position = 'relative';
@@ -65,6 +90,42 @@ function create_img_with_src(src) {
     item.appendChild(container);
 
     return item;
+}
+
+function loadImagesFromJson() {
+    fetch('units.json')
+        .then(response => response.json())
+        .then(data => {
+            const imagesContainer = document.querySelector('.images');
+            data.forEach(character => {
+                const uniqueId = `${character.id}-${character.name.replace(/\s+/g, '_')}`;
+                
+                if (!document.querySelector(`[data-unique-id="${uniqueId}"]`)) {
+                    const img = create_img_with_src(character.image_url);
+                    let draggable = img.querySelector('.draggable');
+                    draggable.dataset.rarity = character.rarity;
+                    draggable.dataset.cardNumber = character.id;
+                    draggable.dataset.uniqueId = uniqueId;
+                    draggable.setAttribute('data-path', character.image_url);
+                    draggable.dataset.name = character.name;
+                    draggable.dataset.color = JSON.stringify(character.color);
+                    draggable.dataset.tags = character.tags.join(',');
+                    draggable.dataset.zenkai = character.has_zenkai;
+                    imagesContainer.appendChild(img);
+                }
+            });
+
+            console.log(`Loaded ${data.length} characters`);
+            
+            createFilterButtons();
+            sortImages();
+            adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
+            setupSearchFeature();
+            updateDetailsDisplay();
+            lazyLoadImages();
+            saveTierlistState();
+        })
+        .catch(error => console.error('Error loading characters:', error));
 }
 
 function end_drag(evt) {
@@ -986,43 +1047,6 @@ function closeAllPopups() {
     });
 }
 
-function loadImagesFromJson() {
-    fetch('units.json')
-        .then(response => response.json())
-        .then(data => {
-            const imagesContainer = document.querySelector('.images');
-            data.forEach(character => {
-                // Generate a unique identifier for each character
-                const uniqueId = `${character.id}-${character.name.replace(/\s+/g, '_')}`;
-                
-                // Check if the character already exists
-                if (!document.querySelector(`[data-unique-id="${uniqueId}"]`)) {
-                    const img = create_img_with_src(character.image_url);
-                    let draggable = img.querySelector('.draggable');
-                    draggable.dataset.rarity = character.rarity;
-                    draggable.dataset.cardNumber = character.id;
-                    draggable.dataset.uniqueId = uniqueId;
-                    draggable.setAttribute('data-path', character.image_url);
-                    draggable.dataset.name = character.name;
-                    draggable.dataset.color = JSON.stringify(character.color);
-                    draggable.dataset.tags = character.tags.join(',');
-                    draggable.dataset.zenkai = character.has_zenkai;
-                    imagesContainer.appendChild(img);
-                }
-            });
-
-            console.log(`Loaded ${data.length} characters`);
-            
-            createFilterButtons();
-            sortImages();
-            adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
-            setupSearchFeature();
-            updateDetailsDisplay();
-            saveTierlistState();
-        })
-        .catch(error => console.error('Error loading characters:', error));
-}
-
 function setupSearchFeature() {
     const searchInput = document.getElementById('image-search');
     const imagesContainer = document.querySelector('.images');
@@ -1548,8 +1572,16 @@ function resetAllSelectionsAndFilters() {
         option.checked = detailsOptions[option.name];
     });
 
-    // Hide details dropdown
-    // document.getElementById('details-dropdown').style.display = 'none';
+    const cardNumberCheckbox = document.getElementById('sort-card-number');
+    if (cardNumberCheckbox) {
+        cardNumberCheckbox.checked = true;
+    }
+
+    const cardNumberOrderToggle = document.getElementById('sort-card-number-order');
+    if (cardNumberOrderToggle) {
+        cardNumberOrderToggle.textContent = '▼';
+        cardNumberOrderToggle.dataset.order = 'desc';
+    }
 
     // Apply the reset
     applyFilters();
@@ -1706,6 +1738,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateDetailsDisplay();
+    lazyLoadImages();
 });
 
 document.addEventListener('DOMContentLoaded', function() {

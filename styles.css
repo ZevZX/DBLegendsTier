@@ -1,3 +1,70 @@
+/* Header */
+header {
+    background-color: #313233;
+    display: flex;
+    padding-bottom: 5px;
+    color: white;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-items {
+    display: flex;
+    align-items: center;
+}
+
+.header-items a {
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 15px;
+    background-color: #313233;
+    padding: 0px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.header-buttons {
+    display: flex;
+}
+
+.header-buttons a:hover {
+    background-color: #222;
+    border-radius: 3px;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    margin-left: 0px;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.discord-tag {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.discord-tag span {
+    margin-left: 5px;
+}
+
+.social-icons img,
+.discord-tag img,
+.button-icon {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
 /* Main */
 body {
 	background-color: #313233;
@@ -1056,29 +1123,4 @@ span.item {
 	border: 0;
 	padding: 0;
 	display: none;
-}
-
-/* Footer */
-footer {
-    display: flex;
-    padding: 1rem;
-    background-color: #222;
-    color: white;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    height: 50px;
-}
-
-.social-icons {
-    display: flex;
-    margin-right: 20px;
-}
-
-.social-icons a {
-    color: white;
-    margin-left: 15px;
-    font-size: 1.2rem;
 }
