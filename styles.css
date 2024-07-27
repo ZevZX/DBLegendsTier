@@ -907,7 +907,7 @@ span.item {
 
 #reset-filters-button {
     padding: 8px 16px;
-    background-color: #4b63b9;
+    background-color: #808080 !important;
     color: white;
     border: none;
     border-radius: 3px;
@@ -916,6 +916,9 @@ span.item {
     margin-right: 5px;
 }
 
+#reset-filters-button.active {
+    background-color: #4b63b9 !important;
+}
 #reset-filters-button:hover {
     background-color: #5b6eae;
 }

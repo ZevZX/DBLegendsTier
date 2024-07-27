@@ -130,6 +130,7 @@ function loadImagesFromJson() {
             setupSearchFeature();
             updateDetailsDisplay();
             lazyLoadImages();
+            updateResetFiltersButton();
             saveTierlistState();
         })
         .catch(error => console.error('Error loading characters:', error));
@@ -1046,7 +1047,19 @@ function applyFilters() {
     }
     sortImages();
     updateDetailsDisplay();
+    updateResetFiltersButton();
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.filter-button-container input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', updateResetFiltersButton);
+    });
+
+    document.getElementById('image-search').addEventListener('input', updateResetFiltersButton);
+
+    // Initial update
+    updateResetFiltersButton();
+});
 
 function closeAllPopups() {
     document.querySelectorAll('.filter-popup').forEach(popup => {
@@ -1412,6 +1425,22 @@ document.addEventListener('dragend', (evt) => {
     saveTierlistState();
 });
 
+function updateResetFiltersButton() {
+    const resetButton = document.getElementById('reset-filters-button');
+    const hasActiveFilters = document.querySelectorAll('.filter-button-container input[type="checkbox"]:checked').length > 0 ||
+                             document.getElementById('image-search').value.trim() !== '';
+    
+    console.log("Updating reset filters button. Active filters:", hasActiveFilters);
+
+    if (hasActiveFilters) {
+        resetButton.classList.add('active');
+        console.log("Reset button set to active (blue)");
+    } else {
+        resetButton.classList.remove('active');
+        console.log("Reset button set to inactive (grey)");
+    }
+}
+
 function resetFilters() {
     console.log("Resetting filters...");
     
@@ -1448,6 +1477,9 @@ function resetFilters() {
 
     // Apply the reset filters
     applyFilters();
+
+    // Update reset filters button state
+    updateResetFiltersButton();
 
     console.log("Filters reset complete");
 }
@@ -1686,40 +1718,40 @@ function loadTierlistState() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM fully loaded and parsed");
-
     const sortButton = document.getElementById('sort-button');
     const sortDropdown = document.getElementById('sort-dropdown');
+    const toggleDetailsButton = document.getElementById('toggle-details-button');
+    const detailsDropdown = document.getElementById('details-dropdown');
+
+    function closeDropdowns(exceptDropdown) {
+        if (sortDropdown !== exceptDropdown) sortDropdown.style.display = 'none';
+        if (detailsDropdown !== exceptDropdown) detailsDropdown.style.display = 'none';
+    }
 
     sortButton.addEventListener('click', function(e) {
         e.stopPropagation();
-        sortDropdown.style.display = sortDropdown.style.display === 'block' ? 'none' : 'block';
+        const isOpen = sortDropdown.style.display === 'block';
+        closeDropdowns(sortDropdown);
+        sortDropdown.style.display = isOpen ? 'none' : 'block';
     });
 
-    // Handle checkboxes and order toggle buttons
-    document.querySelectorAll('#sort-dropdown input[type="checkbox"], .order-toggle').forEach(element => {
-        element.addEventListener('click', function() {
-            if (this.classList.contains('order-toggle')) {
-                const currentOrder = this.dataset.order;
-                this.dataset.order = currentOrder === 'desc' ? 'asc' : 'desc';
-                this.textContent = currentOrder === 'desc' ? '▲' : '▼';
-            }
-            sortImages();
-        });
+    toggleDetailsButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isOpen = detailsDropdown.style.display === 'block';
+        closeDropdowns(detailsDropdown);
+        detailsDropdown.style.display = isOpen ? 'none' : 'block';
     });
 
-    // Close the dropdown if the user clicks outside of it
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function(event) {
-        if (!sortButton.contains(event.target) && !sortDropdown.contains(event.target)) {
-            sortDropdown.style.display = 'none';
+        if (!sortButton.contains(event.target) && !sortDropdown.contains(event.target) &&
+            !toggleDetailsButton.contains(event.target) && !detailsDropdown.contains(event.target)) {
+            closeDropdowns();
         }
     });
 
     // Load images and apply initial sorting
     loadImagesFromJson();
-
-    const toggleDetailsButton = document.getElementById('toggle-details-button');
-    toggleDetailsButton.addEventListener('click', toggleDetails);
 
     const detailOptions = document.querySelectorAll('.detail-option');
     detailOptions.forEach(option => {
