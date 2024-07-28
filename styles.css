@@ -151,7 +151,14 @@ span.header {
 }
 
 span.header label {
-	cursor: pointer;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 span.header input[type=text] {
@@ -159,6 +166,8 @@ span.header input[type=text] {
 	height: 25px;
 	font-size: 15px;
 	text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header {

@@ -18,11 +18,9 @@ let unsaved_changes = false;
 
 let currentDroppable = null;
 
-// Contains [[header, input, label]]
 let all_headers = [];
 let headers_orig_min_width;
 
-// DOM elems
 let untiered_images;
 let tierlist_div = document.querySelector('.tierlist');
 let dragged_image;
@@ -128,7 +126,6 @@ function loadImagesFromJson() {
                 }
             });
 
-            console.log(`Loaded ${loadedCount} characters`);
             if (missingCardNumbers.length > 0) {
                 console.warn(`Characters missing card numbers: ${missingCardNumbers.join(', ')}`);
             }
@@ -170,18 +167,16 @@ function adjustRowHeight(row) {
     }
 
     if (row.classList.contains('images')) {
-        // Handle the images container differently
         const items = row.querySelectorAll('.item');
         const containerWidth = row.clientWidth;
-        const itemWidth = 50; // Assuming each item is 50px wide
-        const itemHeight = 50; // Assuming each item is 50px tall
+        const itemWidth = 50;
+        const itemHeight = 50;
         const itemsPerRow = Math.floor(containerWidth / itemWidth);
         const rowsNeeded = Math.ceil(items.length / itemsPerRow);
-        const newHeight = Math.max(rowsNeeded * itemHeight, 50); // Minimum height of 50px
+        const newHeight = Math.max(rowsNeeded * itemHeight, 50);
 
         row.style.height = `${newHeight}px`;
     } else {
-        // Handle tier rows
         const header = row.querySelector('.header');
         const items = row.querySelector('.items');
         const rowButtons = row.querySelector('.row-buttons');
@@ -191,25 +186,21 @@ function adjustRowHeight(row) {
             return;
         }
         
-        // Reset heights to auto to get the natural content height
         header.style.height = 'auto';
         items.style.height = 'auto';
         row.style.height = 'auto';
         rowButtons.style.height = 'auto';
         
-        // Calculate the new height
         const headerHeight = header.scrollHeight;
         const itemsHeight = items.scrollHeight;
-        const newHeight = Math.max(headerHeight, itemsHeight, 50); // Minimum height of 50px
+        const newHeight = Math.max(headerHeight, itemsHeight, 50);
         
-        // Set the new height
         row.style.height = `${newHeight}px`;
         header.style.height = `${newHeight}px`;
         items.style.height = `${newHeight}px`;
         rowButtons.style.height = `${newHeight}px`;
     }
 
-    // Update borders for all rows
     updateRowBorders();
 }
 
@@ -226,40 +217,171 @@ function adjustBottomContainerHeight() {
     bottomContainer.style.height = `${newHeight}px`;
 }
 
+function adjustInputFontSize(input) {
+    const headerWidth = input.offsetWidth;
+    const minFontSize = 10;
+    const maxFontSize = 15;
+    let fontSize = maxFontSize;
+
+    input.style.fontSize = `${fontSize}px`;
+
+    while (input.scrollWidth > headerWidth && fontSize > minFontSize) {
+        fontSize--;
+        input.style.fontSize = `${fontSize}px`;
+    }
+
+    if (input.scrollWidth > headerWidth) {
+        input.style.textOverflow = 'ellipsis';
+        input.style.whiteSpace = 'nowrap';
+        input.style.overflow = 'hidden';
+    } else {
+        input.style.textOverflow = '';
+        input.style.whiteSpace = '';
+        input.style.overflow = '';
+    }
+}
+
+function adjustTextSize(element, containerWidth) {
+    const minFontSize = 10;
+    const maxFontSize = 15;
+    let fontSize = maxFontSize;
+
+    element.style.whiteSpace = 'nowrap';
+    element.style.overflow = 'hidden';
+    element.style.textOverflow = 'ellipsis';
+
+    // Start with the maximum font size
+    element.style.fontSize = `${fontSize}px`;
+
+    // If the text fits, we're done
+    if (element.offsetWidth <= containerWidth) {
+        return fontSize;
+    }
+
+    // Binary search for the right font size
+    let low = minFontSize;
+    let high = maxFontSize;
+
+    while (low <= high) {
+        fontSize = Math.floor((low + high) / 2);
+        element.style.fontSize = `${fontSize}px`;
+
+        if (element.offsetWidth > containerWidth) {
+            high = fontSize - 1;
+        } else if (fontSize === minFontSize || (fontSize < maxFontSize && element.offsetWidth <= containerWidth)) {
+            // We've found the smallest font size that fits, or we've hit the minimum
+            break;
+        } else {
+            low = fontSize + 1;
+        }
+    }
+
+    return fontSize;
+}
+
 function adjustHeaderHeight(header) {
     const label = header.querySelector('label');
+    const input = header.querySelector('input[type=text]');
     const icon = header.querySelector('.tier-icon');
     const iconHeight = icon ? icon.offsetHeight : 0;
-    const labelHeight = label.scrollHeight;
-    header.style.height = `${Math.max(50, iconHeight + labelHeight + 10)}px`; // 10px for padding
+    
+    // Adjust label text size
+    const headerWidth = header.offsetWidth - 20; // Subtract some padding
+    const fontSize = adjustTextSize(label, headerWidth);
+    label.style.fontSize = `${fontSize}px`;
+    input.style.fontSize = `${fontSize}px`;
+    
+    const textHeight = Math.max(label.offsetHeight, input.offsetHeight);
+    header.style.height = `${Math.max(50, iconHeight + textHeight + 10)}px`; // 10px for padding
     
     // Call adjustRowHeight for the entire row
     const row = header.closest('.row');
     adjustRowHeight(row);
 }
 
+function adjustLabelSize(label, container) {
+    const containerWidth = container.offsetWidth - 20; // Subtract some padding
+    const minFontSize = 10;
+    const maxFontSize = 15;
+    let fontSize = maxFontSize;
+
+    label.style.whiteSpace = 'nowrap';
+    label.style.overflow = 'hidden';
+    label.style.textOverflow = 'ellipsis';
+
+    // First, try the current font size
+    label.style.fontSize = `${fontSize}px`;
+
+    if (label.offsetWidth <= containerWidth) {
+        // Text fits, try to increase font size
+        while (fontSize < maxFontSize) {
+            fontSize++;
+            label.style.fontSize = `${fontSize}px`;
+            if (label.offsetWidth > containerWidth) {
+                fontSize--;
+                label.style.fontSize = `${fontSize}px`;
+                break;
+            }
+        }
+    } else {
+        // Text doesn't fit, decrease font size
+        while (fontSize > minFontSize && label.offsetWidth > containerWidth) {
+            fontSize--;
+            label.style.fontSize = `${fontSize}px`;
+        }
+    }
+
+    return fontSize;
+}
+
 function enable_edit_on_click(container, input, label) {
-	function change_label(evt) {
-		input.style.display = 'none';
-		label.innerText = input.value;
-		label.style.display = 'inline';
-		unsaved_changes = true;
-	}
-
-	input.addEventListener('change', change_label);
-	input.addEventListener('focusout', change_label);
-
-	container.addEventListener('click', (evt) => {
-		label.style.display = 'none';
-		input.value = label.innerText.substr(0, MAX_NAME_LEN);
-		input.style.display = 'inline';
-		input.select();
-	});
-
-	input.addEventListener('change', () => {
+    function change_label(evt) {
+        input.style.display = 'none';
+        label.innerText = input.value;
+        label.style.display = 'inline';
+        
+        const fontSize = adjustLabelSize(label, container);
+        input.style.fontSize = `${fontSize}px`;
+        
+        console.log("Label changed to:", label.innerText);
+        console.log("Container width:", container.offsetWidth);
+        console.log("Label width after adjustment:", label.offsetWidth);
+        console.log("Final font size:", fontSize);
+        
+        unsaved_changes = true;
         adjustHeaderHeight(container);
+    }
+
+    input.addEventListener('change', change_label);
+    input.addEventListener('focusout', change_label);
+
+    container.addEventListener('click', (evt) => {
+        label.style.display = 'none';
+        input.value = label.innerText.substr(0, MAX_NAME_LEN);
+        input.style.display = 'inline';
+        input.select();
+        
+        const fontSize = adjustLabelSize(input, container);
+        label.style.fontSize = `${fontSize}px`;
+    });
+
+    input.addEventListener('input', () => {
+        const fontSize = adjustLabelSize(input, container);
+        label.style.fontSize = `${fontSize}px`;
     });
 }
+
+function adjustAllLabels() {
+    document.querySelectorAll('.tierlist .row .header').forEach(header => {
+        const label = header.querySelector('label');
+        const headerWidth = header.offsetWidth - 20; // Subtract some padding
+        const fontSize = adjustTextSize(label, headerWidth);
+        label.style.fontSize = `${fontSize}px`;
+        adjustHeaderHeight(header);
+    });
+}
+
+window.addEventListener('resize', adjustAllLabels);
 
 function create_label_input(row, row_idx, row_name) {
     let input = document.createElement('input');
@@ -277,7 +399,6 @@ function create_label_input(row, row_idx, row_name) {
 
     enable_edit_on_click(header, input, label);
 
-    // Adjust the header height based on the label content
     adjustHeaderHeight(header);
 }
 
@@ -317,7 +438,6 @@ function createPlaceholder() {
     ph.style.opacity = '0.6';
     ph.style.pointerEvents = 'none';
     
-    // Create a new image element instead of cloning
     const imgContainer = document.createElement('div');
     imgContainer.style.width = '100%';
     imgContainer.style.height = '100%';
@@ -351,12 +471,10 @@ function updateDragPosition(e, container) {
         placeholder = createPlaceholder();
     }
 
-    // Remove placeholder from its current position
     if (placeholder.parentNode) {
         placeholder.parentNode.removeChild(placeholder);
     }
 
-    // Insert the placeholder
     if (insertBefore && container.contains(insertBefore)) {
         container.insertBefore(placeholder, insertBefore);
     } else {
@@ -462,10 +580,8 @@ function add_row(index, tierData) {
     const header = row.querySelector('.header');
     const items = row.querySelector('.items');
 
-    // Set background color
     header.style.backgroundColor = tierData.color || '#fc3f32';
 
-    // Create icon element only if there's an icon
     if (tierData.icon && tierData.icon !== '') {
         let icon = document.createElement('img');
         icon.classList.add('tier-icon');
@@ -477,7 +593,6 @@ function add_row(index, tierData) {
         header.dataset.hasIcon = 'false';
     }
 
-    // Add event listeners
     row.querySelector('.gear-button').addEventListener('click', () => changeTierAttributes(row));
     row.querySelector('.shift-up').addEventListener('click', () => shiftRowUp(row));
     row.querySelector('.shift-down').addEventListener('click', () => shiftRowDown(row));
@@ -538,15 +653,12 @@ function showTierAttributesPopup(row) {
     let popup = document.createElement('div');
     popup.classList.add('tier-attributes-popup');
 
-    // Check if the tier has no icon
     const hasNoIcon = header.dataset.hasIcon === 'false';
 
-    // Combine default tier colors and additional colors
     const defaultColors = DEFAULT_TIERS.map(tier => tier.color);
     const additionalColors = ['#ff7f7e', '#ffbf7f', '#ffdf80', '#feff7f', '#beff7f', '#7eff80'];
     const allColors = [...new Set([...defaultColors, ...additionalColors])];
 
-    // Get the current background color
     const currentColor = rgbToHex(header.style.backgroundColor);
 
     let content = `
@@ -614,7 +726,6 @@ function showTierAttributesPopup(row) {
     popup.innerHTML = content;
     document.body.appendChild(popup);
 
-    // Close popup when clicking the close button
     popup.querySelector('.close-popup').addEventListener('click', () => {
         document.body.removeChild(popup);
     });
@@ -626,14 +737,12 @@ function showTierAttributesPopup(row) {
         }
     });
 
-    // Color picker functionality
     const colorWheel = popup.querySelector('.color-wheel');
     const colorSlider = popup.querySelector('.color-slider');
     const colorSliderThumb = popup.querySelector('.color-slider-thumb');
     const hexInput = document.getElementById('hex-input');
     const colorPreview = popup.querySelector('.color-preview');
 
-    // Initialize color values from the current background color
     let [hue, saturation, lightness] = hexToHSL(currentColor);
 
     function updateColor(updateHeader = false) {
@@ -710,7 +819,6 @@ function showTierAttributesPopup(row) {
         }
     });
 
-    // Color palette selection
     document.querySelectorAll('.color-option').forEach(option => {
         option.addEventListener('click', () => {
             const color = option.dataset.color;
@@ -720,10 +828,8 @@ function showTierAttributesPopup(row) {
         });
     });
 
-    // Initial color update
     updateColor();
 
-    // Icon selection
     document.querySelectorAll('.tier-icon-option').forEach(option => {
         option.addEventListener('click', () => {
             document.querySelectorAll('.tier-icon-option').forEach(opt => opt.classList.remove('selected'));
@@ -731,7 +837,6 @@ function showTierAttributesPopup(row) {
             
             let newIcon = option.dataset.icon;
             
-            // Remove existing icon if there is one
             let existingIcon = header.querySelector('.tier-icon');
             if (existingIcon) {
                 existingIcon.remove();
@@ -857,10 +962,8 @@ function createFilterButtons() {
                 return;
             }
 
-            // Clear existing filter buttons
             filterContainer.innerHTML = '';
             
-            // Create reset filters button
             const resetFiltersButton = document.createElement('button');
             resetFiltersButton.id = 'reset-filters-button';
             resetFiltersButton.textContent = 'Reset Filters';
@@ -945,7 +1048,7 @@ function createFilterButtons() {
                     closeAllPopups();
                     if (!isCurrentPopupOpen) {
                         popup.style.display = 'block';
-                        popup.style.width = popup.dataset.width; // Use the stored width
+                        popup.style.width = popup.dataset.width;
                     }
                 });
                 
@@ -958,8 +1061,6 @@ function createFilterButtons() {
             });
 
             document.addEventListener('click', closeAllPopups);
-
-            console.log("Filter buttons created");
         })
         .catch(error => console.error('Error loading filter options:', error));
 }
@@ -973,7 +1074,6 @@ function getTextWidth(text) {
 }
 
 function applyFilters() {
-    console.log("Applying filters...");
     const filters = {};
     document.querySelectorAll('.filter-button-container').forEach(container => {
         const button = container.querySelector('.filter-button');
@@ -985,18 +1085,14 @@ function applyFilters() {
         };
     });
     
-    console.log("Filters:", filters);
-
     const searchTerm = document.getElementById('image-search').value.toLowerCase();
     const items = document.querySelectorAll('.images .item');
-    console.log("Total items:", items.length);
 
     let visibleCount = 0;
     items.forEach(item => {
         const img = item.querySelector('.draggable');
         let show = true;
         
-        // Apply search filter
         if (searchTerm) {
             const name = img.dataset.name.toLowerCase();
             if (!name.includes(searchTerm)) {
@@ -1048,7 +1144,6 @@ function applyFilters() {
                         show = false;
                         break;
                     }
-                    console.log("Applying zenkai filter:", filterData.values, "Character zenkai:", img.dataset.zenkai);
                 } else {
                     if (!filterData.values.includes(img.dataset[attr])) {
                         show = false;
@@ -1061,8 +1156,6 @@ function applyFilters() {
         item.style.display = show ? '' : 'none';
         if (show) visibleCount++;
     });
-
-    console.log("Visible items after filtering:", visibleCount);
     
     const imagesContainer = document.querySelector('.images');
     if (imagesContainer) {
@@ -1082,7 +1175,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('image-search').addEventListener('input', updateResetFiltersButton);
 
-    // Initial update
     updateResetFiltersButton();
 });
 
@@ -1105,36 +1197,24 @@ function setupSearchFeature() {
 }
 
 function resetTierlist() {
-    console.log("Reset function called");
     if (confirm("Are you sure you want to reset the tierlist? This action cannot be undone.")) {
-        console.log("Reset confirmed");
-        // Clear local storage
         localStorage.removeItem('tierlistState');
 
-        // Clear existing tierlist
         document.querySelector('.tierlist').innerHTML = '';
         document.querySelector('.images').innerHTML = '';
 
-        // Add default tiers
         for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
             add_row(i, DEFAULT_TIERS[i]);
         }
 
-        // Load images from JSON
         loadImagesFromJson();
-
-        // Reset filters and selections
         resetAllSelectionsAndFilters();
-
-        // Recreate filter buttons
         createFilterButtons();
 
-        // Adjust row heights and update details
         document.querySelectorAll('.row').forEach(row => adjustRowHeight(row));
         adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
         updateDetailsDisplay();
 
-        console.log("Tierlist has been reset");
     } else {
         console.log("Reset cancelled");
     }
@@ -1146,7 +1226,6 @@ function resetTierlist() {
 }
 
 function exportTierlist() {
-    console.log("Starting optimized export process...");
     let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
     if (!fileName) {
         console.log("Export cancelled: No filename provided");
@@ -1158,7 +1237,6 @@ function exportTierlist() {
         tieredUnitIds: new Set()  // To keep track of units already in tiers
     };
 
-    console.log("Serializing tiers...");
     document.querySelectorAll('.row').forEach((row, index) => {
         let headerElement = row.querySelector('.header');
         let iconElement = headerElement.querySelector('.tier-icon');
@@ -1168,8 +1246,6 @@ function exportTierlist() {
             icon: iconElement ? iconElement.src : '',
             images: []
         };
-
-        console.log(`Serializing tier ${index}:`, tier);
 
         row.querySelectorAll('.items .item').forEach(item => {
             let img = item.querySelector('.draggable');
@@ -1181,53 +1257,41 @@ function exportTierlist() {
             serializedTierlist.tieredUnitIds.add(img.dataset.uniqueId);
         });
 
-        console.log(`Tier ${index} has ${tier.images.length} images`);
         serializedTierlist.tiers.push(tier);
     });
 
-    // Convert Set to Array before stringifying
     serializedTierlist.tieredUnitIds = Array.from(serializedTierlist.tieredUnitIds);
 
-    console.log("Saving to file...");
     let blob = new Blob([JSON.stringify(serializedTierlist, null, 2)], {type: 'application/json'});
     let url = URL.createObjectURL(blob);
     let a = document.createElement('a');
     a.href = url;
     a.download = `${fileName}.json`;
     a.click();
-
-    console.log("Optimized export completed");
 }
 
 function importTierlist(file) {
-    console.log("Starting optimized import process...");
     let reader = new FileReader();
     reader.onload = function(e) {
-        console.log("File read complete. Parsing JSON...");
         let serializedTierlist;
         try {
             serializedTierlist = JSON.parse(e.target.result);
-            console.log("JSON parsed successfully:", serializedTierlist);
         } catch (error) {
             console.error("Error parsing JSON:", error);
             alert("Error importing file. Please make sure it's a valid JSON file.");
             return;
         }
 
-        console.log("Clearing current tierlist...");
         const tierlistContainer = document.querySelector('.tierlist');
         const imagesContainer = document.querySelector('.images');
         tierlistContainer.innerHTML = '';
         imagesContainer.innerHTML = '';
 
-        // Load all units from units.json
         fetch('./data/units.json')
             .then(response => response.json())
             .then(allUnits => {
-                console.log("Recreating tiers...");
                 if (serializedTierlist.tiers && Array.isArray(serializedTierlist.tiers)) {
                     serializedTierlist.tiers.forEach((tier, index) => {
-                        console.log(`Creating tier ${index}:`, tier);
                         let row = add_row(index, {
                             name: tier.name || "",
                             icon: tier.icon || '',
@@ -1235,7 +1299,6 @@ function importTierlist(file) {
                         });
                         
                         if (tier.images && Array.isArray(tier.images)) {
-                            console.log(`Adding ${tier.images.length} images to tier ${index}`);
                             tier.images.forEach(imgData => {
                                 const unitData = allUnits.find(unit => `${unit.id}-${unit.image_url.split('/').pop().split('.')[0]}` === imgData.uniqueId);
                                 if (unitData) {
@@ -1244,21 +1307,18 @@ function importTierlist(file) {
                                     Object.assign(draggable.dataset, unitData);
                                     draggable.dataset.uniqueId = imgData.uniqueId;
                                     
-                                    // Ensure color data is in correct JSON format
                                     if (typeof unitData.color === 'string') {
                                         draggable.dataset.color = JSON.stringify(unitData.color);
                                     } else {
                                         draggable.dataset.color = JSON.stringify(unitData.color || []);
                                     }
                                     
-                                    // Ensure card number is assigned if available
                                     if (unitData.id) {
                                         draggable.dataset.cardNumber = unitData.id;
                                     } else {
                                         console.warn(`Card number missing for ${unitData.name}`);
                                     }
                                     
-                                    // Set zenkai data
                                     draggable.dataset.zenkai = unitData.has_zenkai.toString();
                                     
                                     row.querySelector('.items').appendChild(img);
@@ -1278,28 +1338,24 @@ function importTierlist(file) {
                         Object.assign(draggable.dataset, unit);
                         draggable.dataset.uniqueId = uniqueId;
                         
-                        // Ensure color data is in correct JSON format
                         if (typeof unit.color === 'string') {
                             draggable.dataset.color = JSON.stringify(unit.color);
                         } else {
                             draggable.dataset.color = JSON.stringify(unit.color || []);
                         }
                         
-                        // Ensure card number is assigned if available
                         if (unit.id) {
                             draggable.dataset.cardNumber = unit.id;
                         } else {
                             console.warn(`Card number missing for ${unit.name}`);
                         }
                         
-                        // Set zenkai data
                         draggable.dataset.zenkai = unit.has_zenkai.toString();
                         
                         imagesContainer.appendChild(img);
                     }
                 });
 
-                console.log("Adjusting row heights and sorting images...");
                 document.querySelectorAll('.row').forEach(row => {
                     adjustRowHeight(row);
                 });
@@ -1307,8 +1363,6 @@ function importTierlist(file) {
                 sortImages();
                 lazyLoadImages();
                 updateDetailsDisplay();
-
-                console.log("Import completed");
             })
             .catch(error => console.error('Error loading all units:', error));
     };
@@ -1316,7 +1370,6 @@ function importTierlist(file) {
         console.error("Error reading file:", error);
         alert("Error reading the file. Please try again.");
     };
-    console.log("Starting to read file...");
     reader.readAsText(file);
 }
 
@@ -1327,7 +1380,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const { loaded, hasCharacters } = loadTierlistState();
 
     if (!loaded) {
-        // Only add default tiers if no state was loaded
         for (let i = 0; i < DEFAULT_TIERS.length; ++i) {
             add_row(i, DEFAULT_TIERS[i]);
         }
@@ -1352,10 +1404,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const resetButton = document.getElementById('reset-tierlist-button');
-    console.log("Reset button:", resetButton);
     if (resetButton) {
         resetButton.addEventListener('click', function() {
-            console.log("Reset button clicked");
             resetTierlist();
         });
     } else {
@@ -1399,7 +1449,6 @@ document.addEventListener('DOMContentLoaded', function() {
         observeItemChanges(row);
     });
 
-    // Adjust the untiered images container
     adjustRowHeight(document.querySelector('.images').closest('.row') || document.querySelector('.images'));
 
     sortImages();
@@ -1422,7 +1471,6 @@ document.addEventListener('dragstart', (evt) => {
         evt.dataTransfer.setData('text/plain', '');
         evt.dataTransfer.effectAllowed = 'move';
         
-        // Store the original position
         draggedItem.originalParent = draggedItem.parentNode;
         draggedItem.originalNextSibling = draggedItem.nextElementSibling;
         
@@ -1443,12 +1491,10 @@ document.addEventListener('dragend', (evt) => {
         draggedItem.classList.remove('dragged');
         draggedItem.style.display = '';
         
-        // Remove the placeholder
         if (placeholder && placeholder.parentNode) {
             placeholder.parentNode.removeChild(placeholder);
         }
         
-        // Adjust the height of affected containers
         const affectedContainers = [
             draggedItem.closest('.row'),
             draggedItem.originalParent.closest('.row'),
@@ -1459,7 +1505,6 @@ document.addEventListener('dragend', (evt) => {
             if (container) adjustRowHeight(container);
         });
         
-        // Clear the stored original position
         delete draggedItem.originalParent;
         delete draggedItem.originalNextSibling;
     }
@@ -1474,35 +1519,24 @@ function updateResetFiltersButton() {
     const resetButton = document.getElementById('reset-filters-button');
     const hasActiveFilters = document.querySelectorAll('.filter-button-container input[type="checkbox"]:checked').length > 0 ||
                              document.getElementById('image-search').value.trim() !== '';
-    
-    console.log("Updating reset filters button. Active filters:", hasActiveFilters);
-
     if (hasActiveFilters) {
         resetButton.classList.add('active');
-        console.log("Reset button set to active (blue)");
     } else {
         resetButton.classList.remove('active');
-        console.log("Reset button set to inactive (grey)");
     }
 }
 
 function resetFilters() {
-    console.log("Resetting filters...");
-    
-    // Reset all checkboxes
     document.querySelectorAll('.filter-button-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
-    // Reset search input
     document.getElementById('image-search').value = '';
 
-    // Reset sort options
     document.querySelectorAll('#sort-dropdown input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
-    // Set card number sorting to checked and descending
     const cardNumberCheckbox = document.getElementById('sort-card-number');
     if (cardNumberCheckbox) {
         cardNumberCheckbox.checked = true;
@@ -1514,22 +1548,15 @@ function resetFilters() {
         cardNumberOrderToggle.dataset.order = 'desc';
     }
 
-    // Reset other sort order buttons
     document.querySelectorAll('.order-toggle:not(#sort-card-number-order)').forEach(button => {
         button.textContent = '▼';
         button.dataset.order = 'desc';
     });
 
-    // Apply the reset filters
     applyFilters();
-
-    // Update reset filters button state
     updateResetFiltersButton();
-
-    console.log("Filters reset complete");
 }
 
-// Ensure this is called when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     createFilterButtons();
 });
@@ -1538,7 +1565,6 @@ function toggleDetails() {
     const detailsDropdown = document.getElementById('details-dropdown');
     detailsDropdown.style.display = detailsDropdown.style.display === 'block' ? 'none' : 'block';
     
-    // Update detailsOptions based on current checkbox states
     document.querySelectorAll('.detail-option').forEach(option => {
         detailsOptions[option.name] = option.checked;
     });
@@ -1574,7 +1600,6 @@ function updateDetailsDisplay() {
                 console.error(`Error parsing color data for ${item.dataset.name}:`, error);
                 colorData = [];
             }
-            console.log("Color data for", item.dataset.name, ":", colorData);
 
             if (Array.isArray(colorData) && colorData.length === 2) {
                 colorIndicator.classList.add('dual-color');
@@ -1582,13 +1607,11 @@ function updateDetailsDisplay() {
                 const color2 = colorData[1];
                 colorIndicator.style.setProperty('--color1', `url('assets/detail_color/${color1}.webp')`);
                 colorIndicator.style.setProperty('--color2', `url('assets/detail_color/${color2}.webp')`);
-                console.log("Dual color background set:", color1, color2);
             } else {
                 colorIndicator.classList.remove('dual-color');
                 const singleColor = Array.isArray(colorData) ? colorData[0] : colorData;
                 colorIndicator.style.setProperty('--color1', `url('assets/detail_color/${singleColor}.webp')`);
                 colorIndicator.style.removeProperty('--color2');
-                console.log("Single color background set:", singleColor);
             }
         } else if (colorIndicator) {
             colorIndicator.remove();
@@ -1620,8 +1643,6 @@ function updateDetailsDisplay() {
         } else if (zenkaiIndicator) {
             zenkaiIndicator.remove();
         }
-
-        console.log("Zenkai data:", item.dataset.zenkai);
     });
 }
 
@@ -1632,20 +1653,16 @@ function handleDetailOptionChange(event) {
 }
 
 function resetAllSelectionsAndFilters() {
-    // Reset search input
     document.getElementById('image-search').value = '';
 
-    // Reset filter options
     document.querySelectorAll('.filter-button-container input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
-    // Reset sort options
     document.querySelectorAll('#sort-dropdown input[type="checkbox"]').forEach(checkbox => {
         checkbox.checked = false;
     });
 
-    // Reset sort order buttons
     document.querySelectorAll('.order-toggle').forEach(button => {
         button.textContent = '▼';
         button.dataset.order = 'desc';
@@ -1666,7 +1683,6 @@ function resetAllSelectionsAndFilters() {
         cardNumberOrderToggle.dataset.order = 'desc';
     }
 
-    // Apply the reset
     applyFilters();
     updateDetailsDisplay();
 }
@@ -1718,7 +1734,6 @@ function loadTierlistState() {
     if (savedState) {
         const tierlistState = JSON.parse(savedState);
         
-        // Clear existing tierlist
         document.querySelector('.tierlist').innerHTML = '';
         document.querySelector('.images').innerHTML = '';
 
@@ -1742,18 +1757,15 @@ function loadTierlistState() {
             untieredContainer.appendChild(img);
         });
 
-        // Reinitialize drag and drop functionality
         make_accept_drop(untieredContainer);
         document.querySelectorAll('.row').forEach(row => {
             make_accept_drop(row);
         });
 
-        // Adjust row heights and update details
         document.querySelectorAll('.row').forEach(row => adjustRowHeight(row));
         adjustRowHeight(untieredContainer.closest('.row') || untieredContainer);
         updateDetailsDisplay();
 
-        // Load and apply details options
         if (tierlistState.detailsOptions) {
             Object.assign(detailsOptions, tierlistState.detailsOptions);
             document.querySelectorAll('.detail-option').forEach(option => {
@@ -1761,11 +1773,9 @@ function loadTierlistState() {
             });
         }
 
-        // Always update details display, regardless of whether options were saved
         updateDetailsDisplay();
-
-        // Apply lazy loading
         lazyLoadImages();
+        adjustAllLabels();
 
         return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
     }
@@ -1815,7 +1825,6 @@ document.addEventListener('DOMContentLoaded', function() {
         detailsDropdown.style.display = isOpen ? 'none' : 'block';
     });
 
-    // Close dropdowns when clicking outside
     document.addEventListener('click', function(event) {
         if (!sortButton.contains(event.target) && !sortDropdown.contains(event.target) &&
             !toggleDetailsButton.contains(event.target) && !detailsDropdown.contains(event.target)) {
@@ -1823,7 +1832,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Load images and apply initial sorting
     loadImagesFromJson();
 
     const detailOptions = document.querySelectorAll('.detail-option');
@@ -1854,13 +1862,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const exportButton = document.getElementById('export-button');
 
     if (dropZone) {
-        // Prevent default drag behaviors
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             dropZone.addEventListener(eventName, preventDefaults, false);
             document.body.addEventListener(eventName, preventDefaults, false);
         });
 
-        // Highlight drop zone when item is dragged over it
         ['dragenter', 'dragover'].forEach(eventName => {
             dropZone.addEventListener(eventName, highlight, false);
         });
@@ -1869,7 +1875,6 @@ document.addEventListener('DOMContentLoaded', function() {
             dropZone.addEventListener(eventName, unhighlight, false);
         });
 
-        // Handle dropped files
         dropZone.addEventListener('drop', handleDrop, false);
     } else {
         console.warn("Import drop zone not found in the DOM");
@@ -1941,8 +1946,6 @@ function closeAllEditTierPopups() {
 }
 
 function sortImages() {
-    console.log("Sorting images...");
-    
     const imagesContainer = document.querySelector('.images');
     const items = Array.from(imagesContainer.querySelectorAll('.item'));
 
@@ -2012,8 +2015,6 @@ function sortImages() {
     adjustRowHeight(imagesContainer.closest('.row') || imagesContainer);
 
     updateDetailsDisplay();
-
-    console.log("Sorting complete");
 }
 
 document.getElementById('export-button').addEventListener('click', exportTierlist);
@@ -2026,11 +2027,9 @@ document.getElementById('import-input').addEventListener('change', function(even
     const file = event.target.files[0];
     if (file) {
         importTierlist(file);
-        // Update the file name display
         document.getElementById('file-name').textContent = file.name;
         document.getElementById('file-name-container').style.display = 'block';
     }
 });
 
-// Initially hide the file name container
 document.getElementById('file-name-container').style.display = 'none';
