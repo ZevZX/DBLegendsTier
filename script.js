@@ -217,171 +217,39 @@ function adjustBottomContainerHeight() {
     bottomContainer.style.height = `${newHeight}px`;
 }
 
-function adjustInputFontSize(input) {
-    const headerWidth = input.offsetWidth;
-    const minFontSize = 10;
-    const maxFontSize = 15;
-    let fontSize = maxFontSize;
-
-    input.style.fontSize = `${fontSize}px`;
-
-    while (input.scrollWidth > headerWidth && fontSize > minFontSize) {
-        fontSize--;
-        input.style.fontSize = `${fontSize}px`;
-    }
-
-    if (input.scrollWidth > headerWidth) {
-        input.style.textOverflow = 'ellipsis';
-        input.style.whiteSpace = 'nowrap';
-        input.style.overflow = 'hidden';
-    } else {
-        input.style.textOverflow = '';
-        input.style.whiteSpace = '';
-        input.style.overflow = '';
-    }
-}
-
-function adjustTextSize(element, containerWidth) {
-    const minFontSize = 10;
-    const maxFontSize = 15;
-    let fontSize = maxFontSize;
-
-    element.style.whiteSpace = 'nowrap';
-    element.style.overflow = 'hidden';
-    element.style.textOverflow = 'ellipsis';
-
-    // Start with the maximum font size
-    element.style.fontSize = `${fontSize}px`;
-
-    // If the text fits, we're done
-    if (element.offsetWidth <= containerWidth) {
-        return fontSize;
-    }
-
-    // Binary search for the right font size
-    let low = minFontSize;
-    let high = maxFontSize;
-
-    while (low <= high) {
-        fontSize = Math.floor((low + high) / 2);
-        element.style.fontSize = `${fontSize}px`;
-
-        if (element.offsetWidth > containerWidth) {
-            high = fontSize - 1;
-        } else if (fontSize === minFontSize || (fontSize < maxFontSize && element.offsetWidth <= containerWidth)) {
-            // We've found the smallest font size that fits, or we've hit the minimum
-            break;
-        } else {
-            low = fontSize + 1;
-        }
-    }
-
-    return fontSize;
-}
-
 function adjustHeaderHeight(header) {
     const label = header.querySelector('label');
-    const input = header.querySelector('input[type=text]');
     const icon = header.querySelector('.tier-icon');
     const iconHeight = icon ? icon.offsetHeight : 0;
+    const labelHeight = label.scrollHeight;
+    header.style.height = `${Math.max(50, iconHeight + labelHeight + 10)}px`;
     
-    // Adjust label text size
-    const headerWidth = header.offsetWidth - 20; // Subtract some padding
-    const fontSize = adjustTextSize(label, headerWidth);
-    label.style.fontSize = `${fontSize}px`;
-    input.style.fontSize = `${fontSize}px`;
-    
-    const textHeight = Math.max(label.offsetHeight, input.offsetHeight);
-    header.style.height = `${Math.max(50, iconHeight + textHeight + 10)}px`; // 10px for padding
-    
-    // Call adjustRowHeight for the entire row
     const row = header.closest('.row');
     adjustRowHeight(row);
 }
 
-function adjustLabelSize(label, container) {
-    const containerWidth = container.offsetWidth - 20; // Subtract some padding
-    const minFontSize = 10;
-    const maxFontSize = 15;
-    let fontSize = maxFontSize;
-
-    label.style.whiteSpace = 'nowrap';
-    label.style.overflow = 'hidden';
-    label.style.textOverflow = 'ellipsis';
-
-    // First, try the current font size
-    label.style.fontSize = `${fontSize}px`;
-
-    if (label.offsetWidth <= containerWidth) {
-        // Text fits, try to increase font size
-        while (fontSize < maxFontSize) {
-            fontSize++;
-            label.style.fontSize = `${fontSize}px`;
-            if (label.offsetWidth > containerWidth) {
-                fontSize--;
-                label.style.fontSize = `${fontSize}px`;
-                break;
-            }
-        }
-    } else {
-        // Text doesn't fit, decrease font size
-        while (fontSize > minFontSize && label.offsetWidth > containerWidth) {
-            fontSize--;
-            label.style.fontSize = `${fontSize}px`;
-        }
-    }
-
-    return fontSize;
-}
-
 function enable_edit_on_click(container, input, label) {
-    function change_label(evt) {
-        input.style.display = 'none';
-        label.innerText = input.value;
-        label.style.display = 'inline';
-        
-        const fontSize = adjustLabelSize(label, container);
-        input.style.fontSize = `${fontSize}px`;
-        
-        console.log("Label changed to:", label.innerText);
-        console.log("Container width:", container.offsetWidth);
-        console.log("Label width after adjustment:", label.offsetWidth);
-        console.log("Final font size:", fontSize);
-        
-        unsaved_changes = true;
+	function change_label(evt) {
+		input.style.display = 'none';
+		label.innerText = input.value;
+		label.style.display = 'inline';
+		unsaved_changes = true;
+	}
+
+	input.addEventListener('change', change_label);
+	input.addEventListener('focusout', change_label);
+
+	container.addEventListener('click', (evt) => {
+		label.style.display = 'none';
+		input.value = label.innerText.substr(0, MAX_NAME_LEN);
+		input.style.display = 'inline';
+		input.select();
+	});
+
+    input.addEventListener('change', () => {
         adjustHeaderHeight(container);
-    }
-
-    input.addEventListener('change', change_label);
-    input.addEventListener('focusout', change_label);
-
-    container.addEventListener('click', (evt) => {
-        label.style.display = 'none';
-        input.value = label.innerText.substr(0, MAX_NAME_LEN);
-        input.style.display = 'inline';
-        input.select();
-        
-        const fontSize = adjustLabelSize(input, container);
-        label.style.fontSize = `${fontSize}px`;
-    });
-
-    input.addEventListener('input', () => {
-        const fontSize = adjustLabelSize(input, container);
-        label.style.fontSize = `${fontSize}px`;
     });
 }
-
-function adjustAllLabels() {
-    document.querySelectorAll('.tierlist .row .header').forEach(header => {
-        const label = header.querySelector('label');
-        const headerWidth = header.offsetWidth - 20; // Subtract some padding
-        const fontSize = adjustTextSize(label, headerWidth);
-        label.style.fontSize = `${fontSize}px`;
-        adjustHeaderHeight(header);
-    });
-}
-
-window.addEventListener('resize', adjustAllLabels);
 
 function create_label_input(row, row_idx, row_name) {
     let input = document.createElement('input');
@@ -1775,7 +1643,6 @@ function loadTierlistState() {
 
         updateDetailsDisplay();
         lazyLoadImages();
-        adjustAllLabels();
 
         return { loaded: true, hasCharacters: tierlistState.tiers.some(tier => tier.images.length > 0) || tierlistState.untieredImages.length > 0 };
     }

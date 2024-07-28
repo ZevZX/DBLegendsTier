@@ -146,7 +146,6 @@ span.header {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 5px;
 	box-sizing: border-box;
 }
 
@@ -154,16 +153,13 @@ span.header label {
     display: block;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 5px;
-    white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;
     min-width: 0;
+    font-size: 15px;
 }
 
 span.header input[type=text] {
 	display: none;
-	height: 25px;
 	font-size: 15px;
 	text-align: center;
     width: 100%;
@@ -212,8 +208,8 @@ span.header input[type=text] {
 }
 
 .tier-icon {
-	width: 40px;
-	height: 40px;
+	width: auto;
+	height: 32px;
     max-width: 100%;
 	max-height: 50px;
 }
@@ -943,23 +939,14 @@ span.item {
     cursor: pointer;
 }
 
-#reset-filters-button {
-    padding: 8px 16px;
-    background-color: #808080 !important;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 5px;
-}
-
 #reset-filters-button.active {
     background-color: #4b63b9 !important;
 }
+
 #reset-filters-button:hover {
     background-color: #5b6eae;
 }
+
 
 #reset-tierlist-button:hover {
     background-color: #c9302c;
@@ -978,7 +965,6 @@ span.item {
 .import-export-container {
     display: flex;
     align-items: center;
-    margin-top: 5px;
 }
 
 #image-search {
@@ -1013,6 +999,22 @@ span.item {
     margin-right: 5px;
 }
 
+#reset-filters-button {
+    padding: 8px 16px;
+    background-color: #808080 !important;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    margin-left: 0px !important;
+}
+
+#filter-container .filter-button-container:last-child .filter-button {
+    margin-right: 0;
+}
+
 #export-button {
     margin-right: 0;
 }
@@ -1020,6 +1022,7 @@ span.item {
 #reset-tierlist-button {
     background-color: #d9534f;
     transition: background-color 0.3s;
+    margin-left: 0px;
 }
 
 #filter-container button:hover,
@@ -1078,7 +1081,6 @@ span.item {
     align-items: center;
     justify-content: center;
     margin-left: 5px;
-    margin-top: 5px;
 }
 
 #toggle-details-button:hover {
