@@ -1093,51 +1093,6 @@ function resetTierlist() {
     if (fileNameContainer) fileNameContainer.style.display = 'none';
 }
 
-function exportTierlist() {
-    let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
-    if (!fileName) {
-        console.log("Export cancelled: No filename provided");
-        return;
-    }
-
-    let serializedTierlist = {
-        tiers: [],
-        tieredUnitIds: new Set()  // To keep track of units already in tiers
-    };
-
-    document.querySelectorAll('.row').forEach((row, index) => {
-        let headerElement = row.querySelector('.header');
-        let iconElement = headerElement.querySelector('.tier-icon');
-        let tier = {
-            name: headerElement.querySelector('label').innerText,
-            color: headerElement.style.backgroundColor,
-            icon: iconElement ? iconElement.src : '',
-            images: []
-        };
-
-        row.querySelectorAll('.items .item').forEach(item => {
-            let img = item.querySelector('.draggable');
-            let imageData = {
-                uniqueId: img.dataset.uniqueId,
-                src: img.dataset.path
-            };
-            tier.images.push(imageData);
-            serializedTierlist.tieredUnitIds.add(img.dataset.uniqueId);
-        });
-
-        serializedTierlist.tiers.push(tier);
-    });
-
-    serializedTierlist.tieredUnitIds = Array.from(serializedTierlist.tieredUnitIds);
-
-    let blob = new Blob([JSON.stringify(serializedTierlist, null, 2)], {type: 'application/json'});
-    let url = URL.createObjectURL(blob);
-    let a = document.createElement('a');
-    a.href = url;
-    a.download = `${fileName}.json`;
-    a.click();
-}
-
 function importTierlist(file) {
     let reader = new FileReader();
     reader.onload = function(e) {
@@ -1759,12 +1714,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn("Import button or file input not found in the DOM");
     }
 
-    if (exportButton) {
-        exportButton.addEventListener('click', exportTierlist);
-    } else {
-        console.warn("Export button not found in the DOM");
-    }
-
     function preventDefaults(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -1804,6 +1753,181 @@ document.addEventListener('DOMContentLoaded', function() {
         fileNameContainer.style.display = 'none';
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const exportButton = document.getElementById('export-button');
+    const exportPopup = document.getElementById('export-popup');
+    const exportJsonButton = document.getElementById('export-json');
+    const exportPngButton = document.getElementById('export-png');
+
+    exportButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        exportPopup.style.display = exportPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    exportJsonButton.addEventListener('click', exportTierlistAsJson);
+    exportPngButton.addEventListener('click', exportTierlistAsPng);
+
+    document.addEventListener('click', function(e) {
+        if (!exportButton.contains(e.target) && !exportPopup.contains(e.target)) {
+            exportPopup.style.display = 'none';
+        }
+    });
+});
+
+function exportTierlistAsJson() {
+    let fileName = prompt("Enter a name for your tierlist:", "my_tierlist");
+    if (!fileName) {
+        console.log("Export cancelled: No filename provided");
+        return;
+    }
+
+    let serializedTierlist = {
+        tiers: [],
+        tieredUnitIds: new Set()
+    };
+
+    document.querySelectorAll('.row').forEach((row, index) => {
+        let headerElement = row.querySelector('.header');
+        let iconElement = headerElement.querySelector('.tier-icon');
+        let tier = {
+            name: headerElement.querySelector('label').innerText,
+            color: headerElement.style.backgroundColor,
+            icon: iconElement ? iconElement.src : '',
+            images: []
+        };
+
+        row.querySelectorAll('.items .item').forEach(item => {
+            let img = item.querySelector('.draggable');
+            let imageData = {
+                uniqueId: img.dataset.uniqueId,
+                src: img.dataset.path
+            };
+            tier.images.push(imageData);
+            serializedTierlist.tieredUnitIds.add(img.dataset.uniqueId);
+        });
+
+        serializedTierlist.tiers.push(tier);
+    });
+
+    serializedTierlist.tieredUnitIds = Array.from(serializedTierlist.tieredUnitIds);
+
+    let blob = new Blob([JSON.stringify(serializedTierlist, null, 2)], {type: 'application/json'});
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileName}.json`;
+    a.click();
+}
+
+function exportTierlistAsPng() {
+    const tierlistClone = document.querySelector('.tierlist').cloneNode(true);
+    tierlistClone.querySelectorAll('.row-buttons').forEach(el => el.remove());
+    
+    const itemWidth = 50;
+    const headerWidth = 50;
+    const maxItemsPerRow = 20;
+    const totalWidth = headerWidth + (maxItemsPerRow * itemWidth);
+    
+    tierlistClone.style.width = `${totalWidth}px`;
+    tierlistClone.style.borderRight = '1px solid black';
+
+    const loadImage = (src) => new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "Anonymous";  // This line is crucial for maintaining quality
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
+
+    const processImages = async () => {
+        const images = tierlistClone.querySelectorAll('.draggable, .tier-icon');
+        for (const img of images) {
+            try {
+                const src = img.dataset.path || img.src;
+                const loadedImg = await loadImage(src);
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = loadedImg.width;
+                canvas.height = loadedImg.height;
+                ctx.drawImage(loadedImg, 0, 0, canvas.width, canvas.height);
+                
+                if (img.classList.contains('draggable')) {
+                    const characterImg = img.querySelector('div:not(.render-bg)');
+                    if (characterImg) {
+                        characterImg.style.backgroundImage = `url(${canvas.toDataURL()})`;
+                        characterImg.style.backgroundSize = 'cover';
+                        characterImg.style.backgroundPosition = 'center';
+                    }
+                } else if (img.classList.contains('tier-icon')) {
+                    img.src = canvas.toDataURL();
+                }
+            } catch (error) {
+                console.error('Error processing image:', error);
+            }
+        }
+    };
+
+    tierlistClone.querySelectorAll('.row').forEach(row => {
+        const items = row.querySelector('.items');
+        const header = row.querySelector('.header');
+        items.style.paddingRight = '0';
+        items.style.width = `${maxItemsPerRow * itemWidth}px`;
+        row.style.width = `${totalWidth}px`;
+        
+        const itemsCount = items.children.length;
+        const rowsNeeded = Math.ceil(itemsCount / maxItemsPerRow);
+        const rowHeight = Math.max(rowsNeeded * itemWidth, 50);
+        row.style.height = `${rowHeight}px`;
+        items.style.height = `${rowHeight}px`;
+        header.style.height = `${rowHeight}px`;
+        
+        const headerContent = header.querySelector('label');
+        const headerIcon = header.querySelector('.tier-icon');
+        header.style.display = 'flex';
+        header.style.flexDirection = 'column';
+        header.style.justifyContent = 'center';
+        header.style.alignItems = 'center';
+
+        if (headerIcon) {
+            headerIcon.style.marginBottom = '5px';  // Add some space between icon and text
+        }
+        if (headerContent) {
+            headerContent.style.textAlign = 'center';
+        }
+    });
+
+    document.body.appendChild(tierlistClone);
+
+    processImages().then(() => {
+        html2canvas(tierlistClone, {
+            backgroundColor: null,
+            scale: 4,
+            useCORS: true,
+            logging: false,
+            width: totalWidth + 1,  // Add 1px for the right border
+            height: tierlistClone.offsetHeight,
+            onclone: function(clonedDoc) {
+                const clonedTierlist = clonedDoc.querySelector('.tierlist');
+                clonedTierlist.style.borderRight = '1px solid black';
+            }
+        }).then(canvas => {
+            let fileName = prompt("Enter a name for your tierlist image:", "my_tierlist");
+            if (!fileName) {
+                console.log("Export cancelled: No filename provided");
+                document.body.removeChild(tierlistClone);
+                return;
+            }
+
+            let link = document.createElement('a');
+            link.download = `${fileName}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            document.body.removeChild(tierlistClone);
+        });
+    });
+}
 
 function closeAllEditTierPopups() {
     const existingPopups = document.querySelectorAll('.tier-attributes-popup');
@@ -1883,8 +2007,6 @@ function sortImages() {
 
     updateDetailsDisplay();
 }
-
-document.getElementById('export-button').addEventListener('click', exportTierlist);
 
 document.getElementById('import-button').addEventListener('click', function() {
     document.getElementById('import-input').click();

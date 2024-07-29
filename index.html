@@ -98,6 +98,10 @@
                 <input type="file" id="import-input" accept=".json" style="display: none;">
             </div>
             <button id="export-button" class="custom-button">Export Tier</button>
+            <div id="export-popup" class="export-popup">
+                <button id="export-json" class="export-option">Save as JSON</button>
+                <button id="export-png" class="export-option">Save as PNG</button>
+            </div>
         </div>
       </div>
       <div class='bottom-container'>
@@ -105,5 +109,6 @@
       </div>
   </section>
   <script src='script.js?v=1.0.2'></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   </body>
 </html>

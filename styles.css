@@ -115,6 +115,7 @@ body {
 .tierlist {
 	margin-bottom: 10px;
     background-color: #242526;
+    border: 1px solid #000000;
 }
 
 .tierlist span {
@@ -205,6 +206,11 @@ span.header input[type=text] {
 .header label {
 	text-align: center;
 	word-break: break-word;
+}
+
+.tierlist .row .header {
+    position: relative;
+    overflow: hidden;
 }
 
 .tier-icon {
@@ -298,13 +304,14 @@ span.items {
 	flex-wrap: wrap;
     flex: 1;
 	flex-grow: 1;
-	justify-content: left;
+	justify-content: flex-start;
 	pointer-events: none;
     min-height: 100%;
 	height: fit-content;
     align-content: flex-start;
     overflow: hidden;
     padding-right: 50px;
+    box-sizing: border-box;
 }
 
 /* Tier Attributes Popup */
@@ -965,6 +972,38 @@ span.item {
 .import-export-container {
     display: flex;
     align-items: center;
+}
+
+.export-container {
+    position: relative;
+    display: inline-block;
+}
+
+.export-popup {
+    display: none;
+    position: absolute;
+    background-color: #3a3b3c;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 15;
+    border-radius: 5px;
+    right: 0;
+}
+
+.export-option {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.export-option:hover {
+    background-color: #4b63b9;
 }
 
 #image-search {
