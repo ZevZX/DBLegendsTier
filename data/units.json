@@ -8909,6 +8909,23 @@
     "has_zenkai": false
   },
   {
+    "name": "Super Saiyan Goten (Kid)",
+    "id": "DBL-EVT-85S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Kids",
+      "Event Exclusive",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0623_GotenTeenSS1_623.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Bulma (Youth)",
     "id": "DBL-EVT-84S",
     "color": "BLU",

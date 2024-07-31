@@ -1821,6 +1821,19 @@ function exportTierlistAsJson() {
 }
 
 function exportTierlistAsPng() {
+    const indicator = document.createElement('div');
+    indicator.textContent = 'Rendering...';
+    indicator.style.position = 'fixed';
+    indicator.style.top = '50%';
+    indicator.style.left = '50%';
+    indicator.style.transform = 'translate(-50%, -50%)';
+    indicator.style.padding = '20px';
+    indicator.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    indicator.style.color = 'white';
+    indicator.style.borderRadius = '5px';
+    indicator.style.zIndex = '9999';
+    document.body.appendChild(indicator);
+
     const tierlistClone = document.querySelector('.tierlist').cloneNode(true);
     tierlistClone.querySelectorAll('.row-buttons').forEach(el => el.remove());
     
@@ -1830,37 +1843,86 @@ function exportTierlistAsPng() {
     const totalWidth = headerWidth + (maxItemsPerRow * itemWidth);
     
     tierlistClone.style.width = `${totalWidth}px`;
-    tierlistClone.style.borderRight = '1px solid black';
+    tierlistClone.style.border = 'none';
 
     const loadImage = (src) => new Promise((resolve, reject) => {
         const img = new Image();
-        img.crossOrigin = "Anonymous";  // This line is crucial for maintaining quality
+        img.crossOrigin = "Anonymous";
         img.onload = () => resolve(img);
         img.onerror = reject;
         img.src = src;
     });
 
+    const processImage = async (src) => {
+        if (!src) return null;
+        const loadedImg = await loadImage(src);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = loadedImg.width;
+        canvas.height = loadedImg.height;
+        ctx.drawImage(loadedImg, 0, 0, canvas.width, canvas.height);
+        return canvas.toDataURL();
+    };
+
     const processImages = async () => {
         const images = tierlistClone.querySelectorAll('.draggable, .tier-icon');
         for (const img of images) {
             try {
-                const src = img.dataset.path || img.src;
-                const loadedImg = await loadImage(src);
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                canvas.width = loadedImg.width;
-                canvas.height = loadedImg.height;
-                ctx.drawImage(loadedImg, 0, 0, canvas.width, canvas.height);
-                
                 if (img.classList.contains('draggable')) {
+                    const renderBg = img.querySelector('.render-bg');
                     const characterImg = img.querySelector('div:not(.render-bg)');
-                    if (characterImg) {
-                        characterImg.style.backgroundImage = `url(${canvas.toDataURL()})`;
-                        characterImg.style.backgroundSize = 'cover';
-                        characterImg.style.backgroundPosition = 'center';
+                    const src = characterImg.style.backgroundImage.slice(4, -1).replace(/"/g, "");
+                    
+                    if (src) {
+                        const newImgSrc = await processImage(src);
+                        characterImg.style.backgroundImage = `url(${newImgSrc})`;
+                    }
+                    
+                    // Process detail indicators
+                    const colorIndicator = img.querySelector('.color-indicator');
+                    const rarityIndicator = img.querySelector('.rarity-indicator');
+                    const zenkaiIndicator = img.querySelector('.zenkai-indicator');
+
+                    if (colorIndicator) {
+                        let colorData;
+                        try {
+                            colorData = JSON.parse(img.dataset.color);
+                        } catch (error) {
+                            console.error(`Error parsing color data for ${img.dataset.name}:`, error);
+                            colorData = [];
+                        }
+
+                        if (Array.isArray(colorData) && colorData.length === 2) {
+                            colorIndicator.classList.add('dual-color');
+                            const color1 = await processImage(`assets/detail_color/${colorData[0]}.webp`);
+                            const color2 = await processImage(`assets/detail_color/${colorData[1]}.webp`);
+                            colorIndicator.style.setProperty('--color1', `url('${color1}')`);
+                            colorIndicator.style.setProperty('--color2', `url('${color2}')`);
+                        } else {
+                            colorIndicator.classList.remove('dual-color');
+                            const singleColor = Array.isArray(colorData) ? colorData[0] : colorData;
+                            const color = await processImage(`assets/detail_color/${singleColor}.webp`);
+                            colorIndicator.style.setProperty('--color1', `url('${color}')`);
+                            colorIndicator.style.removeProperty('--color2');
+                        }
+                    }
+
+                    if (rarityIndicator) {
+                        const rarity = img.dataset.rarity.replace(' ', '_');
+                        const newSrc = await processImage(`assets/rarity/${rarity}.webp`);
+                        rarityIndicator.style.backgroundImage = `url('${newSrc}')`;
+                    }
+
+                    if (zenkaiIndicator) {
+                        const newSrc = await processImage('assets/Zenkai.webp');
+                        zenkaiIndicator.style.backgroundImage = `url('${newSrc}')`;
                     }
                 } else if (img.classList.contains('tier-icon')) {
-                    img.src = canvas.toDataURL();
+                    const src = img.src;
+                    if (src) {
+                        const newSrc = await processImage(src);
+                        img.src = newSrc;
+                    }
                 }
             } catch (error) {
                 console.error('Error processing image:', error);
@@ -1882,19 +1944,10 @@ function exportTierlistAsPng() {
         items.style.height = `${rowHeight}px`;
         header.style.height = `${rowHeight}px`;
         
-        const headerContent = header.querySelector('label');
-        const headerIcon = header.querySelector('.tier-icon');
         header.style.display = 'flex';
         header.style.flexDirection = 'column';
         header.style.justifyContent = 'center';
         header.style.alignItems = 'center';
-
-        if (headerIcon) {
-            headerIcon.style.marginBottom = '5px';  // Add some space between icon and text
-        }
-        if (headerContent) {
-            headerContent.style.textAlign = 'center';
-        }
     });
 
     document.body.appendChild(tierlistClone);
@@ -1905,24 +1958,60 @@ function exportTierlistAsPng() {
             scale: 4,
             useCORS: true,
             logging: false,
-            width: totalWidth + 1,  // Add 1px for the right border
-            height: tierlistClone.offsetHeight,
-            onclone: function(clonedDoc) {
-                const clonedTierlist = clonedDoc.querySelector('.tierlist');
-                clonedTierlist.style.borderRight = '1px solid black';
-            }
+            width: totalWidth,
+            height: tierlistClone.offsetHeight
         }).then(canvas => {
-            let fileName = prompt("Enter a name for your tierlist image:", "my_tierlist");
-            if (!fileName) {
-                console.log("Export cancelled: No filename provided");
-                document.body.removeChild(tierlistClone);
-                return;
-            }
+            document.body.removeChild(indicator);
 
-            let link = document.createElement('a');
-            link.download = `${fileName}.png`;
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+            const preview = document.createElement('div');
+            preview.style.position = 'fixed';
+            preview.style.top = '50%';
+            preview.style.left = '50%';
+            preview.style.transform = 'translate(-50%, -50%)';
+            preview.style.backgroundColor = 'white';
+            preview.style.padding = '20px';
+            preview.style.borderRadius = '5px';
+            preview.style.boxShadow = '0 0 10px rgba(0,0,0,0.5)';
+            preview.style.zIndex = '10000';
+            preview.style.maxWidth = '90%';
+            preview.style.maxHeight = '90%';
+            preview.style.overflow = 'auto';
+
+            const previewImage = document.createElement('img');
+            previewImage.src = canvas.toDataURL();
+            previewImage.style.maxWidth = '100%';
+            previewImage.style.height = 'auto';
+
+            const downloadButton = document.createElement('button');
+            downloadButton.textContent = 'Download';
+            downloadButton.style.marginTop = '10px';
+            downloadButton.style.padding = '5px 10px';
+
+            const closeButton = document.createElement('button');
+            closeButton.textContent = 'Close';
+            closeButton.style.marginTop = '10px';
+            closeButton.style.marginLeft = '10px';
+            closeButton.style.padding = '5px 10px';
+
+            preview.appendChild(previewImage);
+            preview.appendChild(downloadButton);
+            preview.appendChild(closeButton);
+
+            document.body.appendChild(preview);
+
+            downloadButton.onclick = () => {
+                let fileName = prompt("Enter a name for your tierlist image:", "my_tierlist");
+                if (fileName) {
+                    let link = document.createElement('a');
+                    link.download = `${fileName}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                }
+            };
+
+            closeButton.onclick = () => {
+                document.body.removeChild(preview);
+            };
 
             document.body.removeChild(tierlistClone);
         });
