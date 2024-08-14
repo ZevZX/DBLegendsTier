@@ -1,5 +1,63 @@
 [
   {
+    "name": "Legendary Super Saiyan Broly",
+    "id": "DBL74-03S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Super Saiyan",
+      "Powerful Opponent",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0624_BrolySS1_624.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Broly",
+    "id": "DBL74-03S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Super Saiyan",
+      "Powerful Opponent",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0624_BrolyNSS1_624.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Videl",
+    "id": "DBL74-02S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Support",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0626_VidelM13_626.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Gohan (Teen)",
+    "id": "DBL74-01E",
+    "color": "BLU",
+    "rarity": "EXTREME",
+    "tags": [
+      "Son Family",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0628_GohanSS1_628.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Rage Shenron",
     "id": "DBL73-03S",
     "color": "YEL",
@@ -2098,7 +2156,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/JDAyrbK.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Kale",
@@ -3407,7 +3465,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/BLR8eel.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Demon King Piccolo",
@@ -8906,6 +8964,23 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Goku",
+    "id": "DBL-EVT-86S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan",
+      "Otherworld Warrior",
+      "Event Exclusive",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0625_GokuSS1_625.webp",
     "has_zenkai": false
   },
   {
