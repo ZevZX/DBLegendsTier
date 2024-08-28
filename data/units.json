@@ -1,5 +1,83 @@
 [
   {
+    "name": "Super Garlic Jr.",
+    "id": "DBL74-05S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Transforming Warrior",
+      "Regeneration",
+      "Powerful Opponent",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0630_SuperGarlicJr_630.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Garlic Jr.",
+    "id": "DBL74-05S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Transforming Warrior",
+      "Regeneration",
+      "Powerful Opponent",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0630_GarlicJr_630.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Piccolo & Goku",
+    "id": "DBL74-04S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Regeneration",
+      "Namekian",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/TagGokcollo.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku",
+    "id": "DBL74-04S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Regeneration",
+      "Namekian",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0629_Goku_629.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Piccolo",
+    "id": "DBL74-04S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Regeneration",
+      "Namekian",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0629_Piccolo_629.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Legendary Super Saiyan Broly",
     "id": "DBL74-03S",
     "color": "RED",
