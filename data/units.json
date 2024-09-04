@@ -9045,6 +9045,22 @@
     "has_zenkai": false
   },
   {
+    "name": "Boujack",
+    "id": "DBL-EVT-87S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Transforming Warrior",
+      "Powerful Opponent",
+      "Hera Clan",
+      "Event Exclusive",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0631_Bojack_631.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Super Saiyan Goku",
     "id": "DBL-EVT-86S",
     "color": "YEL",
