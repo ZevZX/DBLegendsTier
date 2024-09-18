@@ -1,5 +1,75 @@
 [
   {
+    "name": "Rasin: Lakasei (Assist)",
+    "id": "DBL75-05S",
+    "color": [
+      "YEL",
+      "BLU"
+    ],
+    "rarity": "SPARKING",
+    "tags": [
+      "Twins",
+      "Turles Crusher Crops",
+      "Support",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0637_Rasin_637.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Cacao",
+    "id": "DBL75-04S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Turles Crusher Crops",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0635_Cacao_635.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Amond",
+    "id": "DBL75-03S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "Turles Crusher Crops",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0634_Amond_634.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Daiz",
+    "id": "DBL75-02S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Turles Crusher Crops",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0633_Daiz_633.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku",
+    "id": "DBL75-01S",
+    "color": "YEL",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Ranged",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0632_Goku_632.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Super Garlic Jr.",
     "id": "DBL74-05S",
     "color": "PUR",
@@ -5251,7 +5321,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/3E49osB.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Trunks (Kid)",
