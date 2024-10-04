@@ -1,5 +1,20 @@
 [
   {
+    "name": "Turles",
+    "id": "DBL75-06U",
+    "color": "BLU",
+    "rarity": "ULTRA",
+    "tags": [
+      "Saiyan",
+      "Powerful Opponent",
+      "Turles Crusher Corps",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0636_Turles_636.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Rasin: Lakasei (Assist)",
     "id": "DBL75-05S",
     "color": [
@@ -9,7 +24,7 @@
     "rarity": "SPARKING",
     "tags": [
       "Twins",
-      "Turles Crusher Crops",
+      "Turles Crusher Corps",
       "Support",
       "Sagas From the Movies"
     ],
@@ -22,7 +37,7 @@
     "color": "RED",
     "rarity": "SPARKING",
     "tags": [
-      "Turles Crusher Crops",
+      "Turles Crusher Corps",
       "Defense",
       "Sagas From the Movies"
     ],
@@ -35,7 +50,7 @@
     "color": "GRN",
     "rarity": "SPARKING",
     "tags": [
-      "Turles Crusher Crops",
+      "Turles Crusher Corps",
       "Ranged",
       "Sagas From the Movies"
     ],
@@ -48,7 +63,7 @@
     "color": "PUR",
     "rarity": "SPARKING",
     "tags": [
-      "Turles Crusher Crops",
+      "Turles Crusher Corps",
       "Melee",
       "Sagas From the Movies"
     ],
@@ -2272,6 +2287,7 @@
     "tags": [
       "Saiyan",
       "Powerful Opponent",
+      "Turles Crusher Corps",
       "Defense",
       "Sagas From the Movies"
     ],
@@ -4379,6 +4395,7 @@
     "tags": [
       "Saiyan",
       "Powerful Opponent",
+      "Turles Crusher Corps",
       "Ranged",
       "Sagas From the Movies"
     ],
@@ -5349,7 +5366,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/goEq0Xl.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan Rose Goku Black",
@@ -7312,6 +7329,7 @@
     "tags": [
       "Saiyan",
       "Powerful Opponent",
+      "Turles Crusher Corps",
       "Defense",
       "Sagas From the Movies"
     ],
@@ -8060,6 +8078,7 @@
     "tags": [
       "Saiyan",
       "Powerful Opponent",
+      "Turles Crusher Corps",
       "Ranged",
       "Sagas From the Movies"
     ],
@@ -8074,6 +8093,7 @@
     "tags": [
       "Saiyan",
       "Powerful Opponent",
+      "Turles Crusher Corps",
       "Ranged",
       "Sagas From the Movies"
     ],
@@ -9112,6 +9132,22 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 3 Goku",
+    "id": "DBL-EVT-88S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan 3",
+      "Event Exclusive",
+      "Support",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0638_GokuSS3_638.webp",
     "has_zenkai": false
   },
   {
