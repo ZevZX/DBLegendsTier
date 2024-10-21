@@ -1,5 +1,53 @@
 [
   {
+    "name": "Majin Buu (Good): Hercule (Assist)",
+    "id": "DBL76-03S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Regeneration",
+      "Absorption",
+      "Support",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 3 Gotenks",
+    "id": "DBL76-02S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Hybrid Saiyan",
+      "Kids",
+      "Fusion",
+      "Fusion Warrior",
+      "Super Saiyan 3",
+      "Ranged",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku (Mini)",
+    "id": "DBL76-01S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Kids",
+      "DAIMA",
+      "Weapon Wielder",
+      "Melee",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
     "name": "Turles",
     "id": "DBL75-06U",
     "color": "BLU",
@@ -1630,7 +1678,7 @@
       "Majin Buu Saga (Z)"
     ],
     "image_url": "assets/renders/TagBuuDuo.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan 2 Vegeta",
@@ -7346,7 +7394,7 @@
       "Majin Buu Saga (Z)"
     ],
     "image_url": "assets/renders/VKg3H7b.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Majin Buu: Good",
