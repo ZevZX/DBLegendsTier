@@ -1,5 +1,36 @@
 [
   {
+    "name": "Glorio",
+    "id": "DBL77-02S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "DAIMA",
+      "Weapon Wielder",
+      "Ranged",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0645_Glo_645.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku (Mini)",
+    "id": "DBL77-01S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Kids",
+      "DAIMA",
+      "Weapon Wielder",
+      "Melee",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0644_GokuKidDM_644.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Majin Vegeta",
     "id": "DBL76-04U",
     "color": "YEL",
@@ -1718,7 +1749,7 @@
       "Majin Buu Saga (Z)"
     ],
     "image_url": "assets/renders/BChaCut_0536_VegetaSS2_536.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan 3 Goku",
@@ -1736,7 +1767,7 @@
       "Majin Buu Saga (Z)"
     ],
     "image_url": "assets/renders/T8EUYEY.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Perfect Form Cell",
@@ -6962,7 +6993,7 @@
       "\"Future\" Trunks Saga (S)"
     ],
     "image_url": "assets/renders/wPrK7q1.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Boujack",
@@ -9252,6 +9283,22 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Syn Shenron",
+    "id": "DBL-EVT-89S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "GT",
+      "Shadow Dragon",
+      "Powerful Opponent",
+      "Event Exclusive",
+      "Ranged",
+      "Shadow Dragon Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0620_Shenron1_620.webp",
     "has_zenkai": false
   },
   {
