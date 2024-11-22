@@ -1,5 +1,149 @@
 [
   {
+    "name": "Perfect Form & Final Form Cell & Frieza",
+    "id": "DBL77-06S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Otherworld Warrior",
+      "Transforming Warrior",
+      "Android",
+      "Future",
+      "Regeneration",
+      "GT",
+      "Absorption",
+      "Lineage of Evil",
+      "Melee",
+      "Super #17 Saga (GT)"
+    ],
+    "image_url": "assets/renders/TagCellza.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Final Form Frieza",
+    "id": "DBL77-06S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Otherworld Warrior",
+      "Transforming Warrior",
+      "Android",
+      "Future",
+      "Regeneration",
+      "GT",
+      "Absorption",
+      "Lineage of Evil",
+      "Melee",
+      "Super #17 Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0649_Frieza4th_649.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Perfect Form Cell",
+    "id": "DBL77-06S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Otherworld Warrior",
+      "Transforming Warrior",
+      "Android",
+      "Future",
+      "Regeneration",
+      "GT",
+      "Absorption",
+      "Lineage of Evil",
+      "Melee",
+      "Super #17 Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0649_Cell3rd_649.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Rose Goku Black",
+    "id": "DBL77-05S",
+    "color": "YEL",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Future",
+      "God Ki",
+      "Super Saiyan Rosé",
+      "Powerful Opponent",
+      "Defense",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0648_GokuBlackRose_648.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku Black",
+    "id": "DBL77-05S",
+    "color": "YEL",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Future",
+      "Powerful Opponent",
+      "Defense",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0648_GokuBlack_648.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Mai",
+    "id": "DBL77-04S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Future",
+      "Weapon Wielder",
+      "Ranged",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0647_MaiFuture_647.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan God SS Vegito",
+    "id": "DBL77-03S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Future",
+      "Potara",
+      "Fusion Warrior",
+      "God Ki",
+      "Super Saiyan God SS",
+      "Ranged",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0646_VegitoSSGSS_646.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Vegito",
+    "id": "DBL77-03S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Saiyan",
+      "Future",
+      "Potara",
+      "Fusion Warrior",
+      "Ranged",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0646_Vegito_646.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Glorio",
     "id": "DBL77-02S",
     "color": "YEL",
@@ -2325,7 +2469,7 @@
       "Androids Saga (Z)"
     ],
     "image_url": "assets/renders/SY6wSsf.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Ultimate Gohan Absorbed Buu: Super",
