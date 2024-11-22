@@ -2,7 +2,10 @@
   {
     "name": "Perfect Form & Final Form Cell & Frieza",
     "id": "DBL77-06S",
-    "color": "BLU",
+    "color": [
+      "BLU",
+      "PUR"
+    ],
     "rarity": "SPARKING",
     "tags": [
       "Frieza Force",
@@ -23,7 +26,7 @@
   {
     "name": "Final Form Frieza",
     "id": "DBL77-06S",
-    "color": "BLU",
+    "color": "PUR",
     "rarity": "SPARKING",
     "tags": [
       "Frieza Force",
