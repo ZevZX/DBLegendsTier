@@ -1,5 +1,96 @@
 [
   {
+    "name": "Beast Gohan",
+    "id": "DBL78-05U",
+    "color": "YEL",
+    "rarity": "ULTRA",
+    "tags": [
+      "Son Family",
+      "Hybrid Saiyan",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0656_GohanSHB_656.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": " Tamagami Number Three",
+    "id": "DBL78-04S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "DAIMA",
+      "Weapon Wielder",
+      "Defense",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0655_Tgm3_655.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Videl",
+    "id": "DBL78-03S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Melee",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0653_Videl_653.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 3 Goku",
+    "id": "DBL78-02S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Otherworld Warrior",
+      "Super Saiyan 3",
+      "Melee",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0652_GokuSS3_652.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 2 Goku",
+    "id": "DBL78-02S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Otherworld Warrior",
+      "Super Saiyan 2",
+      "Melee",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0652_GokuSS2_652.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Goku (Mini)",
+    "id": "DBL78-01S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan",
+      "Kids",
+      "DAIMA",
+      "Weapon Wielder",
+      "Melee",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0654_GokuKidDMSS1_654.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Perfect Form & Final Form Cell & Frieza",
     "id": "DBL77-06S",
     "color": [
@@ -3095,7 +3186,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/TagBlues.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan God SS Vegeta",
@@ -3112,7 +3203,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/BChaCut_0448_VegetaSSGSS_448.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -3129,7 +3220,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/iFbMWA8.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Fused with Nail Piccolo",
@@ -4716,7 +4807,7 @@
       "\"Future\" Trunks Saga (S)"
     ],
     "image_url": "assets/renders/Et20nfd.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -9430,6 +9521,40 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Vegeta",
+    "id": "DBL-EVT-91S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Vegeta Clan",
+      "Saiyan",
+      "Otherworld Warrior",
+      "Event Exclusive",
+      "Support",
+      "Majin Buu Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0651_Vegeta_651.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Trunks (Adult) (Rage)",
+    "id": "DBL-EVT-90S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Event Exclusive",
+      "Weapon Wielder",
+      "Ranged",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0619_TrunksFutureSSA_619.webp",
     "has_zenkai": false
   },
   {
