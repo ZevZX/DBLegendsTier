@@ -9524,6 +9524,24 @@
     "has_zenkai": false
   },
   {
+    "name": "Super Saiyan God SS Goku",
+    "id": "DBL-EVT-92S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Future",
+      "God Ki",
+      "Super Saiyan God SS",
+      "Event Exclusive",
+      "Ranged",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0657_GokuSSGSS_657.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Vegeta",
     "id": "DBL-EVT-91S",
     "color": "RED",
