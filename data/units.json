@@ -1,5 +1,93 @@
 [
   {
+    "name": "Android #18",
+    "id": "DBL79-02S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Android",
+      "Future",
+      "Twins",
+      "Powerful Opponent",
+      "Support",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Trunks (Youth)",
+    "id": "DBL79-01S",
+    "color": "BLU",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Ranged",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Gohan & Trunks (Youth)",
+    "id": "DBL79-01S",
+    "color": [
+      "BLU",
+      "PUR"
+    ],
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Ranged",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Trunks (Youth)",
+    "id": "DBL79-01S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Ranged",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Gohan",
+    "id": "DBL79-01S",
+    "color": "BLU",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Ranged",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
     "name": "Beast Gohan",
     "id": "DBL78-05U",
     "color": "YEL",
@@ -14,7 +102,7 @@
     "has_zenkai": false
   },
   {
-    "name": " Tamagami Number Three",
+    "name": "Tamagami Number Three",
     "id": "DBL78-04S",
     "color": "PUR",
     "rarity": "SPARKING",
