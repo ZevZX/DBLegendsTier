@@ -1,5 +1,39 @@
 [
   {
+    "name": "Fusion Zamasu",
+    "id": "DBL79-04S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Future",
+      "Regeneration",
+      "Potara",
+      "Fusion Warrior",
+      "God Ki",
+      "Powerful Opponent",
+      "Melee",
+      "\"Future\" Trunks Saga (S)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Android #17",
+    "id": "DBL79-03S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Android",
+      "Future",
+      "Twins",
+      "Powerful Opponent",
+      "Ranged",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
     "name": "Android #18",
     "id": "DBL79-02S",
     "color": "YEL",
