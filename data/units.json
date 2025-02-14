@@ -1,5 +1,36 @@
 [
   {
+    "name": "Super Trunks",
+    "id": "DBL80-02S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Vegeta Clan",
+      "Hybrid Saiyan",
+      "Super Saiyan",
+      "Future",
+      "Defense",
+      "Cell Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0665_TrunksST_665.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Goku",
+    "id": "DBL80-01S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan",
+      "Ranged",
+      "Cell Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0664_GokuSS1_664.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Fusion Zamasu",
     "id": "DBL79-04S",
     "color": "RED",
@@ -3390,7 +3421,7 @@
       "Cell Saga (Z)"
     ],
     "image_url": "assets/renders/GMH5F9l.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan 2 Gohan (Youth)",
@@ -5320,7 +5351,7 @@
       "Cell Saga (Z)"
     ],
     "image_url": "assets/renders/3c3er7T.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan Trunks (Teen)",
@@ -9643,6 +9674,23 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Fused with Kami Piccolo",
+    "id": "DBL-EVT-93S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Regeneration",
+      "Merging",
+      "Namekian",
+      "Event Exclusive",
+      "Defense",
+      "Cell Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0663_Piccolo_663.webp",
     "has_zenkai": false
   },
   {
