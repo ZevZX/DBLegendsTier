@@ -1,5 +1,22 @@
 [
   {
+    "name": "Perfect Cell",
+    "id": "DBL81-01U",
+    "color": "RED",
+    "rarity": "ULTRA",
+    "tags": [
+      "Android",
+      "Future",
+      "Regeneration",
+      "Absorption",
+      "Powerful Opponent",
+      "Ranged",
+      "Cell Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0666_PerfectCell_666.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Super Trunks",
     "id": "DBL80-02S",
     "color": "RED",
@@ -9674,6 +9691,24 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "2nd Form Cell",
+    "id": "DBL-EVT-94S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Android",
+      "Future",
+      "Regeneration",
+      "Absorption",
+      "Powerful Opponent",
+      "Event Exclusive",
+      "Ranged",
+      "Cell Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0667_Cell2nd_667.webp",
     "has_zenkai": false
   },
   {
