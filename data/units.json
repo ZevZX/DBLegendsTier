@@ -1,5 +1,34 @@
 [
   {
+    "name": "Majin Kuu",
+    "id": "DBL81-03S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "DAIMA",
+      "Support",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0669_Kuu_669.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 3 Vegeta",
+    "id": "DBL81-02S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Vegeta Clan",
+      "Saiyan",
+      "Super Saiyan 3",
+      "DAIMA",
+      "Melee",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0668_Vtt_668.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Perfect Cell",
     "id": "DBL81-01U",
     "color": "RED",
@@ -499,7 +528,7 @@
       "DAIMA Saga"
     ],
     "image_url": "assets/renders/BChaCut_0642_GokuKidDM_642.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Turles",
