@@ -1,5 +1,34 @@
 [
   {
+    "name": "Majin Duu",
+    "id": "DBL81-05S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "DAIMA",
+      "Ranged",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0671_Doo_671.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 4 Goku",
+    "id": "DBL81-04S",
+    "color": "BLU",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan 4",
+      "DAIMA",
+      "Melee",
+      "DAIMA Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0670_Gkf_670.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Majin Kuu",
     "id": "DBL81-03S",
     "color": "YEL",
