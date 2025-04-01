@@ -9752,6 +9752,21 @@
     "has_zenkai": false
   },
   {
+    "name": "Cyborg Tao",
+    "id": "DBL-EVT-95S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Event Exclusive",
+      "DB",
+      "Weapon Wielder",
+      "Melee",
+      "Dragon Ball Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0672_TaoPaiPaiCbg_672.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "2nd Form Cell",
     "id": "DBL-EVT-94S",
     "color": "BLU",
