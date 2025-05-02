@@ -1,5 +1,34 @@
 [
   {
+    "name": "Tambourine",
+    "id": "DBL82-02S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "DB",
+      "Support",
+      "Dragon Ball Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0674_Tambourine_674.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Demon King Piccolo",
+    "id": "DBL82-01S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Regeneration",
+      "Namekian",
+      "Powerful Opponent",
+      "DB",
+      "Melee",
+      "Dragon Ball Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0673_PiccoloKing_673.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Majin Duu",
     "id": "DBL81-05S",
     "color": "PUR",
@@ -4304,7 +4333,7 @@
       "Dragon Ball Saga"
     ],
     "image_url": "assets/renders/YVNjkFm.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Master Roshi",
