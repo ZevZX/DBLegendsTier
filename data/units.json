@@ -1,5 +1,35 @@
 [
   {
+    "name": "Jackie Chun",
+    "id": "DBL82-04S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "DB",
+      "Defense",
+      "Dragon Ball Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0676_JackyCheung_676.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku (Youth)",
+    "id": "DBL82-03S",
+    "color": "YEL",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Kids",
+      "DB",
+      "Weapon Wielder",
+      "Melee",
+      "Dragon Ball Saga"
+    ],
+    "image_url": "assets/renders/BChaCut_0675_GokuTeen_675.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Tambourine",
     "id": "DBL82-02S",
     "color": "GRN",
