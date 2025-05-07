@@ -9811,6 +9811,24 @@
     "has_zenkai": false
   },
   {
+    "name": "Golden Frieza",
+    "id": "DBL-EVT-96S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Otherworld Warrior",
+      "Transforming Warrior",
+      "Lineage of Evil",
+      "Event Exclusive",
+      "Universe Rep",
+      "Support",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0581_GoldenFrieza_581.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Cyborg Tao",
     "id": "DBL-EVT-95S",
     "color": "BLU",
