@@ -1,5 +1,162 @@
 [
   {
+    "name": "Super Saiyan 2 Caulifla & Kale",
+    "id": "DBL83-04S",
+    "color": [
+      "YEL",
+      "GRN"
+    ],
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Saiyan",
+      "Universe 6",
+      "Super Saiyan 2",
+      "Rival Universe",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 2 Kale",
+    "id": "DBL83-04S",
+    "color": "GRN",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Saiyan",
+      "Universe 6",
+      "Super Saiyan 2",
+      "Rival Universe",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0689_KaleSS2_689.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 2 Caulifla",
+    "id": "DBL83-04S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Girls",
+      "Saiyan",
+      "Universe 6",
+      "Super Saiyan 2",
+      "Rival Universe",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0689_CauliflaSS2_689.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 2 Cabba",
+    "id": "DBL83-03S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Saiyan",
+      "Universe 6",
+      "Super Saiyan 2",
+      "Rival Universe",
+      "Universe Rep",
+      "Ranged",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0691_CabbeSS2_691.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Cabba",
+    "id": "DBL83-03S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Saiyan",
+      "Super Saiyan",
+      "Universe 6",
+      "Rival Universe",
+      "Universe Rep",
+      "Ranged",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0691_CabbeSS1_691.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan God SS Evolved Vegeta",
+    "id": "DBL83-02S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Vegeta Clan",
+      "Saiyan",
+      "God Ki",
+      "Super Saiyan God SS",
+      "Universe Rep",
+      "Ranged",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0690_VegetaSSGSSEvo_690.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan God SS Vegeta",
+    "id": "DBL83-02S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Vegeta Clan",
+      "Saiyan",
+      "God Ki",
+      "Super Saiyan God SS",
+      "Universe Rep",
+      "Ranged",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0690_VegetaSSGSS_690.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Ultra Instinct Goku",
+    "id": "DBL83-01S",
+    "color": "BLU",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "God Ki",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/",
+    "has_zenkai": false
+  },
+  {
+    "name": "Ultra Instinct -Sign- Goku",
+    "id": "DBL83-01S",
+    "color": "BLU",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "God Ki",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0688_GokuUIS_688.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Jackie Chun",
     "id": "DBL82-04S",
     "color": "BLU",
@@ -2424,7 +2581,7 @@
       "Universe Survival Saga (S)"
     ],
     "image_url": "assets/renders/BChaCut_0527_GokuUIS_527.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan God SS Goku",
@@ -2441,7 +2598,7 @@
       "Universe Survival Saga (S)"
     ],
     "image_url": "assets/renders/ELU0hgU.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Hit",
@@ -9808,6 +9965,23 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Jiren",
+    "id": "DBL-EVT-97S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Universe 11",
+      "Powerful Opponent",
+      "Rival Universe",
+      "Event Exclusive",
+      "Universe Rep",
+      "Support",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0627_Jiren_627.webp",
     "has_zenkai": false
   },
   {
