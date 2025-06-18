@@ -1,5 +1,159 @@
 [
   {
+    "name": "Nappa & Saibaman",
+    "id": "DBL84-04S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Saiyan",
+      "Minion",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/SaibaNap.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Saibaman",
+    "id": "DBL84-04S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Minion",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0693_Saibaiman_693.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Nappa",
+    "id": "DBL84-04S",
+    "color": "YEL",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Saiyan",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0693_Nappa_693.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Vegeta",
+    "id": "DBL84-03S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Vegeta Clan",
+      "Frieza Force",
+      "Saiyan",
+      "Powerful Opponent",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0678_VegetaT_678.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Vegeta",
+    "id": "DBL84-03S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Vegeta Clan",
+      "Frieza Force",
+      "Saiyan",
+      "Powerful Opponent",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0678_Vegeta_678.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Tien",
+    "id": "DBL84-02S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0692_TienshinhanRevival_692.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Tien & Chiaotzu",
+    "id": "DBL84-02S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/TagTiaotzu.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Chiaotzu",
+    "id": "DBL84-02S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0692_Chaozu_692.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Tien",
+    "id": "DBL84-02S",
+    "color": "PUR",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0692_TienShinhan_692.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Kaioken Goku",
+    "id": "DBL84-01S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0677_GokuK_677.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Goku",
+    "id": "DBL84-01S",
+    "color": "RED",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Melee",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0677_Goku_677.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Super Saiyan 2 Caulifla & Kale",
     "id": "DBL83-04S",
     "color": [
@@ -17,7 +171,7 @@
       "Melee",
       "Universe Survival Saga (S)"
     ],
-    "image_url": "assets/renders/",
+    "image_url": "assets/renders/TagKafla.webp",
     "has_zenkai": false
   },
   {
@@ -137,7 +291,7 @@
       "Melee",
       "Universe Survival Saga (S)"
     ],
-    "image_url": "assets/renders/",
+    "image_url": "assets/renders/BChaCut_0688_GokuUI_688.webp",
     "has_zenkai": false
   },
   {
