@@ -1,5 +1,49 @@
 [
   {
+    "name": "Final Form Frieza: Full Power",
+    "id": "DBL85-03U",
+    "color": "GRN",
+    "rarity": "ULTRA",
+    "tags": [
+      "Frieza Force",
+      "Transforming Warrior",
+      "Lineage of Evil",
+      "Powerful Opponent",
+      "Ranged",
+      "Frieza Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0694_FriezaFP_694.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Krillin",
+    "id": "DBL85-02S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Super Warrior",
+      "Support",
+      "Frieza Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0681_Krillin_681.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan Goku",
+    "id": "DBL85-01U",
+    "color": "YEL",
+    "rarity": "ULTRA",
+    "tags": [
+      "Son Family",
+      "Saiyan",
+      "Super Saiyan",
+      "Melee",
+      "Frieza Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0680_GokuSS1_680.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Nappa & Saibaman",
     "id": "DBL84-04S",
     "color": "YEL",
@@ -3597,7 +3641,7 @@
       "Frieza Saga (Z)"
     ],
     "image_url": "assets/renders/BChaCut_0460_Frieza4thTailCut_460.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Final Form Frieza",
@@ -3613,7 +3657,7 @@
       "Frieza Saga (Z)"
     ],
     "image_url": "assets/renders/ETCjW13.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Kaioken Goku",
@@ -10119,6 +10163,22 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Gohan (Kid)",
+    "id": "DBL-EVT-98S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Son Family",
+      "Hybrid Saiyan",
+      "Kids",
+      "Event Exclusive",
+      "Ranged",
+      "Saiyan Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0407_GohanKid_407.webp",
     "has_zenkai": false
   },
   {
