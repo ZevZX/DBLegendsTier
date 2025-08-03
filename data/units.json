@@ -1,5 +1,42 @@
 [
   {
+    "name": "Final Form Frost: Full Power",
+    "id": "DBL85-05S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Universe 6",
+      "Transforming Warrior",
+      "Lineage of Evil",
+      "Rival Universe",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0697_FrostFP_697.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Super Saiyan 2 Kefla",
+    "id": "DBL85-04S",
+    "color": "GRN",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Girls",
+      "Saiyan",
+      "Universe 6",
+      "Potara",
+      "Super Saiyan 2",
+      "Fusion Warrior",
+      "Rival Universe",
+      "Universe Rep",
+      "Melee",
+      "Universe Survival Saga (S)"
+    ],
+    "image_url": "assets/renders/BChaCut_0696_KeflaSS2_696.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Final Form Frieza: Full Power",
     "id": "DBL85-03U",
     "color": "GRN",
@@ -10163,6 +10200,23 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "3rd Form Frieza",
+    "id": "DBL-EVT-99S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Frieza Force",
+      "Transforming Warrior",
+      "Lineage of Evil",
+      "Powerful Opponent",
+      "Event Exclusive",
+      "Ranged",
+      "Frieza Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0695_Frieza3rd_695.webp",
     "has_zenkai": false
   },
   {
