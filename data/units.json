@@ -4859,7 +4859,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/LSGUz1u.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Super Saiyan God SS Gogeta",
@@ -10200,6 +10200,22 @@
       "Game Originals"
     ],
     "image_url": "assets/renders/5CCfJKf.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "Cooler",
+    "id": "DBL-EVT-99S",
+    "color": "RED",
+    "rarity": "SPARKING",
+    "tags": [
+      "Transforming Warrior",
+      "Lineage of Evil",
+      "Powerful Opponent",
+      "Event Exclusive",
+      "Melee",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0578_Cooler1st_578.webp",
     "has_zenkai": false
   },
   {
