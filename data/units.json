@@ -1,5 +1,35 @@
 [
   {
+    "name": "Metal Cooler",
+    "id": "DBL86-02S",
+    "color": "PUR",
+    "rarity": "LEGENDS LIMITED",
+    "tags": [
+      "Regeneration",
+      "Merging",
+      "Lineage of Evil",
+      "Powerful Opponent",
+      "Defense",
+      "Sagas From the Movies"
+    ],
+    "image_url": "assets/renders/BChaCut_0698_MetalCooler_698.webp",
+    "has_zenkai": false
+  },
+  {
+    "name": "King Cold",
+    "id": "DBL86-01S",
+    "color": "BLU",
+    "rarity": "SPARKING",
+    "tags": [
+      "Lineage of Evil",
+      "Weapon Wielder",
+      "Melee",
+      "Androids Saga (Z)"
+    ],
+    "image_url": "assets/renders/BChaCut_0699_Cold_699.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Final Form Frost: Full Power",
     "id": "DBL85-05S",
     "color": "RED",
@@ -3196,7 +3226,7 @@
       "Sagas From the Movies"
     ],
     "image_url": "assets/renders/guIZiot.webp",
-    "has_zenkai": false
+    "has_zenkai": true
   },
   {
     "name": "Goku Black",
