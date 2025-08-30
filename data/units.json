@@ -1,5 +1,21 @@
 [
   {
+    "name": "Super Saiyan 4 Vegeta",
+    "id": "DBL86-03U",
+    "color": "RED",
+    "rarity": "ULTRA",
+    "tags": [
+      "Vegeta Clan",
+      "Saiyan",
+      "GT",
+      "Super Saiyan 4",
+      "Ranged",
+      "Shadow Dragon Saga (GT)"
+    ],
+    "image_url": "assets/renders/BChaCut_0700_VegetaSS4_700.webp",
+    "has_zenkai": false
+  },
+  {
     "name": "Metal Cooler",
     "id": "DBL86-02S",
     "color": "PUR",
